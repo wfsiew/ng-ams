@@ -14,6 +14,14 @@ import { ErrorModalComponent } from './shared/components/error-modal/error-modal
 
 import { environment } from '../environments/environment';
 
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { HttpTimeoutInterceptor } from './shared/interceptors/timeout.interceptor';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+
+import { MessageService } from './shared/services/message.service';
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuardService } from './shared/services/auth.guard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +53,26 @@ import { environment } from '../environments/environment';
   entryComponents: [
     ErrorModalComponent
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    AuthService,
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpTimeoutInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
