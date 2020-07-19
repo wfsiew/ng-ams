@@ -1,0 +1,5 @@
+<div class="cursor-pointer" (click)="onSort()">
+  {{ name }}
+  <i class="fas pl-2"
+    [ngClass]="{'fa-sort-up': isSortBy(''), 'fa-sort-down': isSortBy('desc'), 'sort-inactive fa-sort': !isCurrentSort}"></i>
+</div>

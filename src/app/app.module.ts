@@ -10,12 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
+import { ErrorModalComponent } from './shared/components/error-modal/error-modal.component';
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    LoginComponent
+    LoginComponent,
+    ErrorModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,14 @@ import { LoginComponent } from './login/login.component';
       fgsColor: '#007bff',
       fgsType: 'rotating-plane'
     }),
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: false,
+      exclude: [
+      ]
+    }),
+  ],
+  entryComponents: [
+    ErrorModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
