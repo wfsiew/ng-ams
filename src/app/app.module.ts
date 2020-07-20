@@ -20,6 +20,7 @@ import { HttpTimeoutInterceptor } from './shared/interceptors/timeout.intercepto
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
 import { MessageService } from './shared/services/message.service';
+import { LookupService } from './shared/services/lookup.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuardService } from './shared/services/auth.guard.service';
 
@@ -57,6 +58,7 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
   ],
   providers: [
     MessageService,
+    LookupService,
     AuthService,
     AuthGuardService,
     {

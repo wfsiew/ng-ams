@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
@@ -27,6 +28,7 @@ import { CountryService } from './country/services/country.service';
     FormsModule,
     ReactiveFormsModule,
     SharedComponentModules,
+    NgSelectModule,
     ModalModule.forRoot(),
     PaginationModule.forRoot()
   ],

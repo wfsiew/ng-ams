@@ -77,6 +77,8 @@ export class CountryListingComponent implements OnInit, OnDestroy {
         window.scrollTo(this.sx, this.sy);
       }, 200);
     }, (error) => {
+      
+    }, () => {
       this.isLoading = false;
     });
   }

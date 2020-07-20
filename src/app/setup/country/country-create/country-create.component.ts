@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 import _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
@@ -25,7 +24,6 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private loc: Location,
     private countryService: CountryService,
     private toastr: ToastrService
   ) {
@@ -71,7 +69,7 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
   }
 
   onBack() {
-    this.loc.back();
+    this.router.navigate(['/ams/setup/country/list']);
   }
 
   onSubmit() {
