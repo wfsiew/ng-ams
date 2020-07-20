@@ -17,10 +17,10 @@
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  fullname
+                  {{ data.first_name }} {{ data.last_name }}
                 </h3>
-                <p class="text-sm">username</p>
-                <p class="text-sm">roles</p>
+                <p class="text-sm">{{ data.username }}</p>
+                <p class="text-sm">{{ roles }}</p>
                 <!-- <p class="text-sm text-muted">4 Hours Ago</p> -->
               </div>
             </div>
@@ -45,5 +45,49 @@
            style="opacity: .8">
       <span class="brand-text font-weight-light">AMS</span>
     </a>
+
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item has-treeview" [ngClass]="{'menu-open': menu === 'setup'}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Setup
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link" (click)="goto('setup', 'country/list')"
+                  [ngClass]="{'active': submenu === 'country/list'}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Country List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" (click)="goto('setup', 'state/list')"
+                  [ngClass]="{'active': submenu === 'state/list'}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>State List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </aside>
+
+  <div class="content-wrapper">
+    <ngx-ui-loader></ngx-ui-loader>
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer class="main-footer">
+    <div class="float-right">
+      <b>© 2020 <a href="#" style="color: rgb(0, 82, 155);">Nova MSC</a></b>
+    </div>
+    <div style="color: white">&nbsp;&nbsp;</div>
+  </footer>
 </div>

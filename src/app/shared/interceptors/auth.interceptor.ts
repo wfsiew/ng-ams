@@ -57,7 +57,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   handle401Error(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!this.authService.getRefreshToken() || !this.authService.getUserId()) {
+    if (!this.authService.getRefreshToken()) {
       return this.logoutUser(req, next);
     }
     

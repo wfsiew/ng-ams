@@ -3,6 +3,12 @@ export class AppConstant {
   public static MAX_PAGE_NUMBERS = 10;
   public static NETWORK_TIMEOUT = 60000;
 
+  public static HTTP_HEADER = {
+    LINK: 'link',
+    X_TOTAL_COUNT: 'x-total-count',
+    X_TOTAL_PAGES: 'x-total-pages'
+  };
+
   public static VALIDATE = {
     ALPHABETS: /^[A-Za-z]+$/,
     POSITIVE_INTEGERS: /^[0-9]+$/,

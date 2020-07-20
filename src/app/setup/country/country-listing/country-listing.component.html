@@ -1,0 +1,70 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Country Listing</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-sm-6 col-12 p-1">
+            <app-search-input (onSearch)="onSearch($event)"></app-search-input>
+          </div>
+          <div class="col-sm-6 col-12 p-1 text-right">
+            <button type="button" class="btn btn-primary mr-2" (click)="goto('create')"><i class="fas fa-plus"></i> Add New</button>
+            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
+          <h4>No records found</h4>
+        </div>
+
+        <div class="table-responsive" *ngIf="!isEmpty(list) && !isLoading">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <app-sort-column [name]="'Name'" [sort]="'name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'ISO Code'" [sort]="'iso_code'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let o of list">
+                <td>{{ o.name }}</td>
+                <td>{{ o.iso_code }}</td>
+                <td class="text-nowrap">
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)"><i class="fas fa-pencil-alt"></i></button>
+                  <button class="btn btn-sm btn-danger" (click)="onDelete(o)"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer" *ngIf="totalCount">
+        <div class="float-right">
+          <pagination 
+            [totalItems]="totalCount" 
+            [itemsPerPage]="pageSize" 
+            [maxSize]="MAX_PAGE_NUMBERS" 
+            [(ngModel)]="page" 
+            (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

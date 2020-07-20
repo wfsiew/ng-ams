@@ -21,13 +21,13 @@ export class SortColumnComponent implements OnInit {
 
   onSort() {
     if (this.current !== this.sort) {
-      this.dir = '';
+      this.dir = 'asc';
       this.current = this.sort;
     }
 
     else {
-      this.dir = this.dir === '' ? 'desc' : '';
-      if (this.dir === '') {
+      this.dir = this.dir === 'asc' ? 'desc' : 'asc';
+      if (this.dir === 'asc') {
         this.current = '';
       }
     }

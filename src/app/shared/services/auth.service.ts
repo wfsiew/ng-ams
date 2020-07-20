@@ -14,6 +14,7 @@ export class AuthService {
   private baseUrl = environment.baseUrl;
   private clientId = environment.client_id;
   private tokenUrl = `${this.baseUrl}/o/token/`;
+  private revokeTokenUrl = `${this.baseUrl}/o/revoke_token/`;
   private token: string;
 
   constructor(private http: HttpClient) { }
@@ -27,9 +28,9 @@ export class AuthService {
   }
 
   refreshToken(): Observable<string> {
-    let refreshtoken = this.getRefreshToken();
+    let refresh_token = this.getRefreshToken();
 
-    if (!refreshtoken) {
+    if (!refresh_token) {
       this.logout();
       return of(null);
     }
@@ -40,7 +41,7 @@ export class AuthService {
       })
     };
     const body = new HttpParams()
-      .set('refresh_token', this.getRefreshToken())
+      .set('refresh_token', refresh_token)
       .set('client_id', this.clientId)
       .set('grant_type', 'refresh_token');
     return this.http.post(this.tokenUrl, body.toString(), httpOptions).pipe(
@@ -66,8 +67,28 @@ export class AuthService {
     );
   }
 
-  logout() {
-    this.clear();
+  logout(): Observable<Object> {
+    let token = this.getToken();
+
+    if (!token) {
+      return of(null);
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    const body = new HttpParams()
+      .set('client_id', this.clientId)
+      .set('token', token);
+    return this.http.post(this.revokeTokenUrl, body.toString(), httpOptions).pipe(
+      map(res => {
+        this.clear();
+        return { success: 1 };
+      }),
+      catchError(e => this.handleError(e))
+    );
   }
 
   handleError(e) {
