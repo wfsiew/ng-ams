@@ -43,9 +43,9 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
     NgxUiLoaderModule.forRoot({
       bgsPosition: POSITION.centerCenter,
       bgsColor: '#007bff',
-      bgsType: 'rotating-plane',
+      bgsType: 'three-bounce',
       fgsColor: '#007bff',
-      fgsType: 'rotating-plane'
+      fgsType: 'three-bounce'
     }),
     NgxUiLoaderHttpModule.forRoot({
       showForeground: false,
