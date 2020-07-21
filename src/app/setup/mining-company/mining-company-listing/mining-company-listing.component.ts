@@ -7,17 +7,17 @@ import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
-import { StateService } from 'src/app/setup/state/services/state.service';
+import { MiningCompanyService } from 'src/app/setup/mining-company/services/mining-company.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { AppConstant } from 'src/app/shared/constants/app.constant';
 import { Helper } from 'src/app/shared/utils/helper';
 
 @Component({
-  selector: 'app-state-listing',
-  templateUrl: './state-listing.component.html',
-  styleUrls: ['./state-listing.component.css']
+  selector: 'app-mining-company-listing',
+  templateUrl: './mining-company-listing.component.html',
+  styleUrls: ['./mining-company-listing.component.css']
 })
-export class StateListingComponent implements OnInit, OnDestroy {
+export class MiningCompanyListingComponent implements OnInit, OnDestroy {
 
   isLoading = false;
   list = [];
@@ -32,7 +32,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
   bsModalRef: BsModalRef;
   subs: Subscription;
 
-  readonly uiState = 'setup.state.state-listing';
+  readonly uiState = 'setup.mining-company.mining-company-listing';
 
   readonly isEmpty = Helper.isEmpty;
   readonly PAGE_SIZE = AppConstant.PAGE_SIZE;
@@ -40,7 +40,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private stateService: StateService,
+    private miningCompanyService: MiningCompanyService,
     private msService: MessageService,
     private toastr: ToastrService,
     private modalService: BsModalService
@@ -71,9 +71,9 @@ export class StateListingComponent implements OnInit, OnDestroy {
       this.onSearch(this.search);
       return;
     }
-
+    
     this.isLoading = true;
-    this.stateService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
+    this.miningCompanyService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -91,7 +91,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
   onSearch(s: string) {
     this.search = s;
     this.isLoading = true;
-    this.stateService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
+    this.miningCompanyService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -134,7 +134,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
       sx: window.scrollX,
       sy: window.scrollY
     });
-    this.router.navigate([`/ams/setup/state/${s}`]);
+    this.router.navigate([`/ams/setup/mining-company/${s}`]);
   }
 
   onEdit(o) {
@@ -144,14 +144,14 @@ export class StateListingComponent implements OnInit, OnDestroy {
 
   onDelete(o) {
     const initialState = {
-      title: 'Delete State',
-      message: `Are you sure to delete this State ${o.name} ?`
+      title: 'Delete Mining Company',
+      message: `Are you sure to delete this Mining Company ${o.name} ?`
     };
     this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
-        this.stateService.remove(o.id).subscribe((res: any) => {
-          this.toastr.success('State successfully deleted');
+        this.miningCompanyService.remove(o.id).subscribe((res: any) => {
+          this.toastr.success('Mining Company successfully deleted');
           this.load();
         }, (error) => {
           if (error.status === 400 && error.error.message) {
@@ -159,7 +159,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
           }
 
           else {
-            this.toastr.error('Failed to delete state');
+            this.toastr.error('Failed to delete mining company');
           }
         });
       }

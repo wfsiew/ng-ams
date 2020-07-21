@@ -1,5 +1,10 @@
 export const MenuSetup = {
 
+  buyer_list: [
+    'buyer/list',
+    'buyer/create',
+    'buyer/edit'
+  ],
   country_list: [
     'country/list',
     'country/create',

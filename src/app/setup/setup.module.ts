@@ -12,15 +12,31 @@ import { CountryListingComponent } from './country/country-listing/country-listi
 import { CountryCreateComponent } from './country/country-create/country-create.component';
 import { StateListingComponent } from './state/state-listing/state-listing.component';
 import { StateCreateComponent } from './state/state-create/state-create.component';
+import { BuyerListingComponent } from './buyer/buyer-listing/buyer-listing.component';
+import { BuyerCreateComponent } from './buyer/buyer-create/buyer-create.component';
+import { TruckListingComponent } from './buyer/truck-listing/truck-listing.component';
+import { TruckCreateComponent } from './buyer/truck-create/truck-create.component';
+import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
+import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
 
 import { CountryService } from './country/services/country.service';
+import { StateService } from './state/services/state.service';
+import { BuyerService } from './buyer/services/buyer.service';
+import { TruckService } from './buyer/services/truck.service';
+import { MiningCompanyService } from './mining-company/services/mining-company.service';
 
 @NgModule({
   declarations: [
     CountryListingComponent, 
     CountryCreateComponent,
     StateListingComponent,
-    StateCreateComponent
+    StateCreateComponent,
+    BuyerListingComponent,
+    BuyerCreateComponent,
+    TruckListingComponent,
+    TruckCreateComponent,
+    MiningCompanyListingComponent,
+    MiningCompanyCreateComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +49,11 @@ import { CountryService } from './country/services/country.service';
     PaginationModule.forRoot()
   ],
   providers: [
-    CountryService
+    CountryService,
+    StateService,
+    BuyerService,
+    TruckService,
+    MiningCompanyService
   ]
 })
 export class SetupModule { }

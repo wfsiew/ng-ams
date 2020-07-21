@@ -59,6 +59,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="#" class="nav-link" (click)="goto('setup', 'mining-company/list')"
+                  [ngClass]="{'active': submenu === 'mining-company/list'}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mining Company List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" (click)="goto('setup', 'buyer/list')"
+                  [ngClass]="{'active': submenu === 'buyer/list'}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Buyer List</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="#" class="nav-link" (click)="goto('setup', 'country/list')"
                   [ngClass]="{'active': submenu === 'country/list'}">
                   <i class="far fa-circle nav-icon"></i>

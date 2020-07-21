@@ -153,6 +153,14 @@ export class CountryListingComponent implements OnInit, OnDestroy {
         this.countryService.remove(o.id).subscribe((res: any) => {
           this.toastr.success('Country successfully deleted');
           this.load();
+        }, (error) => {
+          if (error.status === 400 && error.error.message) {
+            this.toastr.error(error.error.message);
+          }
+
+          else {
+            this.toastr.error('Failed to delete country');
+          }
         });
       }
     });

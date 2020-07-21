@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import _ from 'lodash';
@@ -7,44 +7,56 @@ import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
-import { StateService } from 'src/app/setup/state/services/state.service';
+import { TruckService } from 'src/app/setup/buyer/services/truck.service';
+import { BuyerService } from 'src/app/setup/buyer/services/buyer.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { AppConstant } from 'src/app/shared/constants/app.constant';
 import { Helper } from 'src/app/shared/utils/helper';
 
 @Component({
-  selector: 'app-state-listing',
-  templateUrl: './state-listing.component.html',
-  styleUrls: ['./state-listing.component.css']
+  selector: 'app-truck-listing',
+  templateUrl: './truck-listing.component.html',
+  styleUrls: ['./truck-listing.component.css']
 })
-export class StateListingComponent implements OnInit, OnDestroy {
+export class TruckListingComponent implements OnInit {
 
+  buyer_id: string;
+  buyer = '';
   isLoading = false;
   list = [];
   totalCount = 0;
   pageSize = AppConstant.PAGE_SIZE;
   page = 1;
   search = '';
-  sort = 'name';
+  sort = 'registration_num';
   sortDir = 'asc';
   sx = 0;
   sy = 0;
   bsModalRef: BsModalRef;
   subs: Subscription;
 
-  readonly uiState = 'setup.state.state-listing';
+  readonly uiState = 'setup.buyer.truck-listing';
 
   readonly isEmpty = Helper.isEmpty;
   readonly PAGE_SIZE = AppConstant.PAGE_SIZE;
   readonly MAX_PAGE_NUMBERS = AppConstant.MAX_PAGE_NUMBERS;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private stateService: StateService,
+    private truckService: TruckService,
+    private buyerService: BuyerService,
     private msService: MessageService,
     private toastr: ToastrService,
     private modalService: BsModalService
-  ) {
+  ) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.buyer_id = params.get('buyer_id');
+      this.loadBuyer();
+    });
+
     this.subs = this.msService.get().subscribe(res => {
       if (res.name === this.uiState) {
         const o = res.data;
@@ -58,12 +70,15 @@ export class StateListingComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-    this.load();
-  }
-
   ngOnDestroy() {
     this.subs.unsubscribe();
+  }
+
+  loadBuyer() {
+    this.buyerService.edit(this.buyer_id).subscribe((res: any) => {
+      this.buyer = ` - ${res.name}`;
+      this.load();
+    });
   }
 
   load() {
@@ -71,9 +86,9 @@ export class StateListingComponent implements OnInit, OnDestroy {
       this.onSearch(this.search);
       return;
     }
-
+    
     this.isLoading = true;
-    this.stateService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
+    this.truckService.list(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -91,7 +106,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
   onSearch(s: string) {
     this.search = s;
     this.isLoading = true;
-    this.stateService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
+    this.truckService.search(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -113,7 +128,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
 
   onSortBy(e) {
     if (e.sort === '' && e.dir === 'asc') {
-      this.sort = 'name';
+      this.sort = 'registration_num';
       this.sortDir = 'asc';
     }
 
@@ -134,7 +149,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
       sx: window.scrollX,
       sy: window.scrollY
     });
-    this.router.navigate([`/ams/setup/state/${s}`]);
+    this.router.navigate([`/ams/setup/buyer/truck/${this.buyer_id}/${s}`]);
   }
 
   onEdit(o) {
@@ -144,14 +159,14 @@ export class StateListingComponent implements OnInit, OnDestroy {
 
   onDelete(o) {
     const initialState = {
-      title: 'Delete State',
-      message: `Are you sure to delete this State ${o.name} ?`
+      title: 'Delete Truck',
+      message: `Are you sure to delete this Truck ${o.registration_num} ?`
     };
     this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
-        this.stateService.remove(o.id).subscribe((res: any) => {
-          this.toastr.success('State successfully deleted');
+        this.truckService.remove(this.buyer_id, o.id).subscribe((res: any) => {
+          this.toastr.success('Truck successfully deleted');
           this.load();
         }, (error) => {
           if (error.status === 400 && error.error.message) {
@@ -159,7 +174,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
           }
 
           else {
-            this.toastr.error('Failed to delete state');
+            this.toastr.error('Failed to delete truck');
           }
         });
       }

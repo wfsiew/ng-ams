@@ -59,6 +59,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   setMenu() {
+    this.setTargetMenu('/ams/setup', 'setup', 'buyer/list', MenuSetup.buyer_list);
     this.setTargetMenu('/ams/setup', 'setup', 'country/list', MenuSetup.country_list);
     this.setTargetMenu('/ams/setup', 'setup', 'state/list', MenuSetup.state_list);
   }

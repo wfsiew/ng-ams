@@ -5,17 +5,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 
-import { CountryService } from 'src/app/setup/country/services/country.service';
+import { TruckService } from 'src/app/setup/buyer/services/truck.service';
 import { Helper } from 'src/app/shared/utils/helper';
 import { GeneralForm } from 'src/app/shared/classes/general.form';
 
 @Component({
-  selector: 'app-country-create',
-  templateUrl: './country-create.component.html',
-  styleUrls: ['./country-create.component.css']
+  selector: 'app-truck-create',
+  templateUrl: './truck-create.component.html',
+  styleUrls: ['./truck-create.component.css']
 })
-export class CountryCreateComponent extends GeneralForm implements OnInit {
+export class TruckCreateComponent extends GeneralForm implements OnInit {
 
+  buyer_id: string;
   id: string;
   data: any = { id: '' };
   isEdit = false;
@@ -24,7 +25,7 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private countryService: CountryService,
+    private truckService: TruckService,
     private toastr: ToastrService
   ) {
     super();
@@ -34,6 +35,7 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
+      this.buyer_id = params.get('buyer_id');
       if (!_.isNull(this.id)) {
         this.isEdit = true;
       }
@@ -44,16 +46,14 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
 
   createForm() {
     this.mform = this.fb.group({
-      name: ['', [Validators.required]],
-      iso_code: ['', [Validators.required]]
+      registration_num: ['', [Validators.required]]
     });
   }
 
   setForm() {
     const o = this.data;
     this.mform.patchValue({
-      name: o.name,
-      iso_code: o.iso_code
+      registration_num: o.registration_num
     });
   }
 
@@ -62,14 +62,14 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
       return;
     }
 
-    this.countryService.edit(this.id).subscribe((res: any) => {
+    this.truckService.edit(this.buyer_id, this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
     });
   }
 
   onBack() {
-    this.router.navigate(['/ams/setup/country/list']);
+    this.router.navigate([`/ams/setup/buyer/truck/${this.buyer_id}/list`]);
   }
 
   onSubmit() {
@@ -80,35 +80,36 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
     
     const f = this.mform.value;
     const o = {
-      name: f.name,
-      iso_code: f.iso_code
+      registration_num: f.registration_num,
+      buyer_id: this.buyer_id
     }
     if (!this.isEdit) {
-      this.countryService.create(o).subscribe((res: any) => {
-        this.toastr.success('New Country successfully created');
+      this.truckService.create(this.buyer_id, o).subscribe((res: any) => {
+        this.toastr.success('New Truck successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
       }, (error) => {
+        console.log(error)
         if (error.status === 400 && error.error.message) {
           this.toastr.error(error.error.message);
         }
-
+        
         else {
-          this.toastr.error('Failed to create country');
+          this.toastr.error('Failed to create truck');
         }
       });
     }
 
     else {
-      this.countryService.update(this.data.id, o).subscribe((res: any) => {
-        this.toastr.success('Country successfully updated');
+      this.truckService.update(this.buyer_id, this.data.id, o).subscribe((res: any) => {
+        this.toastr.success('Truck successfully updated');
       }, (error) => {
         if (error.status === 400 && error.error.message) {
           this.toastr.error(error.error.message);
         }
 
         else {
-          this.toastr.error('Failed to update country');
+          this.toastr.error('Failed to update truck');
         }
       });
     }

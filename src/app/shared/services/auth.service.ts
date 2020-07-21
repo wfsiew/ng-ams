@@ -131,14 +131,27 @@ export class AuthService {
     return user;
   }
 
-  hasRole(givenRole) {
-    const userRoles: any = JSON.parse(localStorage.getItem('userGroup'));
-    const s = _.some(userRoles, (value, i, ls) => {
-      const b = _.findIndex(givenRole, (k) => {
-        return k === value.name;
-      });
-      return b >= 0;
+  hasRole(role) {
+    const group = localStorage.getItem('user-group');
+    if (_.isNull(group)) {
+      return false;
+    }
+
+    const roles = JSON.parse(group);
+    const b = _.some(roles, (value, i, ls) => {
+      return role === value.name;
     });
-    return s;
+    return b;
   }
+
+  // __hasRole(givenRole) {
+  //   const userRoles: any = JSON.parse(localStorage.getItem('user-group'));
+  //   const s = _.some(userRoles, (value, i, ls) => {
+  //     const b = _.findIndex(givenRole, (k) => {
+  //       return k === value.name;
+  //     });
+  //     return b >= 0;
+  //   });
+  //   return s;
+  // }
 }
