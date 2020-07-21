@@ -25,6 +25,10 @@ export class ErrorInterceptor implements HttpInterceptor {
               if (request.url.indexOf('/o/token/') >= 0) {
                 return throwError(error);
               }
+
+              if (error.error.message) {
+                this.toasterService.error(error.error.message);
+              }
             }
 
             else if (error.status === 404) {

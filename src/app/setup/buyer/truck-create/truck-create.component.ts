@@ -88,29 +88,12 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
         this.toastr.success('New Truck successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
-      }, (error) => {
-        console.log(error)
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-        
-        else {
-          this.toastr.error('Failed to create truck');
-        }
       });
     }
 
     else {
       this.truckService.update(this.buyer_id, this.data.id, o).subscribe((res: any) => {
         this.toastr.success('Truck successfully updated');
-      }, (error) => {
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-
-        else {
-          this.toastr.error('Failed to update truck');
-        }
       });
     }
   }

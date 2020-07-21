@@ -133,28 +133,12 @@ export class BuyerCreateComponent extends GeneralForm implements OnInit {
         this.toastr.success('New Buyer successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/state/edit/${res.id}`]);
-      }, (error) => {
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-
-        else {
-          this.toastr.error('Failed to create buyer');
-        }
       });
     }
 
     else {
       this.buyerService.update(this.data.id, o).subscribe((res: any) => {
         this.toastr.success('Buyer successfully updated');
-      }, (error) => {
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-
-        else {
-          this.toastr.error('Failed to update buyer');
-        }
       });
     }
   }

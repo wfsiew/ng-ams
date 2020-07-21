@@ -98,28 +98,12 @@ export class StateCreateComponent extends GeneralForm implements OnInit {
         this.toastr.success('New State successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/state/edit/${res.id}`]);
-      }, (error) => {
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-
-        else {
-          this.toastr.error('Failed to create state');
-        }
       });
     }
 
     else {
       this.stateService.update(this.data.id, o).subscribe((res: any) => {
         this.toastr.success('State successfully updated');
-      }, (error) => {
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-
-        else {
-          this.toastr.error('Failed to update state');
-        }
       });
     }
   }

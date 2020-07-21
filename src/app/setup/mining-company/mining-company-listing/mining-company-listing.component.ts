@@ -153,14 +153,6 @@ export class MiningCompanyListingComponent implements OnInit, OnDestroy {
         this.miningCompanyService.remove(o.id).subscribe((res: any) => {
           this.toastr.success('Mining Company successfully deleted');
           this.load();
-        }, (error) => {
-          if (error.status === 400 && error.error.message) {
-            this.toastr.error(error.error.message);
-          }
-
-          else {
-            this.toastr.error('Failed to delete mining company');
-          }
         });
       }
     });

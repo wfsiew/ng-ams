@@ -88,28 +88,12 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
         this.toastr.success('New Country successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
-      }, (error) => {
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-
-        else {
-          this.toastr.error('Failed to create country');
-        }
       });
     }
 
     else {
       this.countryService.update(this.data.id, o).subscribe((res: any) => {
         this.toastr.success('Country successfully updated');
-      }, (error) => {
-        if (error.status === 400 && error.error.message) {
-          this.toastr.error(error.error.message);
-        }
-
-        else {
-          this.toastr.error('Failed to update country');
-        }
       });
     }
   }
