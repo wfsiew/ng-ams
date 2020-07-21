@@ -80,22 +80,21 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
     
     const f = this.mform.value;
     const o = {
-      id: '',
       name: f.name,
       iso_code: f.iso_code
     }
     if (!this.isEdit) {
       this.countryService.create(o).subscribe((res: any) => {
         this.toastr.success('New Country successfully created');
-        this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
+        this.mform.reset();
+        // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
       });
     }
 
     else {
-      o.id = this.data.id;
-      // this.countryService.update(o).subscribe((res: any) => {
-      //   this.toastr.success('Country successfully updated');
-      // });
+      this.countryService.update(this.data.id, o).subscribe((res: any) => {
+        this.toastr.success('Country successfully updated');
+      });
     }
   }
 }

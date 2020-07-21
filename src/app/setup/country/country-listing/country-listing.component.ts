@@ -67,6 +67,11 @@ export class CountryListingComponent implements OnInit, OnDestroy {
   }
 
   load() {
+    if (this.search !== '') {
+      this.onSearch(this.search);
+      return;
+    }
+    
     this.isLoading = true;
     this.countryService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
       this.list = res.body;
@@ -84,7 +89,21 @@ export class CountryListingComponent implements OnInit, OnDestroy {
   }
 
   onSearch(s: string) {
-    
+    this.search = s;
+    this.isLoading = true;
+    this.countryService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
+      this.list = res.body;
+      const headers = res.headers;
+      this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
+      this.isLoading = false;
+      setTimeout(() => {
+        window.scrollTo(this.sx, this.sy);
+      }, 200);
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
+    });
   }
 
   pageChanged(event: any) {
@@ -131,10 +150,10 @@ export class CountryListingComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
-        // this.addressBookService.remove(o.id).subscribe((res: any) => {
-        //   this.toastr.success('Address Book successfully deleted');
-        //   this.load();
-        // });
+        this.countryService.remove(o.id).subscribe((res: any) => {
+          this.toastr.success('Country successfully deleted');
+          this.load();
+        });
       }
     });
   }

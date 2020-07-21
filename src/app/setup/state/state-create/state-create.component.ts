@@ -90,22 +90,21 @@ export class StateCreateComponent extends GeneralForm implements OnInit {
     
     const f = this.mform.value;
     const o = {
-      id: '',
       name: f.name,
       country_id: f.country_id
     }
     if (!this.isEdit) {
       this.stateService.create(o).subscribe((res: any) => {
         this.toastr.success('New State successfully created');
-        this.router.navigate([`/ams/setup/state/edit/${res.id}`]);
+        this.mform.reset();
+        // this.router.navigate([`/ams/setup/state/edit/${res.id}`]);
       });
     }
 
     else {
-      o.id = this.data.id;
-      // this.countryService.update(o).subscribe((res: any) => {
-      //   this.toastr.success('Country successfully updated');
-      // });
+      this.stateService.update(this.data.id, o).subscribe((res: any) => {
+        this.toastr.success('State successfully updated');
+      });
     }
   }
 }
