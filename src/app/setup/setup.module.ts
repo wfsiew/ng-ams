@@ -16,6 +16,8 @@ import { BuyerListingComponent } from './buyer/buyer-listing/buyer-listing.compo
 import { BuyerCreateComponent } from './buyer/buyer-create/buyer-create.component';
 import { TruckListingComponent } from './buyer/truck-listing/truck-listing.component';
 import { TruckCreateComponent } from './buyer/truck-create/truck-create.component';
+import { DriverListingComponent } from './buyer/driver-listing/driver-listing.component';
+import { DriverCreateComponent } from './buyer/driver-create/driver-create.component';
 import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
 import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
 
@@ -23,6 +25,7 @@ import { CountryService } from './country/services/country.service';
 import { StateService } from './state/services/state.service';
 import { BuyerService } from './buyer/services/buyer.service';
 import { TruckService } from './buyer/services/truck.service';
+import { DriverService } from './buyer/services/driver.service';
 import { MiningCompanyService } from './mining-company/services/mining-company.service';
 
 @NgModule({
@@ -36,7 +39,9 @@ import { MiningCompanyService } from './mining-company/services/mining-company.s
     TruckListingComponent,
     TruckCreateComponent,
     MiningCompanyListingComponent,
-    MiningCompanyCreateComponent
+    MiningCompanyCreateComponent,
+    DriverListingComponent,
+    DriverCreateComponent
   ],
   imports: [
     CommonModule,
@@ -53,6 +58,7 @@ import { MiningCompanyService } from './mining-company/services/mining-company.s
     StateService,
     BuyerService,
     TruckService,
+    DriverService,
     MiningCompanyService
   ]
 })

@@ -9,7 +9,8 @@ export const MenuSetup = {
     'buyer/list',
     'buyer/create',
     'buyer/edit',
-    'buyer/truck'
+    'buyer/truck',
+    'buyer/driver'
   ],
   country_list: [
     'country/list',
