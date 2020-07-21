@@ -9,10 +9,12 @@ import { BuyerListingComponent } from './buyer/buyer-listing/buyer-listing.compo
 import { BuyerCreateComponent } from './buyer/buyer-create/buyer-create.component';
 import { TruckListingComponent } from './buyer/truck-listing/truck-listing.component';
 import { TruckCreateComponent } from './buyer/truck-create/truck-create.component';
-import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
-import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
 import { DriverListingComponent } from './buyer/driver-listing/driver-listing.component';
 import { DriverCreateComponent } from './buyer/driver-create/driver-create.component';
+import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
+import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
+import { MaterialListingComponent } from './material/material-listing/material-listing.component';
+import { MaterialCreateComponent } from './material/material-create/material-create.component';
 
 const routes: Routes = [
   {
@@ -61,6 +63,14 @@ const routes: Routes = [
       { path: 'list', component: MiningCompanyListingComponent },
       { path: 'create', component: MiningCompanyCreateComponent },
       { path: 'edit/:id', component: MiningCompanyCreateComponent }
+    ]
+  },
+  {
+    path: 'material',
+    children: [
+      { path: 'list', component: MaterialListingComponent },
+      { path: 'create', component: MaterialCreateComponent },
+      { path: 'edit/:id', component: MaterialCreateComponent }
     ]
   }
 ];

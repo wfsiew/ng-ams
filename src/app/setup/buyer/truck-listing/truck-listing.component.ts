@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -18,7 +18,7 @@ import { Helper } from 'src/app/shared/utils/helper';
   templateUrl: './truck-listing.component.html',
   styleUrls: ['./truck-listing.component.css']
 })
-export class TruckListingComponent implements OnInit {
+export class TruckListingComponent implements OnInit, OnDestroy {
 
   buyer_id: string;
   buyer = '';

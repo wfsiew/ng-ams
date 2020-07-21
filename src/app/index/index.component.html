@@ -73,6 +73,13 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="#" class="nav-link" (click)="goto('setup', 'material/list')"
+                  [ngClass]="{'active': submenu === 'material/list'}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Material List</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="#" class="nav-link" (click)="goto('setup', 'country/list')"
                   [ngClass]="{'active': submenu === 'country/list'}">
                   <i class="far fa-circle nav-icon"></i>

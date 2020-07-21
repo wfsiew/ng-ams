@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import _ from 'lodash';
@@ -7,21 +7,18 @@ import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
-import { DriverService } from 'src/app/setup/buyer/services/driver.service';
-import { BuyerService } from 'src/app/setup/buyer/services/buyer.service';
+import { MaterialService } from 'src/app/setup/material/services/material.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { AppConstant } from 'src/app/shared/constants/app.constant';
 import { Helper } from 'src/app/shared/utils/helper';
 
 @Component({
-  selector: 'app-driver-listing',
-  templateUrl: './driver-listing.component.html',
-  styleUrls: ['./driver-listing.component.css']
+  selector: 'app-material-listing',
+  templateUrl: './material-listing.component.html',
+  styleUrls: ['./material-listing.component.css']
 })
-export class DriverListingComponent implements OnInit, OnDestroy {
+export class MaterialListingComponent implements OnInit, OnDestroy {
 
-  buyer_id: string;
-  buyer = '';
   isLoading = false;
   list = [];
   totalCount = 0;
@@ -35,28 +32,19 @@ export class DriverListingComponent implements OnInit, OnDestroy {
   bsModalRef: BsModalRef;
   subs: Subscription;
 
-  readonly uiState = 'setup.buyer.driver-listing';
+  readonly uiState = 'setup.material.material-listing';
 
   readonly isEmpty = Helper.isEmpty;
   readonly PAGE_SIZE = AppConstant.PAGE_SIZE;
   readonly MAX_PAGE_NUMBERS = AppConstant.MAX_PAGE_NUMBERS;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private driverService: DriverService,
-    private buyerService: BuyerService,
+    private materialService: MaterialService,
     private msService: MessageService,
     private toastr: ToastrService,
     private modalService: BsModalService
-  ) { }
-
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.buyer_id = params.get('buyer_id');
-      this.loadBuyer();
-    });
-
+  ) {
     this.subs = this.msService.get().subscribe(res => {
       if (res.name === this.uiState) {
         const o = res.data;
@@ -70,15 +58,12 @@ export class DriverListingComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.subs.unsubscribe();
+  ngOnInit() {
+    this.load();
   }
 
-  loadBuyer() {
-    this.buyerService.edit(this.buyer_id).subscribe((res: any) => {
-      this.buyer = ` - ${res.name}`;
-      this.load();
-    });
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   load() {
@@ -88,7 +73,7 @@ export class DriverListingComponent implements OnInit, OnDestroy {
     }
     
     this.isLoading = true;
-    this.driverService.list(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
+    this.materialService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -106,7 +91,7 @@ export class DriverListingComponent implements OnInit, OnDestroy {
   onSearch(s: string) {
     this.search = s;
     this.isLoading = true;
-    this.driverService.search(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
+    this.materialService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -149,7 +134,7 @@ export class DriverListingComponent implements OnInit, OnDestroy {
       sx: window.scrollX,
       sy: window.scrollY
     });
-    this.router.navigate([`/ams/setup/buyer/driver/${this.buyer_id}/${s}`]);
+    this.router.navigate([`/ams/setup/material/${s}`]);
   }
 
   onEdit(o) {
@@ -159,14 +144,14 @@ export class DriverListingComponent implements OnInit, OnDestroy {
 
   onDelete(o) {
     const initialState = {
-      title: 'Delete Driver',
-      message: `Are you sure to delete this Driver ${o.id_num} ?`
+      title: 'Delete Material',
+      message: `Are you sure to delete this Material ${o.name} ?`
     };
     this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
-        this.driverService.remove(this.buyer_id, o.id).subscribe((res: any) => {
-          this.toastr.success('Driver successfully deleted');
+        this.materialService.remove(o.id).subscribe((res: any) => {
+          this.toastr.success('Material successfully deleted');
           this.load();
         });
       }

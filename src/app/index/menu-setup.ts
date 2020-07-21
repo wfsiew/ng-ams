@@ -12,6 +12,11 @@ export const MenuSetup = {
     'buyer/truck',
     'buyer/driver'
   ],
+  material_list: [
+    'material/list',
+    'material/create',
+    'material/edit'
+  ],
   country_list: [
     'country/list',
     'country/create',
