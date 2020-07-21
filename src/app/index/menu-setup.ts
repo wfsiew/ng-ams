@@ -1,9 +1,15 @@
 export const MenuSetup = {
 
+  mining_list: [
+    'mining-company/list',
+    'mining-company/create',
+    'mining-company/edit'
+  ],
   buyer_list: [
     'buyer/list',
     'buyer/create',
-    'buyer/edit'
+    'buyer/edit',
+    'buyer/truck'
   ],
   country_list: [
     'country/list',
