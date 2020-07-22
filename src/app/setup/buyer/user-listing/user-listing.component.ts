@@ -169,6 +169,10 @@ export class UserListingComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  onBack() {
+    this.router.navigate([`/ams/setup/buyer/list`]);
+  }
+
   onAssign(o) {
     this.userService.assign({ buyer_id: this.buyer_id, user_id: o.id }).subscribe((res: any) => {
       this.toastr.success('User successfully assigned');

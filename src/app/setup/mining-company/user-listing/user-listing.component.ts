@@ -169,6 +169,10 @@ export class UserListingComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  onBack() {
+    this.router.navigate([`/ams/setup/mining-company/list`]);
+  }
+
   onAssign(o) {
     this.userService.assign({ mining_company_id: this.mining_company_id, user_id: o.id }).subscribe((res: any) => {
       this.toastr.success('User successfully assigned');
@@ -200,7 +204,7 @@ export class UserListingComponent implements OnInit, OnDestroy {
   }
 
   private get _mining_company() {
-    let s = this.buyer.replace(' - ', '');
+    let s = this.mining_company.replace(' - ', '');
     return s;
   }
 }

@@ -15,6 +15,9 @@
           <div class="col-sm-6 col-12 p-1">
             <app-search-input [search]="search" (onSearch)="onSearch($event)"></app-search-input>
           </div>
+          <div class="col-sm-6 col-12 p-1 text-right">
+            <button type="button" class="btn btn-outline-dark" (click)="onBack()"><i class="fas fa-chevron-circle-left"></i> Back</button>
+          </div>
         </div>
       </div>
       <div class="card-body">

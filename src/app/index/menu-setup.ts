@@ -8,14 +8,16 @@ export const MenuSetup = {
   mining_list: [
     'mining-company/list',
     'mining-company/create',
-    'mining-company/edit'
+    'mining-company/edit',
+    'mining-company/user'
   ],
   buyer_list: [
     'buyer/list',
     'buyer/create',
     'buyer/edit',
     'buyer/truck',
-    'buyer/driver'
+    'buyer/driver',
+    'buyer/user'
   ],
   material_list: [
     'material/list',

@@ -152,6 +152,10 @@ export class TruckListingComponent implements OnInit, OnDestroy {
     this.router.navigate([`/ams/setup/buyer/truck/${this.buyer_id}/${s}`]);
   }
 
+  onBack() {
+    this.router.navigate([`/ams/setup/buyer/list`]);
+  }
+
   onEdit(o) {
     let s = `edit/${o.id}`;
     this.goto(s);
