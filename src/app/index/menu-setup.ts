@@ -1,5 +1,10 @@
 export const MenuSetup = {
 
+  user_list: [
+    'user/list',
+    'user/create',
+    'user/edit'
+  ],
   mining_list: [
     'mining-company/list',
     'mining-company/create',

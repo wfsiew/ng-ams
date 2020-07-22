@@ -51,7 +51,9 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.authService.getUserDetails().subscribe((res: any) => {
       this.data = res;
       if (res.groups) {
-        this.roles = res.groups.join(',');
+        const groups: any[] = res.groups;
+        const lr = groups.map((x) => x.name);
+        this.roles = lr.join(', ');
       }
       
       this.authService.saveUser(res);
@@ -62,6 +64,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.setTargetMenu('/ams/setup', 'setup', 'mining-company/list', MenuSetup.mining_list);
     this.setTargetMenu('/ams/setup', 'setup', 'buyer/list', MenuSetup.buyer_list);
     this.setTargetMenu('/ams/setup', 'setup', 'material/list', MenuSetup.material_list);
+    this.setTargetMenu('/ams/setup', 'setup', 'user/list', MenuSetup.user_list);
     this.setTargetMenu('/ams/setup', 'setup', 'country/list', MenuSetup.country_list);
     this.setTargetMenu('/ams/setup', 'setup', 'state/list', MenuSetup.state_list);
   }

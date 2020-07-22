@@ -8,6 +8,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { SetupRoutingModule } from './setup-routing.module';
 
 import { SharedComponentModules } from '../shared/components/shared-components.module';
+import { UserListingComponent } from './user/user-listing/user-listing.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
 import { CountryListingComponent } from './country/country-listing/country-listing.component';
 import { CountryCreateComponent } from './country/country-create/country-create.component';
 import { StateListingComponent } from './state/state-listing/state-listing.component';
@@ -23,6 +25,7 @@ import { MiningCompanyListingComponent } from './mining-company/mining-company-l
 import { MaterialListingComponent } from './material/material-listing/material-listing.component';
 import { MaterialCreateComponent } from './material/material-create/material-create.component';
 
+import { UserService } from './user/services/user.service';
 import { CountryService } from './country/services/country.service';
 import { StateService } from './state/services/state.service';
 import { BuyerService } from './buyer/services/buyer.service';
@@ -33,6 +36,8 @@ import { MaterialService } from './material/services/material.service';
 
 @NgModule({
   declarations: [
+    UserListingComponent,
+    UserCreateComponent,
     CountryListingComponent, 
     CountryCreateComponent,
     StateListingComponent,
@@ -46,7 +51,8 @@ import { MaterialService } from './material/services/material.service';
     MiningCompanyListingComponent,
     MiningCompanyCreateComponent,
     MaterialListingComponent,
-    MaterialCreateComponent
+    MaterialCreateComponent,
+    UserCreateComponent
   ],
   imports: [
     CommonModule,
@@ -59,6 +65,7 @@ import { MaterialService } from './material/services/material.service';
     PaginationModule.forRoot()
   ],
   providers: [
+    UserService,
     CountryService,
     StateService,
     BuyerService,

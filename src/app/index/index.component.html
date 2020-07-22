@@ -20,6 +20,7 @@
                   {{ data.first_name }} {{ data.last_name }}
                 </h3>
                 <p class="text-sm">{{ data.username }}</p>
+                <p class="text-sm" *ngIf="data.email">{{ data.email }}</p>
                 <p class="text-sm">{{ roles }}</p>
                 <!-- <p class="text-sm text-muted">4 Hours Ago</p> -->
               </div>
@@ -58,6 +59,13 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link" (click)="goto('setup', 'user/list')"
+                  [ngClass]="{'active': submenu === 'user/list'}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User List</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="#" class="nav-link" (click)="goto('setup', 'mining-company/list')"
                   [ngClass]="{'active': submenu === 'mining-company/list'}">

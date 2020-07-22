@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { UserListingComponent } from './user/user-listing/user-listing.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
 import { CountryListingComponent } from './country/country-listing/country-listing.component';
 import { CountryCreateComponent } from './country/country-create/country-create.component';
 import { StateListingComponent } from './state/state-listing/state-listing.component';
@@ -17,6 +19,14 @@ import { MaterialListingComponent } from './material/material-listing/material-l
 import { MaterialCreateComponent } from './material/material-create/material-create.component';
 
 const routes: Routes = [
+  {
+    path: 'user',
+    children: [
+      { path: 'list', component: UserListingComponent },
+      { path: 'create', component: UserCreateComponent },
+      { path: 'edit/:id', component: UserCreateComponent }
+    ]
+  },
   {
     path: 'country',
     children: [

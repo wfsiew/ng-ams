@@ -11,6 +11,10 @@ export class LookupService {
 
   constructor(private http: HttpClient) { }
 
+  listGroup() {
+    return this.http.get(`${this.baseUrl}/api/lookup/groups`);
+  }
+
   listCountry() {
     return this.http.get(`${this.baseUrl}/api/lookup/countries`);
   }
