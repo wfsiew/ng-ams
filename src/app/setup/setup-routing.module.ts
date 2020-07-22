@@ -16,6 +16,7 @@ import { DriverCreateComponent } from './buyer/driver-create/driver-create.compo
 import { UserListingComponent as BuyerUserListingComponent } from './buyer/user-listing/user-listing.component';
 import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
 import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
+import { UserListingComponent as MiningCompanyUserListingComponent } from './mining-company/user-listing/user-listing.component';
 import { MaterialListingComponent } from './material/material-listing/material-listing.component';
 import { MaterialCreateComponent } from './material/material-create/material-create.component';
 
@@ -79,7 +80,13 @@ const routes: Routes = [
     children: [
       { path: 'list', component: MiningCompanyListingComponent },
       { path: 'create', component: MiningCompanyCreateComponent },
-      { path: 'edit/:id', component: MiningCompanyCreateComponent }
+      { path: 'edit/:id', component: MiningCompanyCreateComponent },
+      {
+        path: 'user/:mining_company_id',
+        children: [
+          { path: 'list', component: MiningCompanyUserListingComponent }
+        ]
+      }
     ]
   },
   {

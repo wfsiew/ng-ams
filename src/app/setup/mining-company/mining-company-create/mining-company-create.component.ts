@@ -104,7 +104,7 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
   }
 
   onBack() {
-    this.router.navigate(['/ams/setup/buyer/list']);
+    this.router.navigate(['/ams/setup/mining-company/list']);
   }
 
   onSubmit() {
@@ -130,7 +130,7 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
     }
     if (!this.isEdit) {
       this.miningCompanyService.create(o).subscribe((res: any) => {
-        this.toastr.success('New Buyer successfully created');
+        this.toastr.success('New Mining Company successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/state/edit/${res.id}`]);
       });
@@ -138,7 +138,7 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
 
     else {
       this.miningCompanyService.update(this.data.id, o).subscribe((res: any) => {
-        this.toastr.success('Buyer successfully updated');
+        this.toastr.success('Mining Company successfully updated');
       });
     }
   }

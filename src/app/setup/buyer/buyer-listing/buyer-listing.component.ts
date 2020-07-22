@@ -146,6 +146,7 @@ export class BuyerListingComponent implements OnInit, OnDestroy {
     let s = `driver/${o.id}/list`;
     this.goto(s);
   }
+  
   onUser(o) {
     let s = `user/${o.id}/list`;
     this.goto(s);

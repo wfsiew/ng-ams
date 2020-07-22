@@ -21,8 +21,9 @@ import { TruckCreateComponent } from './buyer/truck-create/truck-create.componen
 import { DriverListingComponent } from './buyer/driver-listing/driver-listing.component';
 import { DriverCreateComponent } from './buyer/driver-create/driver-create.component';
 import { UserListingComponent as BuyerUserListingComponent } from './buyer/user-listing/user-listing.component';
-import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
 import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
+import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
+import { UserListingComponent as MiningCompanyUserListingComponent } from './mining-company/user-listing/user-listing.component';
 import { MaterialListingComponent } from './material/material-listing/material-listing.component';
 import { MaterialCreateComponent } from './material/material-create/material-create.component';
 
@@ -34,6 +35,7 @@ import { TruckService } from './buyer/services/truck.service';
 import { DriverService } from './buyer/services/driver.service';
 import { UserService as BuyerUserService } from './buyer/services/user.service';
 import { MiningCompanyService } from './mining-company/services/mining-company.service';
+import { UserService as MiningCompanyUserService } from './mining-company/services/user.service';
 import { MaterialService } from './material/services/material.service';
 
 @NgModule({
@@ -52,6 +54,7 @@ import { MaterialService } from './material/services/material.service';
     DriverCreateComponent,
     MiningCompanyListingComponent,
     MiningCompanyCreateComponent,
+    MiningCompanyUserListingComponent,
     MaterialListingComponent,
     MaterialCreateComponent,
     BuyerUserListingComponent
@@ -75,6 +78,7 @@ import { MaterialService } from './material/services/material.service';
     DriverService,
     BuyerUserService,
     MiningCompanyService,
+    MiningCompanyUserService,
     MaterialService
   ]
 })

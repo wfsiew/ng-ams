@@ -70,6 +70,7 @@
                   <app-sort-column [name]="'Country'" [sort]="'country__name'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
+                <th>Users</th>
                 <th></th>
               </tr>
             </thead>
@@ -85,6 +86,9 @@
                 <td>{{ o.city }}</td>
                 <td>{{ o.state.name }}</td>
                 <td>{{ o.country.name }}</td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-primary" (click)="onUser(o)"><i class="fas fa-user"></i></button>
+                </td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)"><i class="fas fa-pencil-alt"></i></button>
                   <button class="btn btn-sm btn-danger" (click)="onDelete(o)"><i class="fas fa-trash"></i></button>
