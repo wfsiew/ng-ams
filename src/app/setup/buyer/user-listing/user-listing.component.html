@@ -1,0 +1,90 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">User Listing {{ buyer }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-sm-6 col-12 p-1">
+            <app-search-input [search]="search" (onSearch)="onSearch($event)"></app-search-input>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 0}" (click)="onTab(0)">Pending</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 1}" (click)="onTab(1)">Active</a>
+          </li>
+        </ul>
+
+        <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
+          <h4>No records found</h4>
+        </div>
+
+        <div class="table-responsive" *ngIf="!isEmpty(list) && !isLoading">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <app-sort-column [name]="'Username'" [sort]="'username'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Email'" [sort]="'email'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'First name'" [sort]="'first_name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Last name'" [sort]="'last_name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>Role</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let o of list">
+                <td>{{ o.username }}</td>
+                <td>{{ o.email }}</td>
+                <td>{{ o.first_name }}</td>
+                <td>{{ o.last_name }}</td>
+                <td>{{ getUserRoles(o) }}</td>
+                <td class="text-nowrap">
+                  <ng-container *ngIf="tab === 0">
+                    <button type="button" class="btn btn-sm btn-primary" (click)="onAssign(o)"><i class="fas fa-plus"></i></button>
+                  </ng-container>
+                  <ng-container *ngIf="tab === 1">
+                    <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(o)"><i class="fas fa-trash"></i></button>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer" *ngIf="totalCount">
+        <div class="float-right">
+          <pagination 
+            [totalItems]="totalCount" 
+            [itemsPerPage]="pageSize" 
+            [maxSize]="MAX_PAGE_NUMBERS" 
+            [(ngModel)]="page" 
+            (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

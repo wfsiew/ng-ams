@@ -20,6 +20,7 @@ import { TruckListingComponent } from './buyer/truck-listing/truck-listing.compo
 import { TruckCreateComponent } from './buyer/truck-create/truck-create.component';
 import { DriverListingComponent } from './buyer/driver-listing/driver-listing.component';
 import { DriverCreateComponent } from './buyer/driver-create/driver-create.component';
+import { UserListingComponent as BuyerUserListingComponent } from './buyer/user-listing/user-listing.component';
 import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
 import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
 import { MaterialListingComponent } from './material/material-listing/material-listing.component';
@@ -31,6 +32,7 @@ import { StateService } from './state/services/state.service';
 import { BuyerService } from './buyer/services/buyer.service';
 import { TruckService } from './buyer/services/truck.service';
 import { DriverService } from './buyer/services/driver.service';
+import { UserService as BuyerUserService } from './buyer/services/user.service';
 import { MiningCompanyService } from './mining-company/services/mining-company.service';
 import { MaterialService } from './material/services/material.service';
 
@@ -52,7 +54,7 @@ import { MaterialService } from './material/services/material.service';
     MiningCompanyCreateComponent,
     MaterialListingComponent,
     MaterialCreateComponent,
-    UserCreateComponent
+    BuyerUserListingComponent
   ],
   imports: [
     CommonModule,
@@ -71,6 +73,7 @@ import { MaterialService } from './material/services/material.service';
     BuyerService,
     TruckService,
     DriverService,
+    BuyerUserService,
     MiningCompanyService,
     MaterialService
   ]

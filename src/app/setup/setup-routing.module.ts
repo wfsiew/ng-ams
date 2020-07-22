@@ -13,6 +13,7 @@ import { TruckListingComponent } from './buyer/truck-listing/truck-listing.compo
 import { TruckCreateComponent } from './buyer/truck-create/truck-create.component';
 import { DriverListingComponent } from './buyer/driver-listing/driver-listing.component';
 import { DriverCreateComponent } from './buyer/driver-create/driver-create.component';
+import { UserListingComponent as BuyerUserListingComponent } from './buyer/user-listing/user-listing.component';
 import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
 import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
 import { MaterialListingComponent } from './material/material-listing/material-listing.component';
@@ -63,6 +64,12 @@ const routes: Routes = [
           { path: 'list', component: DriverListingComponent },
           { path: 'create', component: DriverCreateComponent },
           { path: 'edit/:id', component: DriverCreateComponent }
+        ]
+      },
+      {
+        path: 'user/:buyer_id',
+        children: [
+          { path: 'list', component: BuyerUserListingComponent }
         ]
       }
     ]
