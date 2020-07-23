@@ -6,7 +6,6 @@ import { forkJoin } from 'rxjs';
 import _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { LookupService } from 'src/app/shared/services/lookup.service';
 import { PurchaseOrderService } from 'src/app/buyer/services/purchase-order.service';
 import { Helper } from 'src/app/shared/utils/helper';
@@ -20,19 +19,13 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit {
 
   isLoading = false;
-  buyer_id?: number;
   miningCompanyList = [];
   materialList = [];
-  truckList = [];
-  driverList = [];
-  countryList = [];
-  stateList = [];
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,
     private lookupService: LookupService,
     private purchaseOrderService: PurchaseOrderService,
     private toastr: ToastrService
@@ -42,17 +35,23 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
   }
 
   ngOnInit() {
-    const user = this.authService.loadUser();
-    this.buyer_id = user.buyer_id;
     this.load();
   }
 
   createForm() {
     this.mform = this.fb.group({
       mining_company_id: [null],
-      truck_id: [null, [Validators.required]],
-      driver_id: [null, [Validators.required]],
-      
+
+      materialForms: this.fb.array([])
+    });
+  }
+
+  createMaterialForm(): FormGroup {
+    return this.fb.group({
+      id: [_.uniqueId()],
+      material_id: [null],
+      weight: ['0'],
+      destination: ['']
     });
   }
 
@@ -60,17 +59,9 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
     this.isLoading = true;
     let q1 = this.lookupService.listMiningCompany();
     let q2 = this.lookupService.listMaterial();
-    let q3 = this.lookupService.listTruck(this.buyer_id);
-    var q4 = this.lookupService.listDriver(this.buyer_id);
-    forkJoin([q1, q2, q3, q4]).subscribe((res: any[]) => {
+    forkJoin([q1, q2]).subscribe((res: any[]) => {
       this.miningCompanyList = res[0];
       this.materialList = res[1];
-      this.truckList = res[2];
-
-      this.driverList = res[3].map((k) => {
-        k.label = `${k.name} - ${k.id_num}`;
-        return k;
-      });
     }, (error) => {
 
     }, () => {
@@ -78,14 +69,24 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
     })
   }
 
+  onAddMaterial() {
+    let materialForms = this.materialForms;
+    materialForms.push(this.createMaterialForm());
+  }
+
+  onRemoveMaterial(o: FormGroup) {
+    let materialForms = this.materialForms;
+    let lx = _.reject(materialForms.controls, (x: FormGroup) => {
+      return x.controls.id.value === o.controls.id.value;
+    });
+    materialForms.controls = lx;
+  }
+
   onSubmit() {
 
   }
 
-  onChangeReceiverCountry(event) {
-    this.lookupService.listStates(event.id).subscribe((res: any) => {
-      this.stateList = res;
-      this.mform.patchValue({ state_id: null });
-    });
+  get materialForms() {
+    return this.mform.get('materialForms') as FormArray;
   }
 }

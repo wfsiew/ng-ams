@@ -1,1 +1,172 @@
-<p>purchase-order-create works!</p>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Create New Purchase Order</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <form class="form-horizontal" [formGroup]="mform" (ngSubmit)="onSubmit()">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PO Number</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Issue To</label>
+            <div class="col-sm-10">
+              <ng-select 
+                [items]="miningCompanyList" 
+                bindLabel="name" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="mining_company_id" 
+                name="mining_company_id"></ng-select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Truck</label>
+            <div class="col-sm-10">
+              <ng-select 
+                [items]="truckList" 
+                bindLabel="registration_num" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="truck_id" 
+                name="truck_id"></ng-select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Driver</label>
+            <div class="col-sm-10">
+              <ng-select 
+                [items]="driverList" 
+                bindLabel="label" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="driver_id" 
+                name="driver_id"></ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Material Information</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Material</label>
+            <div class="col-sm-10">
+              <ng-select 
+                [items]="materialList" 
+                bindLabel="name" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="material_id" 
+                name="material_id"></ng-select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Weight (kg)</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Weight (kg)" name="weight" formControlName="weight">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Actual Weight (kg)</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Weight (kg)" name="actual_weight" formControlName="actual_weight">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Receiver Information</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Name&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Name" name="receiver_name"
+                formControlName="receiver_name"
+                [ngClass]="{'is-invalid': invalid('receiver_name')}">
+              <small class="badge badge-danger" 
+                *ngIf="invalid('receiver_name') && f.receiver_name.hasError('required')">
+                Name is required
+              </small>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Address 1" name="receiver_addr_1" formControlName="receiver_addr_1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-9 offset-sm-3">
+              <input type="text" class="form-control" placeholder="Address 2" name="receiver_addr_2" formControlName="receiver_addr_2">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-9 offset-sm-3">
+              <input type="text" class="form-control" placeholder="Address 3" name="receiver_addr_3" formControlName="receiver_addr_3">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4 offset-sm-3">
+              <input type="text" class="form-control" placeholder="Postcode" name="receiver_postcode"
+                formControlName="receiver_postcode"
+                [ngClass]="{'is-invalid': invalid('receiver_postcode')}">
+              <small class="badge badge-danger" 
+                *ngIf="invalid('receiver_postcode') && f.receiver_postcode.hasError('required')">
+                Postcode is required
+              </small>
+            </div>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" placeholder="City" name="receiver_city" formControlName="receiver_city">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4 offset-sm-3">
+              <ng-select 
+                [items]="stateList" 
+                bindLabel="name" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="receiver_state_id" 
+                name="receiver_state_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('receiver_state_id') && f.receiver_state_id.hasError('required')">
+                State is required
+              </small>
+            </div>
+            <div class="col-sm-5">
+              <ng-select
+                [items]="countryList" 
+                bindLabel="name" 
+                bindValue="id" 
+                placeholder="Please select"
+                (change)="onChangeReceiverCountry($event)"
+                name="receiver_country_id"
+                formControlName="receiver_country_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('receiver_country_id') && f.receiver_country_id.hasError('required')">
+                Country is required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

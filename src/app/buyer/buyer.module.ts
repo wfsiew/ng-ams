@@ -22,6 +22,7 @@ import { BuyerService } from 'src/app/setup/buyer/services/buyer.service';
 import { TruckService } from 'src/app/setup/buyer/services/truck.service';
 import { DriverService } from 'src/app/setup/buyer/services/driver.service';
 import { MaterialService } from 'src/app/setup/material/services/material.service';
+import { PurchaseOrderService } from './services/purchase-order.service';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { MaterialService } from 'src/app/setup/material/services/material.servic
     BuyerService,
     TruckService,
     DriverService,
-    MaterialService
+    MaterialService,
+    PurchaseOrderService
   ]
 })
 export class BuyerModule { }

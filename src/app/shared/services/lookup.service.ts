@@ -11,6 +11,22 @@ export class LookupService {
 
   constructor(private http: HttpClient) { }
 
+  listTruck(buyer_id) {
+    return this.http.get(`${this.baseUrl}/api/lookup/buyer/${buyer_id}/trucks`);
+  }
+
+  listDriver(buyer_id) {
+    return this.http.get(`${this.baseUrl}/api/lookup/buyer/${buyer_id}/drivers`);
+  }
+
+  listMaterial() {
+    return this.http.get(`${this.baseUrl}/api/lookup/materials`);
+  }
+
+  listMiningCompany() {
+    return this.http.get(`${this.baseUrl}/api/lookup/mining-companies`);
+  }
+
   listGroup() {
     return this.http.get(`${this.baseUrl}/api/lookup/groups`);
   }

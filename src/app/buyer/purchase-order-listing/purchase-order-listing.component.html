@@ -1,1 +1,58 @@
-<p>purchase-order-listing works!</p>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Purchase Order Listing</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-sm-6 col-12 p-1">
+            <app-search-input [search]="search" (onSearch)="onSearch($event)"></app-search-input>
+          </div>
+          <div class="col-sm-6 col-12 p-1 text-right">
+            <button type="button" class="btn btn-primary mr-2" (click)="goto('create')"><i class="fas fa-plus"></i> Add New</button>
+            <button type="button" class="btn btn-danger"><i class="fas fa-close"></i> Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
+          <h4>No records found</h4>
+        </div>
+
+        <div class="table-responsive" *ngIf="!isEmpty(list) && !isLoading">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer" *ngIf="totalCount">
+        <div class="float-right">
+          <pagination 
+            [totalItems]="totalCount" 
+            [itemsPerPage]="pageSize" 
+            [maxSize]="MAX_PAGE_NUMBERS" 
+            [(ngModel)]="page" 
+            (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
