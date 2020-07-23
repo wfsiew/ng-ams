@@ -17,6 +17,7 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 })
 export class MiningCompanyCreateComponent extends GeneralForm implements OnInit {
 
+  isLoading = false;
   id: string;
   data: any = { id: '' };
   isEdit = false;
@@ -86,20 +87,28 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
   }
 
   load() {
+    this.isLoading = true;
     this.lookupService.listCountry().subscribe((res: any) => {
       this.countryList = res;
       this.loadDetails();
+    }, (error) => {
+      this.isLoading = false;
     });
   }
 
   loadDetails() {
     if (_.isNull(this.id) || _.isUndefined(this.id)) {
+      this.isLoading = false;
       return;
     }
 
     this.miningCompanyService.edit(this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
     });
   }
 

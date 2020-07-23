@@ -16,6 +16,7 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 })
 export class MaterialCreateComponent extends GeneralForm implements OnInit {
 
+  isLoading = false;
   id: string;
   data: any = { id: '' };
   isEdit = false;
@@ -64,9 +65,14 @@ export class MaterialCreateComponent extends GeneralForm implements OnInit {
       return;
     }
 
+    this.isLoading = true;
     this.materialService.edit(this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
     });
   }
 

@@ -8,7 +8,7 @@
   </div>
 </section>
 <section class="content">
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="!isLoading">
     <form class="form-horizontal" [formGroup]="mform" (ngSubmit)="onSubmit()">
       <div class="card">
         <div class="card-body">

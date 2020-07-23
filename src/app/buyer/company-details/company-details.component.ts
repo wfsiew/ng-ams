@@ -91,6 +91,7 @@ export class CompanyDetailsComponent extends GeneralForm implements OnInit {
 
   loadDetails() {
     if (_.isNull(this.id) || _.isUndefined(this.id)) {
+      this.isLoading = false;
       return;
     }
 

@@ -17,6 +17,7 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 })
 export class UserCreateComponent extends GeneralForm implements OnInit {
 
+  isLoading = false;
   id: string;
   data: any = { id: '' };
   isEdit = false;
@@ -77,20 +78,28 @@ export class UserCreateComponent extends GeneralForm implements OnInit {
   }
 
   load() {
+    this.isLoading = true;
     this.lookupService.listGroup().subscribe((res: any) => {
       this.groupList = res;
       this.loadDetails();
+    }, (error) => {
+      this.isLoading = false;
     });
   }
 
   loadDetails() {
     if (_.isNull(this.id) || _.isUndefined(this.id)) {
+      this.isLoading = false;
       return;
     }
 
     this.userService.edit(this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
     });
   }
 

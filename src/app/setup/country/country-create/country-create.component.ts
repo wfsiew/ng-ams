@@ -16,6 +16,7 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 })
 export class CountryCreateComponent extends GeneralForm implements OnInit {
 
+  isLoading = false;
   id: string;
   data: any = { id: '' };
   isEdit = false;
@@ -62,9 +63,14 @@ export class CountryCreateComponent extends GeneralForm implements OnInit {
       return;
     }
 
+    this.isLoading = true;
     this.countryService.edit(this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
     });
   }
 

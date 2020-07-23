@@ -16,6 +16,7 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 })
 export class DriverCreateComponent extends GeneralForm implements OnInit {
 
+  isLoading = false;
   buyer_id: string;
   id: string;
   data: any = { id: '' };
@@ -64,9 +65,14 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
       return;
     }
 
+    this.isLoading = true;
     this.driverService.edit(this.buyer_id, this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
     });
   }
 
