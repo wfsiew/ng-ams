@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import _ from 'lodash';
 
 import { MenuSetup, SubmenuSetup } from './menu-setup';
-import { MenuBuyer } from './menu-buyer';
+import { MenuBuyer, SubmenuBuyer } from './menu-buyer';
 
 @Component({
   selector: 'app-index',
@@ -28,6 +28,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   readonly uiState = 'home.index';
 
   readonly submenuSetup = SubmenuSetup;
+  readonly submenuBuyer = SubmenuBuyer;
   readonly ROLE = AppConstant.ROLE;
 
   constructor(

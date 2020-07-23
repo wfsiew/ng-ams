@@ -13,6 +13,8 @@ import { TruckListingComponent } from './truck-listing/truck-listing.component';
 import { TruckCreateComponent } from './truck-create/truck-create.component';
 import { DriverListingComponent } from './driver-listing/driver-listing.component';
 import { DriverCreateComponent } from './driver-create/driver-create.component';
+import { PurchaseOrderListingComponent } from './purchase-order-listing/purchase-order-listing.component';
+import { PurchaseOrderCreateComponent } from './purchase-order-create/purchase-order-create.component';
 
 import { CountryService } from 'src/app/setup/country/services/country.service';
 import { StateService } from 'src/app/setup/state/services/state.service';
@@ -28,7 +30,9 @@ import { MaterialService } from 'src/app/setup/material/services/material.servic
     TruckListingComponent,
     TruckCreateComponent,
     DriverListingComponent,
-    DriverCreateComponent
+    DriverCreateComponent,
+    PurchaseOrderListingComponent,
+    PurchaseOrderCreateComponent
   ],
   imports: [
     CommonModule,
