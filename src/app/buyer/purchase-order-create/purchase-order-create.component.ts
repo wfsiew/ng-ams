@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { LookupService } from 'src/app/shared/services/lookup.service';
 import { PurchaseOrderService } from 'src/app/buyer/services/purchase-order.service';
 import { Helper } from 'src/app/shared/utils/helper';
+import { AppConstant } from 'src/app/shared/constants/app.constant';
 import { GeneralForm } from 'src/app/shared/classes/general.form';
 
 @Component({
@@ -49,10 +50,19 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
 
   createForm() {
     this.mform = this.fb.group({
-      mining_company_id: [null],
+      mining_company_id: [null, [Validators.required]],
       truck_id: [null, [Validators.required]],
       driver_id: [null, [Validators.required]],
-      
+      material_id: [null, [Validators.required]],
+      weight: ['0', [Validators.required, Validators.pattern(AppConstant.VALIDATE.AMOUNT)]],
+      receiver_name: ['', [Validators.required]],
+      receiver_addr_line_1: ['', [Validators.required]],
+      receiver_addr_line_2: [''],
+      receiver_addr_line_3: [''],
+      receiver_postcode: ['', [Validators.required]],
+      receiver_city: ['', [Validators.required]],
+      receiver_state_id: [null, [Validators.required]],
+      receiver_country_id: [null, [Validators.required]]
     });
   }
 

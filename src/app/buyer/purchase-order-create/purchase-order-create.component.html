@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Issue To</label>
+            <label class="col-sm-2 col-form-label">Issue To&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-10">
               <ng-select 
                 [items]="miningCompanyList" 
@@ -28,10 +28,14 @@
                 placeholder="Please select"
                 formControlName="mining_company_id" 
                 name="mining_company_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('mining_company_id') && f.mining_company_id.hasError('required')">
+                Issue To is required
+              </small>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Truck</label>
+            <label class="col-sm-2 col-form-label">Truck&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-10">
               <ng-select 
                 [items]="truckList" 
@@ -40,10 +44,14 @@
                 placeholder="Please select"
                 formControlName="truck_id" 
                 name="truck_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('truck_id') && f.truck_id.hasError('required')">
+                Truck is required
+              </small>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Driver</label>
+            <label class="col-sm-2 col-form-label">Driver&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-10">
               <ng-select 
                 [items]="driverList" 
@@ -52,6 +60,10 @@
                 placeholder="Please select"
                 formControlName="driver_id" 
                 name="driver_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('driver_id') && f.driver_id.hasError('required')">
+                Driver is required
+              </small>
             </div>
           </div>
         </div>
@@ -63,7 +75,7 @@
         </div>
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Material</label>
+            <label class="col-sm-2 col-form-label">Material&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-10">
               <ng-select 
                 [items]="materialList" 
@@ -72,18 +84,25 @@
                 placeholder="Please select"
                 formControlName="material_id" 
                 name="material_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('material_id') && f.material_id.hasError('required')">
+                Material is required
+              </small>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Weight (kg)</label>
+            <label class="col-sm-2 col-form-label">Weight (kg)&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Weight (kg)" name="weight" formControlName="weight">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Actual Weight (kg)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Weight (kg)" name="actual_weight" formControlName="actual_weight">
+              <input type="text" class="form-control" placeholder="Weight (kg)" name="weight" formControlName="weight"
+                [ngClass]="{'is-invalid': invalid('weight')}">
+              <small class="badge badge-danger" 
+                *ngIf="invalid('weight') && f.weight.hasError('required')">
+                Weight is required
+              </small>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('weight') && f.weight.hasError('pattern')">
+                Weight is invalid
+              </small>
             </div>
           </div>
         </div>
@@ -95,10 +114,9 @@
         </div>
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Name&nbsp;<span class="text-danger">*</span></label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" placeholder="Name" name="receiver_name"
-                formControlName="receiver_name"
+            <label class="col-sm-2 col-form-label">Name&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Name" name="receiver_name" formControlName="receiver_name"
                 [ngClass]="{'is-invalid': invalid('receiver_name')}">
               <small class="badge badge-danger" 
                 *ngIf="invalid('receiver_name') && f.receiver_name.hasError('required')">
@@ -107,37 +125,49 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Address</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" placeholder="Address 1" name="receiver_addr_1" formControlName="receiver_addr_1">
+            <label class="col-sm-2 col-form-label">Address&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Address" name="receiver_addr_line_1" formControlName="receiver_addr_line_1"
+                [ngClass]="{'is-invalid': invalid('receiver_addr_line_1')}">
+              <small class="badge badge-danger" 
+                *ngIf="invalid('receiver_addr_line_1') && f.receiver_addr_line_1.hasError('required')">
+                Address is required
+              </small>
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-9 offset-sm-3">
-              <input type="text" class="form-control" placeholder="Address 2" name="receiver_addr_2" formControlName="receiver_addr_2">
+            <div class="col-sm-10 offset-sm-2">
+              <input type="text" class="form-control" placeholder="Address 2" name="receiver_addr_line_2" formControlName="receiver_addr_line_2">
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-9 offset-sm-3">
-              <input type="text" class="form-control" placeholder="Address 3" name="receiver_addr_3" formControlName="receiver_addr_3">
+            <div class="col-sm-10 offset-sm-2">
+              <input type="text" class="form-control" placeholder="Address 3" name="receiver_addr_line_3" formControlName="receiver_addr_line_3">
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-4 offset-sm-3">
-              <input type="text" class="form-control" placeholder="Postcode" name="receiver_postcode"
-                formControlName="receiver_postcode"
+            <label class="col-sm-2 col-form-label">Postcode&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" placeholder="Postcode" name="receiver_postcode" formControlName="receiver_postcode"
                 [ngClass]="{'is-invalid': invalid('receiver_postcode')}">
               <small class="badge badge-danger" 
                 *ngIf="invalid('receiver_postcode') && f.receiver_postcode.hasError('required')">
                 Postcode is required
               </small>
             </div>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" placeholder="City" name="receiver_city" formControlName="receiver_city">
+            <label class="col-sm-1 col-form-label">City&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="City" name="receiver_city" formControlName="receiver_city"
+                [ngClass]="{'is-invalid': invalid('receiver_city')}">
+              <small class="badge badge-danger" 
+                *ngIf="invalid('receiver_city') && f.receiver_city.hasError('required')">
+                Postcode is required
+              </small>
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-4 offset-sm-3">
+            <label class="col-sm-2 col-form-label">State&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-3">
               <ng-select 
                 [items]="stateList" 
                 bindLabel="name" 
@@ -150,7 +180,8 @@
                 State is required
               </small>
             </div>
-            <div class="col-sm-5">
+            <label class="col-sm-1 col-form-label">Country&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-6">
               <ng-select
                 [items]="countryList" 
                 bindLabel="name" 
