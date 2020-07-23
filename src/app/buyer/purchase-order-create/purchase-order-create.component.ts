@@ -88,6 +88,10 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
     })
   }
 
+  onBack() {
+    this.router.navigate(['/ams/buyer/purchase-order/list']);
+  }
+
   onSubmit() {
 
   }
