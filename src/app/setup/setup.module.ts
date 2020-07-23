@@ -38,6 +38,7 @@ import { MiningCompanyService } from './mining-company/services/mining-company.s
 import { UserService as MiningCompanyUserService } from './mining-company/services/user.service';
 import { MaterialService } from './material/services/material.service';
 
+
 @NgModule({
   declarations: [
     UserListingComponent,

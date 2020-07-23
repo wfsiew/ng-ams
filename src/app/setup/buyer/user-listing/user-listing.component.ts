@@ -55,6 +55,7 @@ export class UserListingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.buyer_id = params.get('buyer_id');
+      this.isLoading = true;
       this.loadBuyer();
     });
 

@@ -21,6 +21,11 @@ const routes: Routes = [
         path: 'setup',
         canActivate: [AuthGuardService],
         loadChildren: () => import('./setup/setup.module').then(m => m.SetupModule)
+      },
+      {
+        path: 'buyer',
+        canActivate: [AuthGuardService],
+        loadChildren: () => import('./buyer/buyer.module').then(m => m.BuyerModule)
       }
     ]
   },

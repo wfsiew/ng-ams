@@ -3,6 +3,13 @@ export class AppConstant {
   public static MAX_PAGE_NUMBERS = 10;
   public static NETWORK_TIMEOUT = 60000;
 
+  public static ROLE = {
+    ADMIN: 'ADMIN',
+    BUYER: 'BUYER',
+    OPERATOR: 'OPERATOR',
+    USER: 'USER'
+  }
+
   public static HTTP_HEADER = {
     LINK: 'link',
     X_TOTAL_COUNT: 'x-total-count',

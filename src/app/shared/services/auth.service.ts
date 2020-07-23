@@ -138,9 +138,7 @@ export class AuthService {
     }
 
     const roles = JSON.parse(group);
-    const b = _.some(roles, (value, i, ls) => {
-      return role === value.name;
-    });
+    const b = _.some(roles, { 'name': role });
     return b;
   }
 

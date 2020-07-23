@@ -50,84 +50,92 @@
     <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item has-treeview" [ngClass]="{'menu-open': menu === 'setup'}">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Setup
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link" (click)="goto('setup', 'user/list')"
-                  [ngClass]="{'active': submenu === 'user/list'}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link" (click)="goto('setup', 'mining-company/list')"
-                  [ngClass]="{'active': submenu === 'mining-company/list'}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Mining Company List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link" (click)="goto('setup', 'buyer/list')"
-                  [ngClass]="{'active': submenu === 'buyer/list'}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Buyer List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link" (click)="goto('setup', 'material/list')"
-                  [ngClass]="{'active': submenu === 'material/list'}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Material List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link" (click)="goto('setup', 'country/list')"
-                  [ngClass]="{'active': submenu === 'country/list'}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Country List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link" (click)="goto('setup', 'state/list')"
-                  [ngClass]="{'active': submenu === 'state/list'}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>State List</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <ng-container *ngIf="role === ROLE.ADMIN && !isLoading">
+            <li class="nav-item has-treeview" [ngClass]="{'menu-open': menu === 'setup'}">
+              <a href="#" class="nav-link" [ngClass]="{'active': menu === 'setup'}">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>
+                  Setup
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link" (click)="goto('setup', 'user/list')"
+                    [ngClass]="{'active': submenu === 'user/list'}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>User List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" (click)="goto('setup', 'mining-company/list')"
+                    [ngClass]="{'active': submenu === 'mining-company/list'}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Mining Company List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" (click)="goto('setup', 'buyer/list')"
+                    [ngClass]="{'active': submenu === 'buyer/list'}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Buyer List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" (click)="goto('setup', 'material/list')"
+                    [ngClass]="{'active': submenu === 'material/list'}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Material List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" (click)="goto('setup', 'country/list')"
+                    [ngClass]="{'active': submenu === 'country/list'}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Country List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" (click)="goto('setup', 'state/list')"
+                    [ngClass]="{'active': submenu === 'state/list'}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>State List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ng-container>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle"></i>
-              <p>Company Details</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-truck"></i>
-              <p>Trucks</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-id-card"></i>
-              <p>Drivers</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-shopping-cart"></i>
-              <p>Purchase Orders</p>
-            </a>
-          </li>
+          <ng-container *ngIf="role === ROLE.BUYER && !isLoading">
+            <li class="nav-item">
+              <a href="#" class="nav-link" (click)="goto('buyer', 'company-details')"
+                [ngClass]="{'active': submenu === 'company-details'}">
+                <i class="nav-icon far fa-circle"></i>
+                <p>Company Details</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" (click)="goto('buyer', 'truck/list')"
+                [ngClass]="{'active': submenu === 'truck/list'}">
+                <i class="nav-icon fas fa-truck"></i>
+                <p>Trucks</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" (click)="goto('buyer', 'driver/list')"
+                [ngClass]="{'active': submenu === 'driver/list'}">
+                <i class="nav-icon fas fa-id-card"></i>
+                <p>Drivers</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>Purchase Orders</p>
+              </a>
+            </li>
+          </ng-container>
+          
           
         </ul>
       </nav>

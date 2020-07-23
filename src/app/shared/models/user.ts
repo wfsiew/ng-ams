@@ -7,6 +7,8 @@ export class User {
     public email?: string,
     public firstName?: string,
     public lastName?: string,
+    public buyer_id?: number,
+    public mining_company_id?: number,
     public groups?: Group[]
   ) { }
 }
