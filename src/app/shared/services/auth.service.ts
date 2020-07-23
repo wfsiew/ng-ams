@@ -141,15 +141,4 @@ export class AuthService {
     const b = _.some(roles, { 'name': role });
     return b;
   }
-
-  // __hasRole(givenRole) {
-  //   const userRoles: any = JSON.parse(localStorage.getItem('user-group'));
-  //   const s = _.some(userRoles, (value, i, ls) => {
-  //     const b = _.findIndex(givenRole, (k) => {
-  //       return k === value.name;
-  //     });
-  //     return b >= 0;
-  //   });
-  //   return s;
-  // }
 }

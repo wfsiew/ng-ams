@@ -42,14 +42,17 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
     ModalModule.forRoot(),
     NgxUiLoaderModule.forRoot({
       bgsPosition: POSITION.centerCenter,
-      bgsColor: '#007bff',
+      bgsColor: '#dc143c',
       bgsType: 'three-bounce',
-      fgsColor: '#007bff',
+      fgsColor: '#dc143c',
       fgsType: 'three-bounce'
     }),
     NgxUiLoaderHttpModule.forRoot({
       showForeground: false,
       exclude: [
+        `${environment.baseUrl}/o/token/`,
+        `${environment.baseUrl}/o/revoke_token/`,
+        `${environment.baseUrl}/api/current-user`
       ]
     }),
   ],
