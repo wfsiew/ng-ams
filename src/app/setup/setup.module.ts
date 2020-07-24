@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { SetupRoutingModule } from './setup-routing.module';
@@ -68,6 +69,7 @@ import { MaterialService } from './material/services/material.service';
     SharedComponentModules,
     NgSelectModule,
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     PaginationModule.forRoot()
   ],
   providers: [

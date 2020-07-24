@@ -11,6 +11,21 @@ export class Helper {
     return (page - 1) * limit;
   }
 
+  public static toDateStr(dt) {
+    let ds = dt;
+    if (!_.isNull(dt) && !_.isUndefined(dt)) {
+      if (typeof dt === 'string' || dt instanceof String) {
+        
+      }
+
+      else {
+        ds = Helper.getDateStr(dt);
+      }
+    }
+
+    return ds;
+  }
+
   public static getDateStr(dt: Date) {
     if (_.isNull(dt)) {
       return dt;

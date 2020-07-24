@@ -51,6 +51,8 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
     this.mform = this.fb.group({
       name: ['', [Validators.required]],
       registration_num: ['', [Validators.required]],
+      mining_license_num: ['', [Validators.required]],
+      mining_license_expiry_date: [null, [Validators.required]],
       contact_no: ['', [Validators.required]],
       email: [''],
       fax_no: [''],
@@ -69,6 +71,8 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
     this.mform.patchValue({
       name: o.name,
       registration_num: o.registration_num,
+      mining_license_num: o.mining_license_num,
+      mining_license_expiry_date: o.mining_license_expiry_date,
       contact_no: o.contact_no,
       email: o.email,
       fax_no: o.fax_no,
@@ -126,6 +130,8 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
     const o = {
       name: f.name,
       registration_num: f.registration_num,
+      mining_license_num: f.mining_license_num,
+      mining_license_expiry_date: Helper.toDateStr(f.mining_license_expiry_date),
       contact_no: f.contact_no,
       email: f.email,
       fax_no: f.fax_no,
@@ -137,6 +143,7 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
       state_id: f.state_id,
       country_id: f.country_id
     }
+
     if (!this.isEdit) {
       this.miningCompanyService.create(o).subscribe((res: any) => {
         this.toastr.success('New Mining Company successfully created');
