@@ -104,7 +104,10 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
 
   onAddMaterial() {
     let materialForms = this.materialForms;
-    materialForms.push(this.createMaterialForm());
+    const fg = this.createMaterialForm();
+    fg.patchValue({ recv_country_id: this.countryList[0].id });
+    this.onChangeReceiverCountry(this.countryList[0], fg);
+    materialForms.push(fg);
   }
 
   onRemoveMaterial(o: FormGroup) {

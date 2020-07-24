@@ -68,6 +68,8 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
         this.sy = o.sy;
       }
     });
+
+    this.load();
   }
 
   ngOnDestroy() {
@@ -80,20 +82,20 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
       return;
     }
     
-    // this.isLoading = true;
-    // this.truckService.list(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
-    //   this.list = res.body;
-    //   const headers = res.headers;
-    //   this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
-    //   this.isLoading = false;
-    //   setTimeout(() => {
-    //     window.scrollTo(this.sx, this.sy);
-    //   }, 200);
-    // }, (error) => {
+    this.isLoading = true;
+    this.purchaseOrderService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
+      this.list = res.body;
+      const headers = res.headers;
+      this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
+      this.isLoading = false;
+      setTimeout(() => {
+        window.scrollTo(this.sx, this.sy);
+      }, 200);
+    }, (error) => {
       
-    // }, () => {
-    //   this.isLoading = false;
-    // });
+    }, () => {
+      this.isLoading = false;
+    });
   }
 
   onSearch(s: string) {

@@ -11,6 +11,20 @@ export class PurchaseOrderService {
 
   constructor(private http: HttpClient) { }
 
+  list(page, limit, sort, dir) {
+    let prm: HttpParams = new HttpParams()
+      .set('_page', page)
+      .set('_limit', limit);
+    if (sort !== '') {
+      if (dir === '') {
+        dir = 'asc';
+      }
+
+      prm = prm.append('sort', `${sort}:${dir}`);
+    }
+    return this.http.get(`${this.baseUrl}/api/purchase-orders`, { params: prm, observe: 'response' });
+  }
+
   create(o) {
     return this.http.post(`${this.baseUrl}/api/purchase-order`, o);
   }

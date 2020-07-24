@@ -30,14 +30,30 @@
           <table class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
-                <th></th>
-                <th></th>
+                <th>
+                  <app-sort-column [name]="'PO No.'" [sort]="'po_num'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Buyer'" [sort]="'buyer__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Issue To'" [sort]="'issue_to__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Issued Date'" [sort]="'issued_date'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let o of list">
+                <td>{{ o.po_num }}</td>
+                <td>{{ o.buyer.name }}</td>
+                <td>{{ o.issue_to.name }}</td>
+                <td>{{ o.issued_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
               </tr>
             </tbody>
           </table>
