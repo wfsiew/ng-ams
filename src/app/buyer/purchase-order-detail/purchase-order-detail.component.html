@@ -61,6 +61,7 @@
                     <th>Material</th>
                     <th>Truck</th>
                     <th>Driver</th>
+                    <th>I/C No.</th>
                     <th>Weight (kg)</th>
                     <th>DO No.</th>
                   </tr>
@@ -71,7 +72,8 @@
                       <td>{{ i + 1 }}</td>
                       <td>{{ o.material.name }} {{ o.material.material_type }} {{ o.material.grade }}</td>
                       <td>{{ o.truck.registration_num }}</td>
-                      <td>{{ o.driver.name }} ({{ o.driver.id_num }})</td>
+                      <td>{{ o.driver.name }}</td>
+                      <td>{{ o.driver.id_num }}</td>
                       <td>{{ o.weight }}</td>
                       <td>{{ o.do_num }}</td>
                     </tr>
