@@ -47,6 +47,10 @@
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
+                  <app-sort-column [name]="'I/C No.'" [sort]="'purchase_order_detail__driver__id_num'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
                   <app-sort-column [name]="'Weight'" [sort]="'purchase_order_detail__weight'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
@@ -66,6 +70,7 @@
                 <td>{{ o.purchase_order_detail.material.name }}</td>
                 <td>{{ o.purchase_order_detail.truck.registration_num }}</td>
                 <td>{{ o.purchase_order_detail.driver.name }}</td>
+                <td>{{ o.purchase_order_detail.driver.id_num }}</td>
                 <td>{{ o.purchase_order_detail.weight }}</td>
                 <td>{{ o.checkin_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td>{{ o.checkout_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
