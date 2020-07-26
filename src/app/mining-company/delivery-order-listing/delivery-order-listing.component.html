@@ -1,0 +1,93 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Delivery Order Listing</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-sm-6 col-12 p-1">
+            <app-search-input [search]="search" (onSearch)="onSearch($event)"></app-search-input>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
+          <h4>No records found</h4>
+        </div>
+
+        <div class="table-responsive" *ngIf="!isEmpty(list) && !isLoading">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <app-sort-column [name]="'DO No.'" [sort]="'do_num'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Date'" [sort]="'created_date'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Material'" [sort]="'purchase_order_detail__material__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Truck'" [sort]="'purchase_order_detail__truck__registration_num'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Driver'" [sort]="'purchase_order_detail__driver__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Weight'" [sort]="'purchase_order_detail__weight'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                </th>
+                <th>
+                  Check In Time
+                </th>
+                <th>
+                  Check Out Time
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let o of list">
+                <td>{{ o.do_num }}</td>
+                <td>{{ o.created_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
+                <td>{{ o.purchase_order_detail.material.name }}</td>
+                <td>{{ o.purchase_order_detail.truck.registration_num }}</td>
+                <td>{{ o.purchase_order_detail.driver.name }}</td>
+                <td>{{ o.purchase_order_detail.weight }}</td>
+                <td>{{ o.checkin_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
+                <td>{{ o.checkout_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
+                <td class="text-nowrap">
+                  <button class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date">Check In</button>
+                  <button class="btn btn-sm btn-primary" (click)="onCheckOut(o)" *ngIf="!o.checkout_date"> Check Out</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer" *ngIf="totalCount">
+        <div class="float-right">
+          <pagination 
+            [totalItems]="totalCount" 
+            [itemsPerPage]="pageSize" 
+            [maxSize]="MAX_PAGE_NUMBERS" 
+            [(ngModel)]="page" 
+            (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

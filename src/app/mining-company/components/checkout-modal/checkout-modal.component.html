@@ -1,0 +1,32 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ title }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" [formGroup]="mform">
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Actual Weight&nbsp;<span class="text-danger">*</span></label>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" placeholder="Actual Weight (kg)" name="actual_weight" formControlName="actual_weight"
+            [ngClass]="{'is-invalid': invalid('actual_weight')}">
+          <small class="badge badge-danger" 
+            *ngIf="invalid('actual_weight') && f.actual_weight.hasError('required')">
+            Actual Weight is required
+          </small>
+          <small class="badge badge-danger" 
+            *ngIf="invalid('actual_weight') && f.actual_weight.hasError('pattern')">
+            Actual Weight is invalid
+          </small>
+        </div>
+        <label class="col-sm-1 col-form-label">kg</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success mr-2 pl-4 pr-4" (click)="onYes()">Check Out</button>
+    <button type="button" class="btn btn-default pl-4 pr-4" (click)="onHide()">Cancel</button>
+  </div>
+</div>

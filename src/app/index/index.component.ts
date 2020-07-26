@@ -9,6 +9,7 @@ import _ from 'lodash';
 
 import { MenuSetup, SubmenuSetup } from './menu-setup';
 import { MenuBuyer, SubmenuBuyer } from './menu-buyer';
+import { MenuOperator, SubmenuOperator } from './menu-operator';
 
 @Component({
   selector: 'app-index',
@@ -29,6 +30,7 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   readonly submenuSetup = SubmenuSetup;
   readonly submenuBuyer = SubmenuBuyer;
+  readonly submenuOperator = SubmenuOperator;
   readonly ROLE = AppConstant.ROLE;
 
   constructor(

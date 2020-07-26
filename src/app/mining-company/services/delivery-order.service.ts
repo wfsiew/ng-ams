@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PurchaseOrderService {
+export class DeliveryOrderService {
 
   private baseUrl = environment.baseUrl;
 
@@ -22,7 +22,7 @@ export class PurchaseOrderService {
 
       prm = prm.append('sort', `${sort}:${dir}`);
     }
-    return this.http.get(`${this.baseUrl}/api/purchase-orders`, { params: prm, observe: 'response' });
+    return this.http.get(`${this.baseUrl}/api/delivery-orders`, { params: prm, observe: 'response' });
   }
 
   search(page, limit, sort, dir, keyword) {
@@ -36,14 +36,10 @@ export class PurchaseOrderService {
 
       prm = prm.append('sort', `${sort}:${dir}`);
     }
-    return this.http.post(`${this.baseUrl}/api/purchase-orders`, { keyword: keyword }, { params: prm, observe: 'response' });
+    return this.http.post(`${this.baseUrl}/api/delivery-orders`, { keyword: keyword }, { params: prm, observe: 'response' });
   }
 
-  create(o) {
-    return this.http.post(`${this.baseUrl}/api/purchase-order`, o);
-  }
-
-  detail(id) {
-    return this.http.get(`${this.baseUrl}/api/purchase-order/${id}`);
+  updateTime(o) {
+    return this.http.post(`${this.baseUrl}/api/delivery-order/${o.id}/timestamp`, o);
   }
 }

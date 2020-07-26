@@ -15,6 +15,7 @@ import { DriverListingComponent } from './driver-listing/driver-listing.componen
 import { DriverCreateComponent } from './driver-create/driver-create.component';
 import { PurchaseOrderListingComponent } from './purchase-order-listing/purchase-order-listing.component';
 import { PurchaseOrderCreateComponent } from './purchase-order-create/purchase-order-create.component';
+import { PurchaseOrderDetailComponent } from './purchase-order-detail/purchase-order-detail.component';
 
 import { CountryService } from 'src/app/setup/country/services/country.service';
 import { StateService } from 'src/app/setup/state/services/state.service';
@@ -33,7 +34,8 @@ import { PurchaseOrderService } from './services/purchase-order.service';
     DriverListingComponent,
     DriverCreateComponent,
     PurchaseOrderListingComponent,
-    PurchaseOrderCreateComponent
+    PurchaseOrderCreateComponent,
+    PurchaseOrderDetailComponent
   ],
   imports: [
     CommonModule,

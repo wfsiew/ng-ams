@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
+import { PurchaseOrderPrintComponent } from './purchase-order-print/purchase-order-print.component';
 import { ErrorModalComponent } from './shared/components/error-modal/error-modal.component';
 
 import { environment } from '../environments/environment';
@@ -21,6 +22,7 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
 import { MessageService } from './shared/services/message.service';
 import { LookupService } from './shared/services/lookup.service';
+import { PurchaseOrderService } from './buyer/services/purchase-order.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuardService } from './shared/services/auth.guard.service';
 
@@ -29,7 +31,8 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
     AppComponent,
     IndexComponent,
     LoginComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    PurchaseOrderPrintComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +65,7 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
   providers: [
     MessageService,
     LookupService,
+    PurchaseOrderService,
     AuthService,
     AuthGuardService,
     {

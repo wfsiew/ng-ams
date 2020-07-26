@@ -3,6 +3,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
+import { PurchaseOrderPrintComponent } from './purchase-order-print/purchase-order-print.component';
 
 import { AuthGuardService } from 'src/app/shared/services/auth.guard.service';
 
@@ -26,8 +27,19 @@ const routes: Routes = [
         path: 'buyer',
         canActivate: [AuthGuardService],
         loadChildren: () => import('./buyer/buyer.module').then(m => m.BuyerModule)
+      },
+      {
+        path: 'mining-company',
+        canActivate: [AuthGuardService],
+        loadChildren: () => import('./mining-company/mining-company.module').then(m => m.MiningCompanyModule)
       }
     ]
+  },
+  {
+    path: 'purchase-order/:id/print',
+    component: PurchaseOrderPrintComponent,
+    canActivate: [AuthGuardService]
+
   },
   { path: '**', redirectTo: '/ams' }
 ];

@@ -81,7 +81,15 @@
             </li>
           </ng-container>
           
-          
+          <ng-container *ngIf="role === ROLE.OPERATOR && !isLoading">
+            <li class="nav-item" *ngFor="let m of submenuOperator">
+              <a href="#" class="nav-link" (click)="goto('mining-company', m.path)"
+                [ngClass]="{'active': submenu === m.path}">
+                <i class="nav-icon" [ngClass]="m.icon"></i>
+                <p>{{ m.title }}</p>
+              </a>
+            </li>
+          </ng-container>
         </ul>
       </nav>
     </div>
