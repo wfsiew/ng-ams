@@ -17,6 +17,6 @@ export const SubmenuOperator = [
   {
     title: 'Delivery Order',
     path: 'delivery-order/list',
-    icon: 'fas fa-shopping-cart'
+    icon: 'fas fa-truck-moving'
   }
 ];
