@@ -74,7 +74,14 @@
                 <td>{{ o.purchase_order_detail.truck.registration_num }}</td>
                 <td>{{ o.purchase_order_detail.driver.name }}</td>
                 <td>{{ o.purchase_order_detail.driver.id_num }}</td>
-                <td>{{ o.purchase_order_detail.weight }}</td>
+                <td>
+                  <ng-container *ngIf="!o.checkout_date">
+                    {{ o.purchase_order_detail.weight }}
+                  </ng-container>
+                  <ng-container *ngIf="o.checkout_date">
+                    {{ o.actual_weight }}
+                  </ng-container>
+                </td>
                 <td>{{ getDOStatus(o) }}</td>
                 <td>{{ o.checkin_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td>{{ o.checkout_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
