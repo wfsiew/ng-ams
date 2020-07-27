@@ -27,6 +27,7 @@ import { MiningCompanyCreateComponent } from './mining-company/mining-company-cr
 import { UserListingComponent as MiningCompanyUserListingComponent } from './mining-company/user-listing/user-listing.component';
 import { MaterialListingComponent } from './material/material-listing/material-listing.component';
 import { MaterialCreateComponent } from './material/material-create/material-create.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { UserService } from './user/services/user.service';
 import { CountryService } from './country/services/country.service';
@@ -38,6 +39,7 @@ import { UserService as BuyerUserService } from './buyer/services/user.service';
 import { MiningCompanyService } from './mining-company/services/mining-company.service';
 import { UserService as MiningCompanyUserService } from './mining-company/services/user.service';
 import { MaterialService } from './material/services/material.service';
+import { DashboardService } from './dashboard/services/dashboard.service';
 
 
 @NgModule({
@@ -59,7 +61,8 @@ import { MaterialService } from './material/services/material.service';
     MiningCompanyUserListingComponent,
     MaterialListingComponent,
     MaterialCreateComponent,
-    BuyerUserListingComponent
+    BuyerUserListingComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +85,8 @@ import { MaterialService } from './material/services/material.service';
     BuyerUserService,
     MiningCompanyService,
     MiningCompanyUserService,
-    MaterialService
+    MaterialService,
+    DashboardService
   ]
 })
 export class SetupModule { }

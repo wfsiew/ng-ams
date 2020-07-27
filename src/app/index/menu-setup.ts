@@ -38,6 +38,10 @@ export const MenuSetup = {
 
 export const SubmenuSetup = [
   {
+    title: 'Dashboard',
+    path: 'dashboard'
+  },
+  {
     title: 'User List',
     path: 'user/list'
   },

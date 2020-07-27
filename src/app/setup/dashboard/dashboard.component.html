@@ -1,0 +1,76 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Dashboard</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <div class="row mb-2">
+          <div class="col-sm-3 col-12 p-1">
+            <div class="input-group date">
+              <input type="text" class="form-control" placeholder="Date From"name="dateFrom" [(ngModel)]="dateFrom" 
+                bsDatepicker #dp1="bsDatepicker"
+                [bsConfig]="{ containerClass: 'theme-blue', dateInputFormat: 'YYYY-MM-DD' }">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-default" (click)="dp1.show()" [attr.aria-expanded]="dp1.isOpen">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-12 p-1">
+            <div class="input-group date">
+              <input type="text" class="form-control" placeholder="Date To" name="dateTo" [(ngModel)]="dateTo" 
+                bsDatepicker #dp2="bsDatepicker"
+                [bsConfig]="{ containerClass: 'theme-blue', dateInputFormat: 'YYYY-MM-DD' }">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-default" (click)="dp2.show()" [attr.aria-expanded]="dp2.isOpen">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-12 p-1 text-right">
+            <button class="btn btn-primary" (click)="onApplyFilter()">Apply</button>
+            <span class="mr-2"></span>
+            <button class="btn btn-default" (click)="onClearFilter()">Clear</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
+          <h4>No records found</h4>
+        </div>
+
+        <div class="table-responsive" *ngIf="!isEmpty(list) && !isLoading">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <td>Mining Company</td>
+                <td>Material Name</td>
+                <td>Material Type</td>
+                <td>Material Grade</td>
+                <td>Total Weight</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let o of list">
+                <td>{{ o.purchase_order__issue_to__name }}</td>
+                <td>{{ o.material__name }}</td>
+                <td>{{ o.material__material_type }}</td>
+                <td>{{ o.material__grade }}</td>
+                <td>{{ o.sum | number }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
