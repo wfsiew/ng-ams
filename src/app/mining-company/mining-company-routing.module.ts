@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import { DeliveryOrderListingComponent } from './delivery-order-listing/delivery-order-listing.component';
+import { PermitDetailComponent } from './permit-detail/permit-detail.component';
 
 const routes: Routes = [
   { path: 'company-details', component: CompanyDetailsComponent },
@@ -11,7 +12,8 @@ const routes: Routes = [
     children: [
       { path: 'list', component: DeliveryOrderListingComponent }
     ]
-  }
+  },
+  { path: 'permit/:id', component: PermitDetailComponent }
 ];
 
 @NgModule({

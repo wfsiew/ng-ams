@@ -54,11 +54,14 @@
                   <app-sort-column [name]="'Weight'" [sort]="'purchase_order_detail__weight'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
+                <th>Status</th>
                 <th>
-                  Check In Time
+                  <app-sort-column [name]="'Check In Time'" [sort]="'checkin_date'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  Check Out Time
+                  <app-sort-column [name]="'Check Out Time'" [sort]="'checkout_date'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th></th>
               </tr>
@@ -72,11 +75,13 @@
                 <td>{{ o.purchase_order_detail.driver.name }}</td>
                 <td>{{ o.purchase_order_detail.driver.id_num }}</td>
                 <td>{{ o.purchase_order_detail.weight }}</td>
+                <td>{{ getDOStatus(o) }}</td>
                 <td>{{ o.checkin_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td>{{ o.checkout_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td class="text-nowrap">
                   <button class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date">Check In</button>
-                  <button class="btn btn-sm btn-primary" (click)="onCheckOut(o)" *ngIf="!o.checkout_date"> Check Out</button>
+                  <button class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date">Check Out</button>
+                  <button class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
                 </td>
               </tr>
             </tbody>

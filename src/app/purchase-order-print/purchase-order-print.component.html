@@ -65,8 +65,9 @@
                 <td>{{ o.do_num }}</td>
               </tr>
               <tr>
-                <td colspan="5">
+                <td colspan="7">
                   Destination:
+                  {{ o.recv_name }}<br>
                   {{ o.recv_addr_line_1 }}<ng-container *ngIf="o.recv_addr_line_2">, {{ o.recv_addr_line_2 }} </ng-container>
                   <ng-container *ngIf="o.recv_addr_line_3">, {{ o.recv_addr_line_3 }} </ng-container>
                   {{ o.recv_postcode }} {{ o.recv_city }} 

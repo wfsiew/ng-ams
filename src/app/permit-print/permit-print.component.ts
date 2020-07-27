@@ -3,15 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import _ from 'lodash';
 
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { PurchaseOrderService } from 'src/app/buyer/services/purchase-order.service';
+import { PermitService } from 'src/app/mining-company/services/permit.service';
 
 @Component({
-  selector: 'app-purchase-order-print',
-  templateUrl: './purchase-order-print.component.html',
-  styleUrls: ['./purchase-order-print.component.css']
+  selector: 'app-permit-print',
+  templateUrl: './permit-print.component.html',
+  styleUrls: ['./permit-print.component.css']
 })
-export class PurchaseOrderPrintComponent implements OnInit {
+export class PermitPrintComponent implements OnInit {
 
   isLoading = false;
   id: string;
@@ -19,7 +18,7 @@ export class PurchaseOrderPrintComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private purchaseOrderService: PurchaseOrderService
+    private permitService: PermitService
   ) { }
 
   ngOnInit() {
@@ -36,7 +35,7 @@ export class PurchaseOrderPrintComponent implements OnInit {
     }
 
     this.isLoading = true;
-    this.purchaseOrderService.detail(this.id).subscribe((res: any) => {
+    this.permitService.detail(this.id).subscribe((res: any) => {
       this.data = res;
       setTimeout(() => {
         window.print();

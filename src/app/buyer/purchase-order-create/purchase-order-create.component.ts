@@ -131,6 +131,7 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
         truck_id: x.truck_id,
         driver_id: x.driver_id,
         weight: x.weight,
+        recv_name: x.recv_name,
         recv_addr_line_1: x.recv_addr_line_1,
         recv_addr_line_2: x.recv_addr_line_2,
         recv_addr_line_3: x.recv_addr_line_3,

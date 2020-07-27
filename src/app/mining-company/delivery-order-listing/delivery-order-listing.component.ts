@@ -177,4 +177,16 @@ export class DeliveryOrderListingComponent implements OnInit {
       }
     });
   }
+
+  onPermit(o) {
+    this.router.navigate([`/ams/mining-company/permit/${o.permit.id}`]);
+  }
+
+  getDOStatus(o) {
+    if (o.do_status === AppConstant.DOStatus.NEW) return 'NEW';
+    else if (o.do_status === AppConstant.DOStatus.IN_PROGRESS) return 'IN PROGRESS';
+    else if (o.do_status === AppConstant.DOStatus.DELIVERING) return 'DELIVERING';
+
+    return 'NEW';
+  }
 }

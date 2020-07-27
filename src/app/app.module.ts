@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { PurchaseOrderPrintComponent } from './purchase-order-print/purchase-order-print.component';
+import { PermitPrintComponent } from './permit-print/permit-print.component';
 import { ErrorModalComponent } from './shared/components/error-modal/error-modal.component';
 
 import { environment } from '../environments/environment';
@@ -32,7 +33,8 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
     IndexComponent,
     LoginComponent,
     ErrorModalComponent,
-    PurchaseOrderPrintComponent
+    PurchaseOrderPrintComponent,
+    PermitPrintComponent
   ],
   imports: [
     BrowserModule,

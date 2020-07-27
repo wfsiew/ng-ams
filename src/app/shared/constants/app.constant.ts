@@ -8,7 +8,15 @@ export class AppConstant {
     BUYER: 'BUYER',
     OPERATOR: 'OPERATOR',
     USER: 'USER'
-  }
+  };
+
+  public static DOStatus = {
+    NEW: 0,
+    IN_PROGRESS: 1,
+    DELIVERING: 2,
+    DELIVERED: 3,
+    COMPLETED: 4
+  };
 
   public static HTTP_HEADER = {
     LINK: 'link',
