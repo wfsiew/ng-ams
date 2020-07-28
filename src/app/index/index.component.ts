@@ -10,6 +10,7 @@ import _ from 'lodash';
 import { MenuSetup, SubmenuSetup } from './menu-setup';
 import { MenuBuyer, SubmenuBuyer } from './menu-buyer';
 import { MenuOperator, SubmenuOperator } from './menu-operator';
+import { MenuReport, SubmenuReport } from './menu-report';
 
 @Component({
   selector: 'app-index',
@@ -31,6 +32,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   readonly submenuSetup = SubmenuSetup;
   readonly submenuBuyer = SubmenuBuyer;
   readonly submenuOperator = SubmenuOperator;
+  readonly submenuReport = SubmenuReport;
   readonly ROLE = AppConstant.ROLE;
 
   constructor(
@@ -103,6 +105,13 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.setTargetMenu('/ams/buyer', 'buyer', 'company-details', MenuBuyer.company_details);
     this.setTargetMenu('/ams/buyer', 'buyer', 'truck/list', MenuBuyer.truck_list);
     this.setTargetMenu('/ams/buyer', 'buyer', 'driver/list', MenuBuyer.driver_list);
+    this.setTargetMenu('/ams/buyer', 'buyer', 'purchase-order/list', MenuBuyer.purchase_order_list);
+
+    this.setTargetMenu('/ams/mining-company', 'mining-company', 'company-details', MenuOperator.company_details);
+    this.setTargetMenu('/ams/mining-company', 'mining-company', 'delivery-order/list', MenuOperator.delivery_order_list);
+
+    this.setTargetMenu('/ams/report', 'report', 'one', MenuReport.report_one);
+    this.setTargetMenu('/ams/report', 'report', 'two', MenuReport.report_two);
   }
 
   setTargetMenu(url: string, targetMenu: string, targetSubmenu: string, matchList: string[]) {

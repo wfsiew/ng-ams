@@ -33,6 +33,11 @@ const routes: Routes = [
         path: 'mining-company',
         canActivate: [AuthGuardService],
         loadChildren: () => import('./mining-company/mining-company.module').then(m => m.MiningCompanyModule)
+      },
+      {
+        path: 'report',
+        canActivate: [AuthGuardService],
+        loadChildren: () => import('./report/report.module').then(m => m.ReportModule)
       }
     ]
   },

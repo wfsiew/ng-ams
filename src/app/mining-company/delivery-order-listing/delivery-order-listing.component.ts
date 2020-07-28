@@ -27,8 +27,9 @@ export class DeliveryOrderListingComponent implements OnInit {
   pageSize = AppConstant.PAGE_SIZE;
   page = 1;
   search = '';
-  sort = 'do_num';
-  sortDir = 'asc';
+  do_status = '0';
+  sort = 'created_date';
+  sortDir = 'desc';
   sx = 0;
   sy = 0;
   bsModalRef: BsModalRef;
@@ -62,6 +63,7 @@ export class DeliveryOrderListingComponent implements OnInit {
         this.sort = o.sort;
         this.sortDir = o.dir;
         this.search = o.search;
+        this.do_status = o.do_status;
         this.sx = o.sx;
         this.sy = o.sy;
       }
@@ -81,7 +83,7 @@ export class DeliveryOrderListingComponent implements OnInit {
     }
     
     this.isLoading = true;
-    this.deliveryOrderService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
+    this.deliveryOrderService.list(this.do_status, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -99,7 +101,7 @@ export class DeliveryOrderListingComponent implements OnInit {
   onSearch(s: string) {
     this.search = s;
     this.isLoading = true;
-    this.deliveryOrderService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
+    this.deliveryOrderService.search(this.do_status, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -121,8 +123,8 @@ export class DeliveryOrderListingComponent implements OnInit {
 
   onSortBy(e) {
     if (e.sort === '' && e.dir === 'asc') {
-      this.sort = 'do_num';
-      this.sortDir = 'asc';
+      this.sort = 'created_date';
+      this.sortDir = 'desc';
     }
 
     else {
@@ -133,12 +135,17 @@ export class DeliveryOrderListingComponent implements OnInit {
     this.load();
   }
 
+  onDOStatusChange() {
+    this.load();
+  }
+
   goto(s) {
     this.msService.send(this.uiState, {
       page: this.page,
       sort: this.sort,
       dir: this.sortDir,
       search: this.search,
+      do_status: this.do_status,
       sx: window.scrollX,
       sy: window.scrollY
     });

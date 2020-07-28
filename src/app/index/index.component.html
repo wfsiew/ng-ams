@@ -50,6 +50,25 @@
     <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item has-treeview" [ngClass]="{'menu-open': menu === 'report'}">
+            <a href="#" class="nav-link" [ngClass]="{'active': menu === 'report'}">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Report
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item" *ngFor="let m of submenuReport">
+                <a href="#" class="nav-link" (click)="goto('report', m.path)"
+                  [ngClass]="{'active': submenu === m.path}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ m.title }}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <ng-container *ngIf="role === ROLE.ADMIN && !isLoading">
             <li class="nav-item has-treeview" [ngClass]="{'menu-open': menu === 'setup'}">
               <a href="#" class="nav-link" [ngClass]="{'active': menu === 'setup'}">

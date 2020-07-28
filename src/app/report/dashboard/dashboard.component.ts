@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DashboardService } from 'src/app/setup/dashboard/services/dashboard.service';
+import { DashboardService } from 'src/app/report/dashboard/services/dashboard.service';
 import { AppConstant } from 'src/app/shared/constants/app.constant';
 import { Helper } from 'src/app/shared/utils/helper';
 
@@ -28,7 +28,9 @@ export class DashboardComponent implements OnInit {
 
   load() {
     this.isLoading = true;
-    this.dashboardService.list(Helper.getDateStr(this.dateFrom), Helper.getDateStr(this.dateTo)).subscribe((res: any) => {
+    this.dashboardService.list(
+      Helper.getDateStr(this.dateFrom), 
+      Helper.getDateStr(this.dateTo)).subscribe((res: any) => {
       this.list = res;
     }, (error) => {
 
