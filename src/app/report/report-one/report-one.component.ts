@@ -15,6 +15,7 @@ export class ReportOneComponent implements OnInit {
 
   isLoading = false;
   list = [];
+  total = 0;
   miningCompanyList = [];
   opt = '0';
   dateFrom = null;
@@ -36,7 +37,6 @@ export class ReportOneComponent implements OnInit {
   load() {
     this.lookupService.listMiningCompany().subscribe((res: any) => {
       this.miningCompanyList = res;
-      this.loadReport();
     });
   }
   
@@ -52,8 +52,9 @@ export class ReportOneComponent implements OnInit {
       days,
       Helper.getDateStr(this.dateFrom), 
       Helper.getDateStr(this.dateTo)).subscribe((res: any) => {
-      this.list = res;
-      this.setChart();
+        this.list = res.data;
+        this.total = res.total;
+        this.setChart();
     }, (error) => {
 
     }, () => {
@@ -62,9 +63,11 @@ export class ReportOneComponent implements OnInit {
   }
 
   setChart() {
-    let lx = this.list.map((x) => {
+    let lx = _.map(this.list, (x) => {
+      let pct = x.sum * 100 / this.total;
+      pct = Math.trunc(pct);
       return {
-        name: `${x.material__name} (${x.material__grade}) - ${x.sum.toLocaleString()}`,
+        name: `${x.material__name} (${x.material__grade}) - ${pct} %`,
         value: x.sum
       }
     });
@@ -80,10 +83,6 @@ export class ReportOneComponent implements OnInit {
     this.opt = '0';
     this.dateFrom = null;
     this.dateTo = null;
-  }
-
-  onSelect(event) {
-    console.log(event)
   }
 
   get chartTitle() {
@@ -106,7 +105,7 @@ export class ReportOneComponent implements OnInit {
   get miningCompany() {
     let mid = this.mining_company_id;
     let s = mid;
-    if (mid === null) {
+    if (!mid) {
       return '';
     }
 

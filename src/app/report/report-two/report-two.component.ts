@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import _ from 'lodash';
+
 import { ReportService } from 'src/app/report/services/report.service';
 import { Helper } from 'src/app/shared/utils/helper';
 
@@ -12,9 +14,11 @@ export class ReportTwoComponent implements OnInit {
 
   isLoading = false;
   list = [];
+  total = 0;
   opt = '0';
   dateFrom = null;
   dateTo = null;
+  chartData = [];
 
   readonly isEmpty = Helper.isEmpty;
 
@@ -36,12 +40,26 @@ export class ReportTwoComponent implements OnInit {
       days,
       Helper.getDateStr(this.dateFrom), 
       Helper.getDateStr(this.dateTo)).subscribe((res: any) => {
-      this.list = res;
+        this.list = res.data;
+        this.total = res.total;
+        this.setChart();
     }, (error) => {
 
     }, () => {
       this.isLoading = false;
     });
+  }
+
+  setChart() {
+    let lx = _.map(this.list, (x) => {
+      let pct = x.sum * 100 / this.total;
+      pct = Math.trunc(pct);
+      return {
+        name: `${x.material__name} (${x.material__grade}) - ${pct} %`,
+        value: x.sum
+      }
+    });
+    this.chartData = lx;
   }
 
   onApplyFilter() {
@@ -52,5 +70,22 @@ export class ReportTwoComponent implements OnInit {
     this.opt = '0';
     this.dateFrom = null;
     this.dateTo = null;
+  }
+
+  get chartTitle() {
+    let s = 'Summary';
+    if (this.opt === '0') {
+      s = `${s} - Last 7 days`;
+    }
+
+    else if (this.opt === '1') {
+      s = `${s} - Last 14 days`;
+    }
+
+    else if (this.opt === '2') {
+      s = `${s} - From ${Helper.getDateStr(this.dateFrom)} To ${Helper.getDateStr(this.dateTo)}`;
+    }
+
+    return s;
   }
 }

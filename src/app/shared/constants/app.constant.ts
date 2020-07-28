@@ -14,8 +14,7 @@ export class AppConstant {
     NEW: 0,
     IN_PROGRESS: 1,
     DELIVERING: 2,
-    DELIVERED: 3,
-    COMPLETED: 4
+    DELIVERED: 3
   };
 
   public static HTTP_HEADER = {

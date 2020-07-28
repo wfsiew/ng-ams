@@ -76,49 +76,59 @@
       </div>
     </div>
 
-    <div class="card" *ngIf="!isEmpty(chartData)">
-      <div class="card-header">
-        <h4 class="card-title">{{ chartTitle }}</h4>
-      </div>
+    <div class="card" *ngIf="isEmpty(list) && !isLoading">
       <div class="card-body">
-        <ngx-charts-pie-chart 
-          (select)="onSelect($event)"
-          [results]="chartData"
-          [legend]="true"
-          [legendTitle]="'Report For ' + miningCompany" 
-          [legendPosition]="'below'"
-          [view]="[1000, 400]"
-          [labels]="true"
-          [trimLabels]="false">
-      </ngx-charts-pie-chart>
+        <div class="text-center">
+          <h4>No records found</h4>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-body">
-        <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
-          <h4>No records found</h4>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card" *ngIf="!isEmpty(chartData)">
+          <div class="card-header border-0">
+            <h3 class="card-title">{{ chartTitle }}</h3>
+          </div>
+          <div class="card-body">
+            <div class="d-flex">
+              <ngx-charts-pie-chart 
+                [results]="chartData"
+                [legend]="true"
+                [legendTitle]="'Report For ' + miningCompany" 
+                [legendPosition]="'below'"
+                [labels]="true"
+                [trimLabels]="false">
+              </ngx-charts-pie-chart>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="table-responsive" *ngIf="!isEmpty(list) && !isLoading">
-          <table class="table table-bordered table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Material Name</th>
-                <th>Material Grade</th>
-                <th>Total Weight (kg)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let o of list">
-                <td>{{ o.month | date:'MMMM yyyy' }}</td>
-                <td>{{ o.material__name }}</td>
-                <td>{{ o.material__grade }}</td>
-                <td>{{ o.sum | number }}</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="col-lg-6">
+        <div class="card" *ngIf="!isEmpty(list) && !isLoading">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Material Name</th>
+                    <th>Material Grade</th>
+                    <th>Total Weight (kg)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let o of list">
+                    <td>{{ o.month | date:'MMMM yyyy' }}</td>
+                    <td>{{ o.material__name }}</td>
+                    <td>{{ o.material__grade }}</td>
+                    <td>{{ o.sum | number }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

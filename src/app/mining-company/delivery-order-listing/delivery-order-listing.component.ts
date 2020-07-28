@@ -190,9 +190,10 @@ export class DeliveryOrderListingComponent implements OnInit {
   }
 
   getDOStatus(o) {
-    if (o.do_status === AppConstant.DOStatus.NEW) return 'NEW';
-    else if (o.do_status === AppConstant.DOStatus.IN_PROGRESS) return 'IN PROGRESS';
-    else if (o.do_status === AppConstant.DOStatus.DELIVERING) return 'DELIVERING';
+    if (o.status === AppConstant.DOStatus.NEW) return 'NEW';
+    else if (o.status === AppConstant.DOStatus.IN_PROGRESS) return 'IN PROGRESS';
+    else if (o.status === AppConstant.DOStatus.DELIVERING) return 'DELIVERING';
+    else if (o.status === AppConstant.DOStatus.DELIVERED) return 'DELIVERED';
 
     return 'NEW';
   }
