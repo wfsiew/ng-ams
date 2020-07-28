@@ -5,6 +5,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { ReportRoutingModule } from './report-routing.module';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 import { SharedComponentModules } from '../shared/components/shared-components.module';
 import { ReportOneComponent } from './report-one/report-one.component';
@@ -29,6 +30,7 @@ import { DashboardService } from './dashboard/services/dashboard.service';
     SharedComponentModules,
     NgSelectModule,
     BsDatepickerModule.forRoot(),
+    NgxChartsModule
   ],
   providers: [
     ReportService,

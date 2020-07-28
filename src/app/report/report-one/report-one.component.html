@@ -74,6 +74,27 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="card" *ngIf="!isEmpty(chartData)">
+      <div class="card-header">
+        <h4 class="card-title">{{ chartTitle }}</h4>
+      </div>
+      <div class="card-body">
+        <ngx-charts-pie-chart 
+          (select)="onSelect($event)"
+          [results]="chartData"
+          [legend]="true"
+          [legendTitle]="'Report For ' + miningCompany" 
+          [legendPosition]="'below'"
+          [view]="[1000, 400]"
+          [labels]="true"
+          [trimLabels]="false">
+      </ngx-charts-pie-chart>
+      </div>
+    </div>
+
+    <div class="card">
       <div class="card-body">
         <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
           <h4>No records found</h4>

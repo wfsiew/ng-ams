@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import _ from 'lodash';
+
 import { LookupService } from 'src/app/shared/services/lookup.service';
 import { ReportService } from 'src/app/report/services/report.service';
 import { Helper } from 'src/app/shared/utils/helper';
@@ -18,6 +20,7 @@ export class ReportOneComponent implements OnInit {
   dateFrom = null;
   dateTo = null;
   mining_company_id = null;
+  chartData = [];
 
   readonly isEmpty = Helper.isEmpty;
 
@@ -50,11 +53,22 @@ export class ReportOneComponent implements OnInit {
       Helper.getDateStr(this.dateFrom), 
       Helper.getDateStr(this.dateTo)).subscribe((res: any) => {
       this.list = res;
+      this.setChart();
     }, (error) => {
 
     }, () => {
       this.isLoading = false;
     });
+  }
+
+  setChart() {
+    let lx = this.list.map((x) => {
+      return {
+        name: `${x.material__name} (${x.material__grade}) - ${x.sum.toLocaleString()}`,
+        value: x.sum
+      }
+    });
+    this.chartData = lx;
   }
 
   onApplyFilter() {
@@ -66,5 +80,41 @@ export class ReportOneComponent implements OnInit {
     this.opt = '0';
     this.dateFrom = null;
     this.dateTo = null;
+  }
+
+  onSelect(event) {
+    console.log(event)
+  }
+
+  get chartTitle() {
+    let s = this.miningCompany;
+    if (this.opt === '0') {
+      s = `${s} - Last 7 days`;
+    }
+
+    else if (this.opt === '1') {
+      s = `${s} - Last 14 days`;
+    }
+
+    else if (this.opt === '2') {
+      s = `${s} - From ${Helper.getDateStr(this.dateFrom)} To ${Helper.getDateStr(this.dateTo)}`;
+    }
+
+    return s;
+  }
+
+  get miningCompany() {
+    let mid = this.mining_company_id;
+    let s = mid;
+    if (mid === null) {
+      return '';
+    }
+
+    let o = _.find(this.miningCompanyList, { id: mid });
+    if (!_.isUndefined(o)) {
+      s = o.name;
+    }
+
+    return s;
   }
 }
