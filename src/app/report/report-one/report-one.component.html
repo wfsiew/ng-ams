@@ -68,7 +68,7 @@
           </div>
 
           <div class="col-sm-6 col-12 p-1 text-right">
-            <button class="btn btn-primary" (click)="onApplyFilter()" [disabled]="!mining_company_id">Apply</button>
+            <button class="btn btn-primary" (click)="onApplyFilter(chart)" [disabled]="!mining_company_id">Apply</button>
             <span class="mr-2"></span>
             <button class="btn btn-default" (click)="onClearFilter()">Clear</button>
           </div>
@@ -87,21 +87,8 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="card" *ngIf="!isEmpty(chartData)">
-          <div class="card-header border-0">
-            <h3 class="card-title">{{ chartTitle }}</h3>
-          </div>
           <div class="card-body">
-            <div class="d-flex">
-              <ngx-charts-pie-chart 
-                [results]="chartData"
-                [legend]="true"
-                [legendTitle]="'Report For ' + miningCompany" 
-                [legendPosition]="'below'"
-                [view]="[800, 400]"
-                [labels]="true"
-                [trimLabels]="false">
-              </ngx-charts-pie-chart>
-            </div>
+            <p-chart #chart type="pie" [data]="chartData" [options]="options" [plugins]="plugin"></p-chart>
           </div>
         </div>
       </div>

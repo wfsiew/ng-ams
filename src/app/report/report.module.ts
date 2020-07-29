@@ -5,7 +5,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { ReportRoutingModule } from './report-routing.module';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartModule } from 'primeng/chart';
 
 import { SharedComponentModules } from '../shared/components/shared-components.module';
 import { ReportOneComponent } from './report-one/report-one.component';
@@ -27,7 +27,7 @@ import { ReportService } from './services/report.service';
     SharedComponentModules,
     NgSelectModule,
     BsDatepickerModule.forRoot(),
-    NgxChartsModule
+    ChartModule
   ],
   providers: [
     ReportService

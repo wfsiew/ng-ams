@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 
 import _ from 'lodash';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { UIChart } from 'primeng/chart';
 
 import { LookupService } from 'src/app/shared/services/lookup.service';
 import { ReportService } from 'src/app/report/services/report.service';
@@ -21,7 +23,10 @@ export class ReportOneComponent implements OnInit {
   dateFrom = null;
   dateTo = null;
   mining_company_id = null;
-  chartData = [];
+  chartData: any;
+  options: any;
+  plugin = ChartDataLabels;
+  @ViewChild('chart', { static: false }) chart: UIChart;
 
   readonly isEmpty = Helper.isEmpty;
 
@@ -63,18 +68,55 @@ export class ReportOneComponent implements OnInit {
   }
 
   setChart() {
-    let lx = _.map(this.list, (x) => {
-      let pct = x.sum * 100 / this.total;
-      pct = Math.trunc(pct);
-      return {
-        name: `${x.material__name} (${x.material__grade}) - ${pct} %`,
-        value: x.sum
-      }
+    const labels = _.map(this.list, (x) => {
+      let pct = Helper.getPercentage(x.sum, this.total);
+      return `${x.material__name} (${x.material__grade}) - ${pct}`;
     });
-    this.chartData = lx;
+
+    const colorList = Helper.getColorList(this.list);
+
+    const data = _.map(this.list, (x) => {
+      return x.sum;
+    });
+    this.chartData = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'First Dataset',
+          data: data,
+          backgroundColor: colorList
+        }
+      ]
+    };
+
+    this.options = {
+      title: {
+        display: true,
+        text: this.chartTitle,
+        fontSize: 16
+      },
+      legend: {
+        position: 'bottom'
+      },
+      plugins: {
+        datalabels: {
+          color: '#ffffff',
+          formatter: (x, context) => {
+            return Helper.getPercentage(x, this.total);
+          }
+        }
+      }
+    };
+
+    if (this.chart) {
+      this.chart.data = this.chartData;
+      this.chart.options.title.text = this.chartTitle;
+      this.chart.reinit();
+    }
   }
 
-  onApplyFilter() {
+  onApplyFilter(chart) {
+    this.chart = chart;
     this.loadReport();
   }
 
