@@ -86,7 +86,7 @@
 
     <div class="row">
       <div class="col-lg-6">
-        <div class="card" *ngIf="!isEmpty(chartData)">
+        <div class="card" *ngIf="!isEmpty(list) && !isLoading">
           <div class="card-body">
             <p-chart #chart type="pie" [data]="chartData" [options]="options" [plugins]="plugin"></p-chart>
           </div>
