@@ -26,10 +26,10 @@
               <address>
                 <strong>{{ data.buyer.name }}</strong>
                 <br>{{ data.buyer.registration_num }}
-                <br><span class="text-uppercase">{{ data.buyer.addr_line_1 }}</span><ng-container *ngIf="data.buyer.addr_line_2">, <span class="text-uppercase">{{ data.buyer.addr_line_2 }}</span></ng-container>
-                <ng-container *ngIf="data.buyer.addr_line_3">,<br><span class="text-uppercase">{{ data.buyer.addr_line_3 }}</span></ng-container>
-                <br>{{ data.buyer.postcode }} <span class="text-uppercase">{{ data.buyer.city }}</span>
-                <br><span class="text-uppercase">{{ data.buyer.state.name }}, {{ data.buyer.country.name }}</span>
+                <br>{{ data.buyer.addr_line_1 | uppercase }}<ng-container *ngIf="data.buyer.addr_line_2">, {{ data.buyer.addr_line_2 | uppercase }}</ng-container>
+                <ng-container *ngIf="data.buyer.addr_line_3">,<br>{{ data.buyer.addr_line_3 | uppercase }}</ng-container>
+                <br>{{ data.buyer.postcode }} {{ data.buyer.city | uppercase }}
+                <br>{{ data.buyer.state.name | uppercase }}, {{ data.buyer.country.name | uppercase }}
                 <br>Phone: {{ data.buyer.contact_no }}
                 <br>Email: {{ data.buyer.email }}
               </address>
@@ -39,10 +39,10 @@
               <address>
                 <strong>{{ data.issue_to.name }}</strong>
                 <br>{{ data.issue_to.registration_num }}
-                <br><span class="text-uppercase">{{ data.issue_to.addr_line_1 }}</span><ng-container *ngIf="data.issue_to.addr_line_2">, <span class="text-uppercase">{{ data.issue_to.addr_line_2 }}</span></ng-container>
-                <ng-container *ngIf="data.issue_to.addr_line_3">,<br><span class="text-uppercase">{{ data.issue_to.addr_line_3 }}</span></ng-container>
-                <br>{{ data.issue_to.postcode }} <span class="text-uppercase">{{ data.issue_to.city }}</span>
-                <br><span class="text-uppercase">{{ data.issue_to.state.name }}, {{ data.issue_to.country.name }}</span>
+                <br>{{ data.issue_to.addr_line_1 | uppercase }}<ng-container *ngIf="data.issue_to.addr_line_2">, {{ data.issue_to.addr_line_2 | uppercase }}</ng-container>
+                <ng-container *ngIf="data.issue_to.addr_line_3">,<br>{{ data.issue_to.addr_line_3 | uppercase }}</ng-container>
+                <br>{{ data.issue_to.postcode }} {{ data.issue_to.city | uppercase }}
+                <br>{{ data.issue_to.state.name | uppercase }}, {{ data.issue_to.country.name | uppercase }}
                 <br>Phone: {{ data.issue_to.contact_no }}
                 <br>Email: {{ data.issue_to.email }}
               </address>
@@ -81,10 +81,10 @@
                       <td colspan="7">
                         Destination:
                         {{ o.recv_name }}<br>
-                        <span class="text-uppercase">{{ o.recv_addr_line_1 }}</span><ng-container *ngIf="o.recv_addr_line_2">, <span class="text-uppercase">{{ o.recv_addr_line_2 }}</span></ng-container>
-                        <ng-container *ngIf="o.recv_addr_line_3">, <span class="text-uppercase">{{ o.recv_addr_line_3 }}</span></ng-container>
-                        {{ o.recv_postcode }} <span class="text-uppercase">{{ o.recv_city }}</span>
-                        <span class="text-uppercase">{{ o.recv_state.name }}, {{ o.recv_country.name }}</span>
+                        {{ o.recv_addr_line_1 | uppercase }}<ng-container *ngIf="o.recv_addr_line_2">, {{ o.recv_addr_line_2 | uppercase }}</ng-container>
+                        <ng-container *ngIf="o.recv_addr_line_3">, {{ o.recv_addr_line_3 | uppercase }}</ng-container>
+                        {{ o.recv_postcode }} {{ o.recv_city | uppercase }}
+                        {{ o.recv_state.name | uppercase }}, {{ o.recv_country.name | uppercase }}
                       </td>
                     </tr>
                   </ng-container>
