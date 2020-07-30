@@ -30,7 +30,7 @@ export class UserListingComponent implements OnInit, OnDestroy {
   search = '';
   sort = 'username';
   sortDir = 'asc';
-  tab = 0;
+  tab = 1;
   sx = 0;
   sy = 0;
   bsModalRef: BsModalRef;
