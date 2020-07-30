@@ -27,14 +27,14 @@ export const SubmenuMiningHQ = [
     icon: 'fas fa-home'
   },
   {
-    title: 'Delivery Order',
-    path: 'delivery-order/list',
-    icon: 'fas fa-truck-moving'
-  },
-  {
     title: 'Purchase Order',
     path: 'purchase-order/list',
     icon: 'fas fa-shopping-cart'
+  },
+  {
+    title: 'Delivery Order',
+    path: 'delivery-order/list',
+    icon: 'fas fa-truck-moving'
   },
   {
     title: 'Buyer List',
