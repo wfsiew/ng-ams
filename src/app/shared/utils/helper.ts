@@ -72,7 +72,7 @@ export class Helper {
 
   public static getPercentage(x, total) {
     let pct = x * 100 / total;
-    pct = Math.round(pct);
+    pct = Math.floor(pct);
     return `${pct} %`;
   }
 }
