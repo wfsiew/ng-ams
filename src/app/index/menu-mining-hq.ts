@@ -16,7 +16,8 @@ export const MenuMiningHQ = {
   ],
   purchase_order_list: [
     'purchase-order/list',
-    'purchase-order/create'
+    'purchase-order/create',
+    'purchase-order/detail'
   ]
 };
 
