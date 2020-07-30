@@ -21,8 +21,8 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit {
 
   isLoading = false;
+  mining_company_id?: number;
   buyerList = [];
-  miningCompanyList = [];
   materialList = [];
   truckList = [];
   driverList = [];
@@ -42,13 +42,14 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
   }
 
   ngOnInit() {
+    const user = this.authService.loadUser();
+    this.mining_company_id = user.mining_company_id;
     this.load();
   }
 
   createForm() {
     this.mform = this.fb.group({
       buyer_id: [null, [Validators.required]],
-      mining_company_id: [null, [Validators.required]],
       materialForms: this.fb.array([])
     });
   }
@@ -80,11 +81,10 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
     let q4 = this.lookupService.listCountry();
     forkJoin([q1, q2, q3, q4]).subscribe((res: any[]) => {
       this.buyerList = res[0];
-      this.miningCompanyList = res[1];
-      this.materialList = res[2];
-      this.countryList = res[3];
+      this.materialList = res[1];
+      this.countryList = res[2];
 
-      this.materialList = res[2].map((k) => {
+      this.materialList = res[1].map((k) => {
         k.label = `${k.name} (${k.material_type}) - ${k.grade}`;
         return k;
       });
@@ -142,7 +142,7 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
     const f = this.mform.value;
     const o = {
       buyer_id: f.buyer_id,
-      issue_to_id: f.mining_company_id,
+      issue_to_id: this.mining_company_id,
       purchase_order_detail: lp
     }
 
