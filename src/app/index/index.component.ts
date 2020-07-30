@@ -113,8 +113,10 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.setTargetMenu('/ams/buyer', 'buyer', 'driver/list', MenuBuyer.driver_list);
     this.setTargetMenu('/ams/buyer', 'buyer', 'purchase-order/list', MenuBuyer.purchase_order_list);
 
-    // this.setTargetMenu('/ams/mining-company', 'mining-company', 'company-details', MenuOperator.company_details);
     this.setTargetMenu('/ams/mining-company', 'mining-company', 'delivery-order/list', MenuOperator.delivery_order_list);
+    this.setTargetMenu('/ams/mining-company', 'mining-company', 'company-details', MenuMiningHQ.company_details);
+    this.setTargetMenu('/ams/mining-company', 'mining-company', 'delivery-order/list', MenuMiningHQ.delivery_order_list);
+    this.setTargetMenu('/ams/mining-company', 'mining-company', 'purchase-order/list', MenuMiningHQ.purchase_order_list);
     this.setTargetMenu('/ams/mining-company', 'mining-company', 'buyer/list', MenuMiningHQ.buyer_list);
 
     this.setTargetMenu('/ams/report', 'report', 'one', MenuReport.report_one);
