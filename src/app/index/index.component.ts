@@ -11,6 +11,7 @@ import { MenuSetup, SubmenuSetup } from './menu-setup';
 import { MenuBuyer, SubmenuBuyer } from './menu-buyer';
 import { MenuOperator, SubmenuOperator } from './menu-operator';
 import { MenuReport, SubmenuReport } from './menu-report';
+import { MenuMiningHQ, SubmenuMiningHQ } from './menu-mining-hq';
 
 @Component({
   selector: 'app-index',
@@ -32,6 +33,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   readonly submenuSetup = SubmenuSetup;
   readonly submenuBuyer = SubmenuBuyer;
   readonly submenuOperator = SubmenuOperator;
+  readonly submenuMiningHQ = SubmenuMiningHQ;
   readonly submenuReport = SubmenuReport;
   readonly ROLE = AppConstant.ROLE;
 
@@ -88,6 +90,10 @@ export class IndexComponent implements OnInit, OnDestroy {
     else if (this.hasRole(AppConstant.ROLE.OPERATOR, groups)) {
       this.role = AppConstant.ROLE.OPERATOR;
     }
+
+    else if (this.hasRole(AppConstant.ROLE.MINING_HQ, groups)) {
+      this.role = AppConstant.ROLE.MINING_HQ;
+    }
   }
 
   hasRole(role: string, groups: any[]) {
@@ -107,8 +113,9 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.setTargetMenu('/ams/buyer', 'buyer', 'driver/list', MenuBuyer.driver_list);
     this.setTargetMenu('/ams/buyer', 'buyer', 'purchase-order/list', MenuBuyer.purchase_order_list);
 
-    this.setTargetMenu('/ams/mining-company', 'mining-company', 'company-details', MenuOperator.company_details);
+    // this.setTargetMenu('/ams/mining-company', 'mining-company', 'company-details', MenuOperator.company_details);
     this.setTargetMenu('/ams/mining-company', 'mining-company', 'delivery-order/list', MenuOperator.delivery_order_list);
+    this.setTargetMenu('/ams/mining-company', 'mining-company', 'buyer/list', MenuMiningHQ.buyer_list);
 
     this.setTargetMenu('/ams/report', 'report', 'one', MenuReport.report_one);
     this.setTargetMenu('/ams/report', 'report', 'two', MenuReport.report_two);

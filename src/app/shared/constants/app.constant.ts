@@ -7,6 +7,7 @@ export class AppConstant {
     ADMIN: 'ADMIN',
     BUYER: 'BUYER',
     OPERATOR: 'OPERATOR',
+    MINING_HQ: 'MINING_HQ',
     USER: 'USER'
   };
 

@@ -4,8 +4,7 @@ import { Subscription } from 'rxjs';
 
 import _ from 'lodash';
 
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { PurchaseOrderService } from 'src/app/buyer/services/purchase-order.service';
+import { PurchaseOrderService } from 'src/app/mining-company/services/purchase-order.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { AppConstant } from 'src/app/shared/constants/app.constant';
 import { Helper } from 'src/app/shared/utils/helper';
@@ -17,7 +16,6 @@ import { Helper } from 'src/app/shared/utils/helper';
 })
 export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
 
-  buyer_id?: number;
   isLoading = false;
   list = [];
   totalCount = 0;
@@ -30,7 +28,7 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
   sy = 0;
   subs: Subscription;
 
-  readonly uiState = 'buyer.purchase-order-listing';
+  readonly uiState = 'mining-company.purchase-order-listing';
 
   readonly isEmpty = Helper.isEmpty;
   readonly PAGE_SIZE = AppConstant.PAGE_SIZE;
@@ -39,16 +37,11 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,
     private purchaseOrderService: PurchaseOrderService,
     private msService: MessageService
   ) { }
 
   ngOnInit() {
-    const user = this.authService.loadUser();
-    this.buyer_id = user.buyer_id;
-    this.isLoading = true;
-
     this.subs = this.msService.get().subscribe(res => {
       if (res.name === this.uiState) {
         const o = res.data;
@@ -75,7 +68,7 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
     }
     
     this.isLoading = true;
-    this.purchaseOrderService.list(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
+    this.purchaseOrderService.list(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -93,7 +86,7 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
   onSearch(s: string) {
     this.search = s;
     this.isLoading = true;
-    this.purchaseOrderService.search(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
+    this.purchaseOrderService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
@@ -136,7 +129,7 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
       sx: window.scrollX,
       sy: window.scrollY
     });
-    this.router.navigate([`/ams/buyer/purchase-order/${s}`]);
+    this.router.navigate([`/ams/mining-company/purchase-order/${s}`]);
   }
 
   onView(o) {

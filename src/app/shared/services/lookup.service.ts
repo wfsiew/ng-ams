@@ -11,6 +11,10 @@ export class LookupService {
 
   constructor(private http: HttpClient) { }
 
+  listBuyer() {
+    return this.http.get(`${this.baseUrl}/api/lookup/buyers`);
+  }
+
   listTruck(buyer_id) {
     return this.http.get(`${this.baseUrl}/api/lookup/buyer/${buyer_id}/trucks`);
   }

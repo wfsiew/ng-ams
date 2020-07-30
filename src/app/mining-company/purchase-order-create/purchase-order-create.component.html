@@ -13,6 +13,23 @@
       <div class="card">
         <div class="card-body">
           <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Buyer&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-10">
+              <ng-select 
+                [items]="buyerList" 
+                bindLabel="name" 
+                bindValue="id" 
+                placeholder="Please select"
+                (change)="onChangeBuyer($event)"
+                formControlName="buyer_id" 
+                name="buyer_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('buyer_id') && f.buyer_id.hasError('required')">
+                Buyer is required
+              </small>
+            </div>
+          </div>
+          <div class="form-group row">
             <label class="col-sm-2 col-form-label">Issue To&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-10">
               <ng-select 
