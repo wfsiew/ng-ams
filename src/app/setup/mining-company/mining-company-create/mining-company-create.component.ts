@@ -94,6 +94,8 @@ export class MiningCompanyCreateComponent extends GeneralForm implements OnInit 
     this.isLoading = true;
     this.lookupService.listCountry().subscribe((res: any) => {
       this.countryList = res;
+      this.mform.patchValue({ country_id: this.countryList[0].id });
+      this.onChangeCountry(this.countryList[0]);
       this.loadDetails();
     }, (error) => {
       this.isLoading = false;
