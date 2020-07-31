@@ -28,6 +28,7 @@ export class DeliveryOrderListingComponent implements OnInit {
   page = 1;
   search = '';
   do_status = '0';
+  isRoleMiningHQ = false;
   sort = 'created_date';
   sortDir = 'desc';
   sx = 0;
@@ -40,6 +41,7 @@ export class DeliveryOrderListingComponent implements OnInit {
   readonly isEmpty = Helper.isEmpty;
   readonly PAGE_SIZE = AppConstant.PAGE_SIZE;
   readonly MAX_PAGE_NUMBERS = AppConstant.MAX_PAGE_NUMBERS;
+  readonly DOStatus = AppConstant.DOStatus;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,6 +56,7 @@ export class DeliveryOrderListingComponent implements OnInit {
   ngOnInit() {
     const user = this.authService.loadUser();
     this.mining_company_id = user.mining_company_id;
+    this.isRoleMiningHQ = this.authService.hasRole(AppConstant.ROLE.MINING_HQ);
     this.isLoading = true;
 
     this.subs = this.msService.get().subscribe(res => {
@@ -187,6 +190,18 @@ export class DeliveryOrderListingComponent implements OnInit {
 
   onPermit(o) {
     this.router.navigate([`/ams/mining-company/permit/${o.permit.id}`]);
+  }
+
+  onReceived(o) {
+    this.isLoading = true;
+    this.deliveryOrderService.receive(o.id).subscribe((res: any) => {
+      this.toastr.success(`DO #${o.do_num} successfully received`);
+      this.load();
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
+    });
   }
 
   getDOStatus(o) {

@@ -11,6 +11,14 @@ export class AppConstant {
     USER: 'USER'
   };
 
+  public static POStatus = {
+    PENDING: 0,
+    IN_PROGRESS: 1,
+    COMPLETED: 2,
+    CANCELLED: 3,
+    REJECTED: 4
+  }
+
   public static DOStatus = {
     NEW: 0,
     IN_PROGRESS: 1,

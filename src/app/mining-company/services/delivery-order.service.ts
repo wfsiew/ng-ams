@@ -44,4 +44,8 @@ export class DeliveryOrderService {
   updateTime(o) {
     return this.http.post(`${this.baseUrl}/api/delivery-order/${o.id}/timestamp`, o);
   }
+
+  receive(id) {
+    return this.http.post(`${this.baseUrl}/api/delivery-order/${id}/received`, {});
+  }
 }

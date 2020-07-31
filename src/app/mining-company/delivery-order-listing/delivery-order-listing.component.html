@@ -21,6 +21,7 @@
               <option value="0">NEW</option>
               <option value="1">IN PROGRESS</option>
               <option value="2">DELIVERING</option>
+              <option value="3">DELIVERED</option>
             </select>
           </div>
         </div>
@@ -96,6 +97,7 @@
                 <td class="text-nowrap">
                   <button class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date">Check In</button>
                   <button class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Check Out</button>
+                  <button class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button>
                   <button class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
                 </td>
               </tr>

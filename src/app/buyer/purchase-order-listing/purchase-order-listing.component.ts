@@ -143,4 +143,13 @@ export class PurchaseOrderListingComponent implements OnInit, OnDestroy {
     let s = `detail/${o.id}`;
     this.goto(s);
   }
+
+  getPOStatus(o) {
+    if (o.status === AppConstant.POStatus.IN_PROGRESS) return 'IN PROGRESS';
+    else if (o.status === AppConstant.POStatus.COMPLETED) return 'COMPLETED';
+    else if (o.status === AppConstant.POStatus.CANCELLED) return 'CANCELLED';
+    else if (o.status === AppConstant.POStatus.REJECTED) return 'REJECTED';
+
+    return 'PENDING';
+  }
 }
