@@ -63,7 +63,7 @@ export class PurchaseOrderDetailComponent implements OnInit {
     let r = '';
     _.each(lx, (o) => {
       let s = `DO #${o.do_num}\n`;
-      s += `Material: ${o.material.name}, Type: ${o.material.grade}, Grade: ${o.material.material_type}\n`;
+      s += `Material: ${o.material.name}, Type: ${o.material.material_type}, Grade: ${o.material.grade}\n`;
       s += `Truck No: ${o.truck.registration_num}\n`;
       s += `Driver: ${o.driver.name}, IC No.: ${o.driver.id_num}\n\n`;
       ls.push(s);
