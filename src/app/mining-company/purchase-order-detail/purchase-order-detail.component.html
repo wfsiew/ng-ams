@@ -96,6 +96,7 @@
           <div class="row no-print">
             <div class="col-12">
               <button type="button" class="btn btn-outline-dark mr-2" (click)="onBack()"><i class="fas fa-chevron-circle-left"></i> Back</button>
+              <button class="btn btn-default mr-2" ngxClipboard [cbContent]="getPODetails()" (cbOnSuccess)="onCopySuccess($event)">Copy</button>
               <a [routerLink]="['/purchase-order', id, 'print']" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
             </div>
           </div>

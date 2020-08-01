@@ -5,6 +5,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { MiningCompanyRoutingModule } from './mining-company-routing.module';
 
@@ -47,7 +48,8 @@ import { PurchaseOrderService } from './services/purchase-order.service';
     NgSelectModule,
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ClipboardModule
   ],
   entryComponents: [
     CheckoutModalComponent

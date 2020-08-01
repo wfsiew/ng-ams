@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import _ from 'lodash';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PurchaseOrderService } from 'src/app/mining-company/services/purchase-order.service';
@@ -21,7 +22,8 @@ export class PurchaseOrderDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private purchaseOrderService: PurchaseOrderService
+    private purchaseOrderService: PurchaseOrderService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -49,5 +51,26 @@ export class PurchaseOrderDetailComponent implements OnInit {
 
   onBack() {
     this.router.navigate(['/ams/mining-company/purchase-order/list']);
+  }
+
+  onCopySuccess(event) {
+    this.toastr.success('DO Details copied');
+  }
+
+  getPODetails() {
+    const lx = this.data.details;
+    let ls = [];
+    let r = '';
+    _.each(lx, (o) => {
+      let s = `DO #${o.do_num}\n`;
+      s += `Material: ${o.material.name}, Type: ${o.material.grade}, Grade: ${o.material.material_type}\n`;
+      s += `Truck No: ${o.truck.registration_num}\n`;
+      s += `Driver: ${o.driver.name}, IC No.: ${o.driver.id_num}\n\n`;
+      ls.push(s);
+    });
+
+    r = ls.join('-----------------------------\n\n');
+
+    return r;
   }
 }

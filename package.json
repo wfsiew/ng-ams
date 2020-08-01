@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.19",
     "ngx-bootstrap": "^6.0.0",
+    "ngx-clipboard": "^13.0.1",
     "ngx-toastr": "^12.1.0",
     "ngx-ui-loader": "^9.1.1",
     "path": "^0.12.7",
