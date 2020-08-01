@@ -238,6 +238,9 @@ ngx-bootstrap/positioning
 
 ngx-bootstrap/utils
 
+ngx-clipboard
+MIT
+
 ngx-toastr
 MIT
 The MIT License (MIT)
@@ -264,6 +267,9 @@ SOFTWARE.
 
 
 ngx-ui-loader
+MIT
+
+ngx-window-token
 MIT
 
 primeicons
