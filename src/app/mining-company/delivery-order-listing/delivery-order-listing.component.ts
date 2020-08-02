@@ -189,6 +189,15 @@ export class DeliveryOrderListingComponent implements OnInit {
   }
 
   onPermit(o) {
+    this.msService.send(this.uiState, {
+      page: this.page,
+      sort: this.sort,
+      dir: this.sortDir,
+      search: this.search,
+      do_status: this.do_status,
+      sx: window.scrollX,
+      sy: window.scrollY
+    });
     this.router.navigate([`/ams/mining-company/permit/${o.permit.id}`]);
   }
 
