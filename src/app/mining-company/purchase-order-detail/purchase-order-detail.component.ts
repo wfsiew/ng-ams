@@ -57,6 +57,14 @@ export class PurchaseOrderDetailComponent implements OnInit {
     this.toastr.success('DO Details copied');
   }
 
+  onWhatsapp() {
+    let m = this.getPODetails();
+    m = encodeURIComponent(m);
+    let c = `6${this.data.issue_to.contact_no}`;
+    let s = `https://api.whatsapp.com/send?phone=${c}&text=${m}`;
+    window.open(s, '_blank');
+  }
+
   getPODetails() {
     const lx = this.data.details;
     let ls = [];
