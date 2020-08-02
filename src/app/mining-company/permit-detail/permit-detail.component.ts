@@ -44,4 +44,8 @@ export class PermitDetailComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+  onBack() {
+    this.router.navigate(['/ams/mining-company/delivery-order/list']);
+  }
 }
