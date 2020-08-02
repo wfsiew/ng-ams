@@ -60,7 +60,11 @@ export class PurchaseOrderDetailComponent implements OnInit {
   onWhatsapp() {
     let m = this.getPODetails();
     m = encodeURIComponent(m);
-    let c = `6${this.data.issue_to.contact_no}`;
+    let c = `${this.data.issue_to.contact_no}`;
+    if (c && c.indexOf('60') < 0) {
+      c = `6${c}`;
+    }
+    
     let s = `https://api.whatsapp.com/send?phone=${c}&text=${m}`;
     window.open(s, '_blank');
   }
