@@ -12,11 +12,13 @@
         <div class="text-center text-sm">(SUBPERATURAN 8(2))</div>
       </div>
       <div class="col-sm-3">
-        <div class="text-bold text-right d-inline">NO. SIRI: </div><span class="text-danger text-right text-xl">{{ data.permit_num }}</span>
+        <div class="float-right d-inline">
+          <span class="text-bold">NO. SIRI: </span><span class="text-danger text-xl">{{ data.permit_num }}</span>
+        </div>
       </div>
     </div>
 
-    <div class="row mb-2 mr-4">
+    <div class="row mb-2">
       <div class="col-sm-12">
         <div class="border-top border-dark header-line"></div>
       </div>
@@ -28,7 +30,7 @@
       </div>
     </div>
     
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tbody>
@@ -42,7 +44,7 @@
         </table>
       </div>
     </div>
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tbody>
@@ -61,7 +63,7 @@
         </table>
       </div>
     </div>
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tbody>
@@ -80,7 +82,7 @@
       </div>
     </div>
 
-    <div class="row mb-2 mr-4">
+    <div class="row mb-2">
       <div class="col-sm-12">
         <div class="border-top border-dark header-line"></div>
       </div>
@@ -92,7 +94,7 @@
       </div>
     </div>
 
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tbody>
@@ -110,7 +112,7 @@
         </table>
       </div>
     </div>
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tbody>
@@ -119,7 +121,7 @@
               <td style="width: 180px">
                 <div class="border-bottom border-dark">{{ data.purchase_order_detail.truck.registration_num }}</div>
               </td>
-              <td style="width: 100px">DESTINASI:</td>
+              <td style="width: 95px">DESTINASI:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.purchase_order_detail.recv_city | uppercase }} - {{ data.purchase_order_detail.recv_state.name | uppercase }}</div>
               </td>
@@ -128,7 +130,7 @@
         </table>
       </div>
     </div>
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tbody>
@@ -139,7 +141,7 @@
               </td>
               <td style="width: 70px">BERAT:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.delivery_order.actual_weight | number }} kg</div>
+                <div class="border-bottom border-dark">{{ data.delivery_order.actual_weight | number }} tons</div>
               </td>
             </tr>
           </tbody>
@@ -147,7 +149,7 @@
       </div>
     </div>
 
-    <div class="row mb-2 mr-4">
+    <div class="row mb-2">
       <div class="col-sm-12">
         <div class="border-top border-dark header-line"></div>
       </div>
@@ -159,7 +161,7 @@
       </div>
     </div>
 
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tr>
@@ -176,7 +178,7 @@
         </table>
       </div>
     </div>
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tr>
@@ -193,7 +195,7 @@
       </div>
     </div>
 
-    <div class="row mr-4">
+    <div class="row">
       <div class="col-sm-12">
         <div class="border border-dark">
           <table class="table table-sm table-borderless">

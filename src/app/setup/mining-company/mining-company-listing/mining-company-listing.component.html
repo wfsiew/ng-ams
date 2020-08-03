@@ -42,23 +42,7 @@
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'Email'" [sort]="'email'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
-                </th>
-                <th>
-                  <app-sort-column [name]="'Fax No.'" [sort]="'fax_no'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
-                </th>
-                <th>
-                  <app-sort-column [name]="'Address 1'" [sort]="'addr_line_1'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
-                </th>
-                <th>
-                  <app-sort-column [name]="'Postcode'" [sort]="'pstcode'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
-                </th>
-                <th>
-                  <app-sort-column [name]="'City'" [sort]="'city'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'Address'" [sort]="'addr_line_1'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
@@ -78,11 +62,7 @@
                 <td>{{ o.name }}</td>
                 <td>{{ o.registration_num }}</td>
                 <td>{{ o.contact_no }}</td>
-                <td>{{ o.email }}</td>
-                <td>{{ o.fax_no }}</td>
-                <td>{{ o.addr_line_1 }}</td>
-                <td>{{ o.postcode }}</td>
-                <td>{{ o.city }}</td>
+                <td>{{ getAddress(o) }}</td>
                 <td>{{ o.state.name }}</td>
                 <td>{{ o.country.name }}</td>
                 <td>

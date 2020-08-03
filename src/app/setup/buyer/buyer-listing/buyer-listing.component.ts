@@ -172,4 +172,20 @@ export class BuyerListingComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  getAddress(o) {
+    let s = '';
+    let ls = [o.addr_line_1];
+    if (o.addr_line_2) {
+      ls.push(o.addr_line_2);
+    }
+
+    if (o.addr_line_3) {
+      ls.push(o.addr_line_3);
+    }
+
+    s = ls.join(', ');
+    s = ` ${s} ${o.postcode} ${o.city}`;
+    return s;
+  }
 }

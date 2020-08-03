@@ -20,8 +20,8 @@
               <option value="all">ALL</option>
               <option value="0">NEW</option>
               <option value="1">IN PROGRESS</option>
-              <option value="2">DELIVERING</option>
-              <option value="3">DELIVERED</option>
+              <option value="2">DISPATCHING</option>
+              <option value="3">RECEIVED</option>
             </select>
           </div>
         </div>
@@ -60,7 +60,7 @@
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'Weight (kg)'" [sort]="'purchase_order_detail__weight'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'Weight (tons)'" [sort]="'purchase_order_detail__weight'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>Status</th>

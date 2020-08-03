@@ -102,7 +102,7 @@
                   <div class="form-group row">
                     <label class="col-sm-1 col-form-label">Weight&nbsp;<span class="text-danger">*</span></label>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" placeholder="Weight (kg)" name="weight" formControlName="weight"
+                      <input type="text" class="form-control" placeholder="Weight (tons)" name="weight" formControlName="weight"
                         [ngClass]="{'is-invalid': invalidFg(o, 'weight')}">
                       <small class="badge badge-danger" 
                         *ngIf="invalidFg(o, 'weight') && hasErrorFg(o, 'weight', 'required')">
@@ -113,7 +113,7 @@
                         Weight is invalid
                       </small>
                     </div>
-                    <label class="col-sm-1 col-form-label">kg</label>
+                    <label class="col-sm-1 col-form-label">tons</label>
                   </div>
 
                   <div class="row">
