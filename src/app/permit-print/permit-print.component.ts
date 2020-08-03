@@ -46,4 +46,53 @@ export class PermitPrintComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+  get issueToAddress1() {
+    let s = '';
+    if (this.data.purchase_order && this.data.purchase_order.issue_to) {
+      const o = this.data.purchase_order.issue_to;
+      let ls = [o.addr_line_1];
+      if (o.addr_line_2) {
+        ls.push(o.addr_line_2);
+      }
+
+      if (o.addr_line_3) {
+        ls.push(o.addr_line_3);
+      }
+
+      s = ls.join(', ');
+    }
+
+    return s;
+  }
+
+  get issueToAddress2() {
+    let s = '';
+    if (this.data.purchase_order && this.data.purchase_order.issue_to) {
+      const o = this.data.purchase_order.issue_to;
+      s = ` ${o.postcode} ${o.city} ${o.state.name} ${o.country.name}`;
+    }
+
+    return s;
+  }
+
+  get destinationAddress() {
+    let s = '';
+    if (this.data.purchase_order_detail) {
+      const o = this.data.purchase_order_detail;
+      let ls = [o.recv_addr_line_1];
+      if (o.recv_addr_line_2) {
+        ls.push(o.recv_addr_line_2);
+      }
+
+      if (o.recv_addr_line_3) {
+        ls.push(o.recv_addr_line_3);
+      }
+
+      s = ls.join(', ');
+      s += ` ${o.recv_postcode} ${o.recv_city} ${o.recv_state.name} ${o.recv_country.name}`;
+    }
+
+    return s;
+  }
 }

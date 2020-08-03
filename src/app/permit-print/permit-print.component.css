@@ -1,0 +1,9 @@
+.img-jmg {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.header-line {
+  border-top: 2px solid black !important;
+}

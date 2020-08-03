@@ -1,0 +1,72 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-10">
+        <h1>Permit</h1>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid" *ngIf="!isLoading">
+    <div class="row">
+      <div class="col-12">
+        <div class="invoice p-3 mb-3">
+          <div class="row">
+            <div class="col-12">
+              <h4>
+                <small class="float-right">Date: {{ data.created_date | date:'d MMM yyyy' }}</small>
+              </h4>
+            </div>
+          </div>
+          <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+              Mining License Holder
+              <address>
+                <strong>{{ data.purchase_order.issue_to.name }}</strong>
+                <br>{{ data.purchase_order.issue_to.registration_num }}
+                <br>Mineral License No. {{ data.purchase_order.issue_to.mining_license_num }}
+                <br>License Expiry: {{ data.purchase_order.issue_to.mining_license_expiry_date | date:'d MMM yyyy' }}
+                <br>{{ data.purchase_order.issue_to.addr_line_1 }}<ng-container *ngIf="data.purchase_order.issue_to.addr_line_2">, {{ data.purchase_order.issue_to.addr_line_2 }}</ng-container>
+                <ng-container *ngIf="data.purchase_order.issue_to.addr_line_3">,<br>{{ data.purchase_order.issue_to.addr_line_3 }}</ng-container>
+                <br>{{ data.purchase_order.issue_to.postcode }} {{ data.purchase_order.issue_to.city }}
+                <br>{{ data.purchase_order.issue_to.state.name }}, {{ data.purchase_order.issue_to.country.name }}
+                <br>Phone: {{ data.purchase_order.issue_to.contact_no }}
+                <br>Email: {{ data.purchase_order.issue_to.email }}
+                <br>Fax: {{ data.purchase_order.issue_to.fax_no }}
+              </address>
+            </div>
+            <div class="col-sm-4 invoice-col">
+              Driver & Truck Details
+              <address>
+                <strong>{{ data.purchase_order_detail.driver.name }}</strong>
+                <br>I/C No.: {{ data.purchase_order_detail.driver.id_num }}
+                <br>Truck Reg. No.: {{ data.purchase_order_detail.truck.registration_num }}
+                <br>Material: {{ data.purchase_order_detail.material.name }} {{ data.purchase_order_detail.material.material_type }}  {{ data.purchase_order_detail.material.grade }}
+                <br>Weight: {{ data.delivery_order.actual_weight | number }} kg
+              </address>
+            </div>
+            <div class="col-sm-4 invoice-col">
+              Destination
+              <address>
+                <strong>{{ data.purchase_order_detail.recv_name }}</strong>
+                <br>{{ data.purchase_order_detail.recv_addr_line_1 }}<ng-container *ngIf="data.purchase_order_detail.recv_addr_line_2">, {{ data.purchase_order_detail.recv_addr_line_2 }}</ng-container>
+                <ng-container *ngIf="data.purchase_order_detail.recv_addr_line_3">,<br>{{ data.purchase_order_detail.recv_addr_line_3 }}</ng-container>
+                <br>{{ data.purchase_order_detail.recv_postcode }} {{ data.purchase_order_detail.recv_city }}
+                <br>{{ data.purchase_order_detail.recv_state.name }}, {{ data.purchase_order_detail.recv_country.name }}
+              </address>
+            </div>
+          </div>
+
+          <div class="row no-print">
+            <div class="col-12">
+              <button type="button" class="btn btn-outline-dark mr-2" (click)="onBack()"><i class="fas fa-chevron-circle-left"></i> Back</button>
+              <a [routerLink]="['/permit', id, 'print']" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
