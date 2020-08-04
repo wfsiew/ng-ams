@@ -7,3 +7,8 @@
 .header-line {
   border-top: 2px solid black !important;
 }
+
+td.w-min {
+  width: 1%;
+  white-space: nowrap;
+}

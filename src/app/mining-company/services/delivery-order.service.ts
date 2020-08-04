@@ -11,7 +11,12 @@ export class DeliveryOrderService {
 
   constructor(private http: HttpClient) { }
 
-  list(status, page, limit, sort, dir) {
+  list(statusList, page, limit, sort, dir) {
+    let status = 'all';
+    if (statusList) {
+      status = statusList.join(',');
+    }
+
     let prm: HttpParams = new HttpParams()
       .set('_page', page)
       .set('_limit', limit)
@@ -26,7 +31,12 @@ export class DeliveryOrderService {
     return this.http.get(`${this.baseUrl}/api/delivery-orders`, { params: prm, observe: 'response' });
   }
 
-  search(status, page, limit, sort, dir, keyword) {
+  search(statusList, page, limit, sort, dir, keyword) {
+    let status = 'all';
+    if (statusList) {
+      status = statusList.join(',');
+    }
+    
     let prm: HttpParams = new HttpParams()
       .set('_page', page)
       .set('_limit', limit)

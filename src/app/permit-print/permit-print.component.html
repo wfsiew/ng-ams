@@ -35,7 +35,7 @@
         <table class="table table-sm table-borderless">
           <tbody>
             <tr>
-              <td style="width: 60px">NAMA:</td>
+              <td class="w-min">NAMA:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.purchase_order.issue_to.name | uppercase }}</div>
               </td>
@@ -49,7 +49,7 @@
         <table class="table table-sm table-borderless">
           <tbody>
             <tr>
-              <td style="width: 130px">ALAMAT PREMIS:</td>
+              <td class="w-min">ALAMAT PREMIS:</td>
               <td>
                 <div class="border-bottom border-dark">{{ issueToAddress1 | uppercase }}</div>
               </td>
@@ -68,11 +68,11 @@
         <table class="table table-sm table-borderless">
           <tbody>
             <tr>
-              <td style="width: 250px">NO. LESEN MINERAL/MEMPROSES:</td>
-              <td>
+              <td class="w-min">NO. LESEN MINERAL/MEMPROSES:</td>
+              <td style="width: 200px">
                 <div class="border-bottom border-dark">{{ data.purchase_order.issue_to.mining_license_num }}</div>
               </td>
-              <td style="width: 170px">TARIKH LUPUT LESEN:</td>
+              <td class="w-min">TARIKH LUPUT LESEN:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.purchase_order.issue_to.mining_license_expiry_date | date:'d MMM yyyy' | uppercase }}</div>
               </td>
@@ -99,11 +99,11 @@
         <table class="table table-sm table-borderless">
           <tbody>
             <tr>
-              <td style="width: 135px">NAMA PEMANDU:</td>
+              <td class="w-min">NAMA PEMANDU:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.purchase_order_detail.driver.name | uppercase }}</div>
               </td>
-              <td style="width: 80px">NO. K.P.:</td>
+              <td class="w-min">NO. K.P.:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.purchase_order_detail.driver.id_num | uppercase }}</div>
               </td>
@@ -117,11 +117,11 @@
         <table class="table table-sm table-borderless">
           <tbody>
             <tr>
-              <td style="width: 135px">NO. KENDERAAN:</td>
+              <td class="w-min">NO. KENDERAAN:</td>
               <td style="width: 180px">
                 <div class="border-bottom border-dark">{{ data.purchase_order_detail.truck.registration_num }}</div>
               </td>
-              <td style="width: 95px">DESTINASI:</td>
+              <td class="w-min">DESTINASI:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.purchase_order_detail.recv_city | uppercase }} - {{ data.purchase_order_detail.recv_state.name | uppercase }}</div>
               </td>
@@ -135,11 +135,11 @@
         <table class="table table-sm table-borderless">
           <tbody>
             <tr>
-              <td style="width: 130px">JENIS MINERAL:</td>
+              <td class="w-min">JENIS MINERAL:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.purchase_order_detail.material.name | uppercase }}, {{ data.purchase_order_detail.material.material_type | uppercase }}, {{ data.purchase_order_detail.material.grade | uppercase }}</div>
               </td>
-              <td style="width: 70px">BERAT:</td>
+              <td class="w-min">BERAT:</td>
               <td>
                 <div class="border-bottom border-dark">{{ data.delivery_order.actual_weight | number }} tons</div>
               </td>
@@ -165,7 +165,7 @@
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tr>
-            <td style="width: 230px">NAMA DAN ALAMAT PENERIMA:</td>
+            <td class="w-min">NAMA DAN ALAMAT PENERIMA:</td>
             <td>
               <div class="border-bottom border-dark">{{ data.purchase_order_detail.recv_name | uppercase }}</div>
             </td>
@@ -182,11 +182,11 @@
       <div class="col-sm-12">
         <table class="table table-sm table-borderless">
           <tr>
-            <td style="width: 130px">TARIKH TERIMA:</td>
+            <td class="w-min">TARIKH TERIMA:</td>
             <td>
               <div class="border-bottom border-dark">&nbsp;{{ data.delivery_order.accepted_date | date:'d MMM yyyy' | uppercase }}</div>
             </td>
-            <td style="width: 130px">TANDATANGAN:</td>
+            <td class="w-min">TANDATANGAN:</td>
             <td>
               <div class="border-bottom border-dark">&nbsp;</div>
             </td>
@@ -204,21 +204,21 @@
                 <td colspan="5"><div class="text-bold">UNTUK KEGUNAAN PEJABAT:</div></td>
               </tr>
               <tr>
-                <td style="width: 120px">TARIKH LUPUT:</td>
+                <td class="w-min">TARIKH LUPUT:</td>
                 <td>
                   <div class="border-bottom border-dark">&nbsp;</div>
                 </td>
                 <td style="width: 180px">
                   <div class="border-bottom border-dark">&nbsp;</div>
                 </td>
-                <td style="width: 120px">TARIKH LUPUT:</td>
+                <td class="w-min">TARIKH LUPUT:</td>
                 <td>
                   <div class="border-bottom border-dark">&nbsp;</div>
                 </td>
               </tr>
               <tr>
                 <td colspan="2"></td>
-                <td style="width: 180px">PEN. PENGARAH GALIAN</td>
+                <td class="w-min">PEN. PENGARAH GALIAN</td>
                 <td colspan="2"></td>
               </tr>
             </tbody>

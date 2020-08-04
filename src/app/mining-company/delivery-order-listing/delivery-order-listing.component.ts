@@ -27,7 +27,7 @@ export class DeliveryOrderListingComponent implements OnInit {
   pageSize = AppConstant.PAGE_SIZE;
   page = 1;
   search = '';
-  do_status = '0';
+  do_status = ['0'];
   isRoleMiningHQ = false;
   sort = 'created_date';
   sortDir = 'desc';
@@ -35,6 +35,13 @@ export class DeliveryOrderListingComponent implements OnInit {
   sy = 0;
   bsModalRef: BsModalRef;
   subs: Subscription;
+  doStatusList = [
+    { id: 'all', name: 'ALL' },
+    { id: '0', name: 'NEW' },
+    { id: '1', name: 'IN PROGRESS' },
+    { id: '2', name: 'DISPATCHING' },
+    { id: '3', name: 'RECEIVED' }
+  ];
 
   readonly uiState = 'mining-company.delivery-order-listing';
 
@@ -138,7 +145,7 @@ export class DeliveryOrderListingComponent implements OnInit {
     this.load();
   }
 
-  onDOStatusChange() {
+  onApplyFilter() {
     this.load();
   }
 
