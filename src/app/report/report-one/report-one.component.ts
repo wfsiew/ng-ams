@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import _ from 'lodash';
 import ChartDataLabels from 'chartjs-plugin-datalabels';

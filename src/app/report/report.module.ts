@@ -10,6 +10,7 @@ import { ReportRoutingModule } from './report-routing.module';
 import { SharedComponentModules } from '../shared/components/shared-components.module';
 import { ReportOneComponent } from './report-one/report-one.component';
 import { ReportTwoComponent } from './report-two/report-two.component';
+import { ReportThreeComponent } from './report-three/report-three.component';
 
 import { ReportService } from './services/report.service';
 
@@ -17,7 +18,7 @@ import { ReportService } from './services/report.service';
 @NgModule({
   declarations: [
     ReportOneComponent, 
-    ReportTwoComponent
+    ReportTwoComponent, ReportThreeComponent
   ],
   imports: [
     CommonModule,
