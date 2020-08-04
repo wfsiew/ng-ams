@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ChartModule } from 'primeng/chart';
 
 import { ReportRoutingModule } from './report-routing.module';
-import { ChartModule } from 'primeng/chart';
 
 import { SharedComponentModules } from '../shared/components/shared-components.module';
 import { ReportOneComponent } from './report-one/report-one.component';
