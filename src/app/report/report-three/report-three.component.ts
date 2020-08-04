@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import _ from 'lodash';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { UIChart } from 'primeng/chart';
 
 import { Helper } from 'src/app/shared/utils/helper';
+import { data_besi_ton, data_besi_lombong } from './data';
 
 @Component({
   selector: 'app-report-three',
@@ -12,89 +14,100 @@ import { Helper } from 'src/app/shared/utils/helper';
 })
 export class ReportThreeComponent implements OnInit {
 
+  opt = '0';
   data1: any;
-  options1: any;
   data2: any;
-  options2: any;
   plugin = ChartDataLabels;
   @ViewChild('chart', { static: false }) chart: UIChart;
+
+  options1 = {
+    title: {
+      display: true,
+      text: 'Bijih Besi 1',
+      fontSize: 16
+    },
+    legend: {
+      position: 'bottom'
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        textAlign: 'center',
+        anchor: 'end',
+        align: 'end',
+        formatter: (x, context) => {
+          return Number(x).toLocaleString('en-GB');
+        }
+      }
+    },
+    scales: {
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'Tan'
+          }
+        }
+      ],
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'Tahun'
+          }
+        }
+      ]
+    }
+  };
+
+  options2 = {
+    title: {
+      display: true,
+      text: 'Bijih Besi 2',
+      fontSize: 16
+    },
+    legend: {
+      position: 'bottom'
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        textAlign: 'center',
+        anchor: 'end',
+        align: 'end',
+        formatter: (x, context) => {
+          return Number(x).toLocaleString('en-GB');
+        }
+      }
+    },
+    scales: {
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'Lombong'
+          }
+        }
+      ],
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'Tahun'
+          }
+        }
+      ]
+    }
+  };
 
   constructor() { }
 
   ngOnInit() {
     const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
 
-    this.data1 = {
-      labels: ['2014', '2015', '2016', '2017', '2018'],
-      datasets: [
-        {
-          label: 'Pahang',
-          backgroundColor: colorList[0],
-          borderColor: colorList[0],
-          data: [6592609, 867126, 1394084, 1839457, 1629484]
-        },
-        {
-          label: 'Kelantan',
-          backgroundColor: colorList[1],
-          borderColor: colorList[1],
-          data: [526927, 112360, 83180, 77350, 96650]
-        },
-        {
-          label: 'Johor',
-          backgroundColor: colorList[2],
-          borderColor: colorList[2],
-          data: [1394403, 402195, 195895, 1212009, 904137]
-        },
-        {
-          label: 'Terengganu',
-          backgroundColor: colorList[3],
-          borderColor: colorList[3],
-          data: [636751, 196911, 193608, 734669, 717870]
-        },
-        {
-          label: 'Kedah',
-          backgroundColor: colorList[4],
-          borderColor: colorList[4],
-          data: [382333, 40661, 43600, 56147, 5493]
-        }
-      ]
-    }
+    this.load();
 
-    this.data2 = {
-      labels: ['2014', '2015', '2016', '2017', '2018'],
-      datasets: [
-        {
-          label: 'Pahang',
-          backgroundColor: colorList[0],
-          borderColor: colorList[0],
-          data: [61, 52, 23, 21, 26]
-        },
-        {
-          label: 'Kelantan',
-          backgroundColor: colorList[1],
-          borderColor: colorList[1],
-          data: [19, 18, 2, 3, 3]
-        },
-        {
-          label: 'Johor',
-          backgroundColor: colorList[2],
-          borderColor: colorList[2],
-          data: [19, 10, 6, 6, 4]
-        },
-        {
-          label: 'Terengganu',
-          backgroundColor: colorList[3],
-          borderColor: colorList[3],
-          data: [9, 8, 4, 15, 14]
-        },
-        {
-          label: 'Kedah',
-          backgroundColor: colorList[4],
-          borderColor: colorList[4],
-          data: [10, 7, 5, 4, 5]
-        }
-      ]
-    }
+    
     
     const data1 = {
       labels: ['Pahang', 'Kelantan', 'Johor', 'Terengganu', 'Kedah'],
@@ -137,44 +150,51 @@ export class ReportThreeComponent implements OnInit {
       ]
     }
 
-    this.options1 = {
-      title: {
-        display: true,
-        text: 'Bijih Besi',
-        fontSize: 16
-      },
-      legend: {
-        position: 'bottom'
-      },
-      plugins: {
-        datalabels: {
-          display: true,
-          textAlign: 'center',
-          anchor: 'end',
-          align: 'end',
-          formatter: (x, context) => {
-            return Number(x).toLocaleString('en-GB');
-          }
+    
+  }
+
+  load() {
+    this.data1 = this.getData1ByTon();
+    this.data2 = this.getData1ByMine();
+  }
+
+  getData1ByTon() {
+    if (this.opt === '0') {
+      const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
+      const lx = _.map(data_besi_ton.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: _.slice(x.data, 2),
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
         }
-      },
-      scales: {
-        yAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: 'Tan'
-            }
-          }
-        ],
-        xAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: 'Tahun'
-            }
-          }
-        ]
-      }
-    };
+      });
+      return {
+        labels: _.slice(data_besi_ton.labels, 2),
+        datasets: lx
+      };
+    }
+
+    else {
+
+    }
+  }
+
+  getData1ByMine() {
+    if (this.opt === '0') {
+      const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
+      const lx = _.map(data_besi_lombong.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: _.slice(x.data, 2),
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
+        }
+      });
+      return {
+        labels: _.slice(data_besi_lombong.labels, 2),
+        datasets: lx
+      };
+    }
   }
 }
