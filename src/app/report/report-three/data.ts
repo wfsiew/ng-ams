@@ -51,3 +51,49 @@ export const data_besi_lombong = {
     }
   ]
 }
+
+export const data_timah_ton = {
+
+  labels: ['2015', '2016', '2017', '2018', '2019'],
+  datasets: [
+    {
+      label: 'Perak',
+      data: [4282, 2882, 3198, 2998, 5560]
+    },
+    {
+      label: 'Pahang',
+      data: [832, 738, 900, 494, 533]
+    },
+    {
+      label: 'Johor',
+      data: [288, 218, 150, 188, 101]
+    },
+    {
+      label: 'Kedah',
+      data: [18, 12, 3, 8, 5]
+    }
+  ]
+}
+
+export const data_timah_lombong =  {
+
+  labels: ['2015', '2016', '2017', '2018', '2019'],
+  datasets: [
+    {
+      label: 'Perak',
+      data: [10, 8, 7, 6, 6]
+    },
+    {
+      label: 'Pahang',
+      data: [4, 3, 6, 4, 5]
+    },
+    {
+      label: 'Johor',
+      data: [3, 3, 3, 3, 2]
+    },
+    {
+      label: 'Kedah',
+      data: [4, 2, 3, 2, 1]
+    }
+  ]
+}

@@ -3,30 +3,62 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-12">
-        <h1 class="m-0 text-dark">Report Samples</h1>
+        <h1 class="m-0 text-dark">Report By States</h1>
       </div>
     </div>
   </div>
 </section>
 <section class="content">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <p-chart #chart type="bar" [data]="data1" [options]="options1" [plugins]="plugin"></p-chart>
+    <div class="card no-print">
+      <div class="card-header">
+        <div class="row mb-2">
+          <div class="col-sm-3 col-12 p-1">
+            <ng-select 
+              [items]="mineList" 
+              bindLabel="name" 
+              bindValue="id" 
+              placeholder="Please select"
+              [(ngModel)]="mine" 
+              name="mine"></ng-select>
+          </div>
+          <div class="col-sm-1 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt1" name="opt" value="0" [(ngModel)]="opt">
+              <label for="ropt1">3 Years</label>
+            </div>
+          </div>
+          <div class="col-sm-1 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt2" name="opt" value="1" [(ngModel)]="opt">
+              <label for="ropt2">5 Years</label>
+            </div>
+          </div>
+          <div class="col-sm-7 col-12 p-1 text-right">
+            <button class="btn btn-primary" (click)="onApplyFilter(chart)" [disabled]="!mine">Apply</button>
           </div>
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <p-chart #chart type="bar" [data]="data2" [options]="options2" [plugins]="plugin"></p-chart>
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 0}" (click)="onTab(0)">Jumlah Tan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 1}" (click)="onTab(1)">Jumlah Lombong</a>
+              </li>
+            </ul>
+
+            <p-chart #chart type="bar" [data]="data" [options]="options" [plugins]="plugin"></p-chart>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>

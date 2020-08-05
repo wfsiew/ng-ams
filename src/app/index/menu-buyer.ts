@@ -27,12 +27,12 @@ export const SubmenuBuyer = [
     icon: 'fas fa-home'
   },
   {
-    title: 'Trucks',
+    title: 'Truck',
     path: 'truck/list',
     icon: 'fas fa-truck'
   },
   {
-    title: 'Drivers',
+    title: 'Driver',
     path: 'driver/list',
     icon: 'fas fa-id-card'
   },

@@ -38,7 +38,7 @@ export const SubmenuMiningHQ = [
     icon: 'fas fa-truck-moving'
   },
   {
-    title: 'Buyer List',
+    title: 'Buyer',
     path: 'buyer/list',
     icon: 'far fa-circle'
   }

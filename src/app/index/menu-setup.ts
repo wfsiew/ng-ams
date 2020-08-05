@@ -38,27 +38,27 @@ export const MenuSetup = {
 
 export const SubmenuSetup = [
   {
-    title: 'User List',
+    title: 'User',
     path: 'user/list'
   },
   {
-    title: 'Mining Company List',
+    title: 'Mining Company',
     path: 'mining-company/list'
   },
   {
-    title: 'Buyer List',
+    title: 'Buyer',
     path: 'buyer/list'
   },
   {
-    title: 'Material List',
+    title: 'Material',
     path: 'material/list'
   },
   {
-    title: 'Country List',
+    title: 'Country',
     path: 'country/list'
   },
   {
-    title: 'State List',
+    title: 'State',
     path: 'state/list'
   }
 ];

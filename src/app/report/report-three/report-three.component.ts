@@ -5,7 +5,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { UIChart } from 'primeng/chart';
 
 import { Helper } from 'src/app/shared/utils/helper';
-import { data_besi_ton, data_besi_lombong } from './data';
+import { data_besi_ton, data_besi_lombong, data_timah_ton, data_timah_lombong } from './data';
 
 @Component({
   selector: 'app-report-three',
@@ -14,16 +14,24 @@ import { data_besi_ton, data_besi_lombong } from './data';
 })
 export class ReportThreeComponent implements OnInit {
 
+  mine = '0';
   opt = '0';
+  tab = 0;
+  data: any;
   data1: any;
   data2: any;
   plugin = ChartDataLabels;
   @ViewChild('chart', { static: false }) chart: UIChart;
 
-  options1 = {
+  mineList = [
+    { id: '0', name: 'Besi' },
+    { id: '1', name: 'Timah' }
+  ];
+
+  options = {
     title: {
       display: true,
-      text: 'Bijih Besi 1',
+      text: 'Besi - Jumlah Tan (Negeri) dari 2016 - 2018',
       fontSize: 16
     },
     legend: {
@@ -103,64 +111,105 @@ export class ReportThreeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
-
     this.load();
-
-    
-    
-    const data1 = {
-      labels: ['Pahang', 'Kelantan', 'Johor', 'Terengganu', 'Kedah'],
-      datasets: [
-        {
-          label: '2014',
-          backgroundColor: colorList[0],
-          borderColor: colorList[0],
-          data: [6592609, 526927, 1394403, 636751, 382333],
-          count: [61, 19, 19, 9, 10]
-        },
-        {
-          label: '2015',
-          backgroundColor: colorList[1],
-          borderColor: colorList[1],
-          data: [867126, 112360, 402195, 196911, 40661],
-          count: [52, 18, 10, 8, 7]
-        },
-        {
-          label: '2016',
-          backgroundColor: colorList[2],
-          borderColor: colorList[2],
-          data: [1394084, 83180, 195895, 193608, 43600],
-          count: [23, 2, 6, 4, 5]
-        },
-        {
-          label: '2017',
-          backgroundColor: colorList[3],
-          borderColor: colorList[3],
-          data: [1839457, 77350, 1212009, 734669, 56147],
-          count: [21, 3, 6, 15, 4]
-        },
-        {
-          label: '2018',
-          backgroundColor: colorList[4],
-          borderColor: colorList[4],
-          data: [1629484, 96650, 904137, 717870, 5493],
-          count: [26, 3, 4, 14, 5]
-        }
-      ]
-    }
-
-    
   }
 
   load() {
-    this.data1 = this.getData1ByTon();
-    this.data2 = this.getData1ByMine();
+    if (this.mine === '0') {
+      if (this.tab === 0) {
+        this.data = this.getData1ByTon();
+      }
+
+      else if (this.tab === 1) {
+        this.data = this.getData1ByMine();
+      }
+    }
+    
+    else if (this.mine === '1') {
+      if (this.tab === 0) {
+        this.data = this.getData2ByTon();
+      }
+
+      else {
+        this.data = this.getData2ByMine();
+      }
+    }
+
+    if (this.chart) {
+      this.chart.data = this.data;
+      this.chart.options.title.text = this.chartTitle;
+      this.chart.reinit();
+    }
   }
 
-  getData1ByTon() {
+  onApplyFilter(chart) {
+    this.chart = chart;
+    this.load();
+  }
+
+  onTab(i) {
+    if (this.tab !== i) {
+
+    }
+
+    this.tab = i;
+    this.load();
+    return false;
+  }
+
+  get chartTitle() {
+    let s = '';
+    if (this.mine === '0') {
+      if (this.tab === 0) {
+        if (this.opt === '0') {
+          s = 'Besi - Jumlah Tan (Negeri) dari 2016 - 2018';
+        }
+        
+        else {
+          s = 'Besi - Jumlah Tan (Negeri) dari 2014 - 2018';
+        }
+      }
+      
+      else if (this.tab === 1) {
+        if (this.opt === '0') {
+          s = 'Besi - Jumlah Lombong (Negeri) dari 2016 - 2018';
+        }
+        
+        else {
+          s = 'Besi - Jumlah Lombong (Negeri) dari 2014 - 2018';
+        }
+      }
+    }
+
+    else if (this.mine === '1') {
+      if (this.tab === 0) {
+        if (this.opt === '0') {
+          s = 'Timah - Jumlah Tan (Negeri) dari 2017 - 2019';
+        }
+        
+        else {
+          s = 'Timah - Jumlah Tan (Negeri) dari 2015 - 2019';
+        }
+      }
+
+      else if (this.tab === 1) {
+        if (this.opt === '0') {
+          s = 'Timah - Jumlah Lombong (Negeri) dari 2017 - 2019';
+        }
+        
+        else {
+          s = 'Timah - Jumlah Lombong (Negeri) dari 2015 - 2019';
+        }
+      }
+    }
+
+    return s;
+  }
+
+  private getData1ByTon() {
+    const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
+
     if (this.opt === '0') {
-      const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
       const lx = _.map(data_besi_ton.datasets, (x, i) => {
         return {
           label: x.label,
@@ -176,13 +225,25 @@ export class ReportThreeComponent implements OnInit {
     }
 
     else {
-
+      const lx = _.map(data_besi_ton.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: x.data,
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
+        }
+      });
+      return {
+        labels: data_besi_ton.labels,
+        datasets: lx
+      };
     }
   }
 
-  getData1ByMine() {
+  private getData1ByMine() {
+    const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
+
     if (this.opt === '0') {
-      const colorList = Helper.getColorList([1, 2, 3, 4, 5]);
       const lx = _.map(data_besi_lombong.datasets, (x, i) => {
         return {
           label: x.label,
@@ -193,6 +254,89 @@ export class ReportThreeComponent implements OnInit {
       });
       return {
         labels: _.slice(data_besi_lombong.labels, 2),
+        datasets: lx
+      };
+    }
+
+    else {
+      const lx = _.map(data_besi_lombong.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: x.data,
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
+        }
+      });
+      return {
+        labels: data_besi_lombong.labels,
+        datasets: lx
+      };
+    }
+  }
+
+  private getData2ByTon() {
+    const colorList = Helper.getColorList([1, 2, 3, 4]);
+
+    if (this.opt === '0') {
+      const lx = _.map(data_timah_ton.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: _.slice(x.data, 2),
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
+        }
+      });
+      return {
+        labels: _.slice(data_timah_ton.labels, 2),
+        datasets: lx
+      };
+    }
+
+    else {
+      const lx = _.map(data_timah_ton.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: x.data,
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
+        }
+      });
+      return {
+        labels: data_timah_ton.labels,
+        datasets: lx
+      };
+    }
+  }
+
+  private getData2ByMine() {
+    const colorList = Helper.getColorList([1, 2, 3, 4]);
+
+    if (this.opt === '0') {
+      const lx = _.map(data_timah_lombong.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: _.slice(x.data, 2),
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
+        }
+      });
+      return {
+        labels: _.slice(data_timah_lombong.labels, 2),
+        datasets: lx
+      };
+    }
+
+    else {
+      const lx = _.map(data_timah_lombong.datasets, (x, i) => {
+        return {
+          label: x.label,
+          data: x.data,
+          backgroundColor: colorList[i],
+          borderColor: colorList[i]
+        }
+      });
+      return {
+        labels: data_timah_lombong.labels,
         datasets: lx
       };
     }
