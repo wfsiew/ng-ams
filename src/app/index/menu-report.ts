@@ -13,18 +13,18 @@ export const MenuReport = {
 
 export const SubmenuReport = [
   {
-    title: 'By Mining Company',
+    title: 'Mineral',
+    path: 'three',
+    icon: 'far fa-circle'
+  },
+  {
+    title: 'Mining Company',
     path: 'one',
     icon: 'far fa-circle'
   },
-  {
-    title: 'Summary',
-    path: 'two',
-    icon: 'far fa-circle'
-  },
-  {
-    title: 'By State',
-    path: 'three',
-    icon: 'far fa-circle'
-  }
+  // {
+  //   title: 'Summary',
+  //   path: 'two',
+  //   icon: 'far fa-circle'
+  // },
 ];
