@@ -52,6 +52,12 @@
               <li class="nav-item">
                 <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 1}" (click)="onTab(1)">Jumlah Lombong</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 2}" (click)="onTab(2)">Jumlah Tan (Semua Negeri)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 3}" (click)="onTab(3)">Jumlah Lombong (Semua Negeri)</a>
+              </li>
             </ul>
 
             <p-chart #chart type="bar" [data]="data" [options]="options" [plugins]="plugin"></p-chart>
