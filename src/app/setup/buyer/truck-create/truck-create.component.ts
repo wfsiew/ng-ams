@@ -20,6 +20,8 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
   buyer_id: string;
   id: string;
   data: any = { id: '' };
+  file: File;
+  imgURL: any;
   isEdit = false;
 
   constructor(
@@ -74,6 +76,31 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
     });
   }
 
+  uploadFile(files) {
+    if (files.length === 0) {
+      return;
+    }
+
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.toastr.error('Only images are supported');
+      return;
+    }
+ 
+    this.file = files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (event) => { 
+      this.imgURL = reader.result;
+    }
+  }
+
+  onRemoveFile(uploader) {
+    this.imgURL = null;
+    this.file = null;
+    uploader.value = '';
+  }
+
   onBack() {
     this.router.navigate([`/ams/setup/buyer/truck/${this.buyer_id}/list`]);
   }
@@ -83,14 +110,19 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
       this.mform.markAllAsTouched();
       return;
     }
+
+    if (!this.file) {
+      this.toastr.error('Please upload truck photo');
+      return;
+    }
     
     const f = this.mform.value;
-    const o = {
-      registration_num: f.registration_num,
-      buyer_id: this.buyer_id
-    }
+    const formData = new FormData();
+    formData.append('file', this.file);
+    formData.append('registration_num', f.registration_num);
+    formData.append('buyer_id', this.buyer_id);
     if (!this.isEdit) {
-      this.truckService.create(this.buyer_id, o).subscribe((res: any) => {
+      this.truckService.create(this.buyer_id, formData).subscribe((res: any) => {
         this.toastr.success('New Truck successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);

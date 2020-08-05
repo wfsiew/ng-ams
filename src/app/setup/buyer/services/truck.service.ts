@@ -39,7 +39,7 @@ export class TruckService {
     return this.http.post(`${this.baseUrl}/api/buyer/${buyer_id}/trucks`, { keyword: keyword }, { params: prm, observe: 'response' });
   }
 
-  create(buyer_id, o) {
+  create(buyer_id, o: FormData) {
     return this.http.post(`${this.baseUrl}/api/buyer/${buyer_id}/truck`, o);
   }
 

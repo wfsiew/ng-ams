@@ -20,6 +20,8 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
   buyer_id: string;
   id: string;
   data: any = { id: '' };
+  file: File;
+  imgURL: any;
   isEdit = false;
 
   constructor(
@@ -74,6 +76,31 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     }, () => {
       this.isLoading = false;
     });
+  }
+
+  uploadFile(files) {
+    if (files.length === 0) {
+      return;
+    }
+
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.toastr.error('Only images are supported');
+      return;
+    }
+ 
+    this.file = files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (event) => { 
+      this.imgURL = reader.result;
+    }
+  }
+
+  onRemoveFile(uploader) {
+    this.imgURL = null;
+    this.file = null;
+    uploader.value = '';
   }
 
   onBack() {
