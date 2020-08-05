@@ -31,7 +31,7 @@ export class ReportThreeComponent implements OnInit {
   options = {
     title: {
       display: true,
-      text: 'Besi - Jumlah Tan (Negeri) dari 2016 - 2018',
+      text: ['Besi', 'Jumlah Tan (Negeri) dari 2016 - 2018'],
       fontSize: 16
     },
     legend: {
@@ -54,46 +54,6 @@ export class ReportThreeComponent implements OnInit {
           scaleLabel: {
             display: true,
             labelString: 'Tan'
-          }
-        }
-      ],
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: 'Tahun'
-          }
-        }
-      ]
-    }
-  };
-
-  options2 = {
-    title: {
-      display: true,
-      text: 'Bijih Besi 2',
-      fontSize: 16
-    },
-    legend: {
-      position: 'bottom'
-    },
-    plugins: {
-      datalabels: {
-        display: true,
-        textAlign: 'center',
-        anchor: 'end',
-        align: 'end',
-        formatter: (x, context) => {
-          return Number(x).toLocaleString('en-GB');
-        }
-      }
-    },
-    scales: {
-      yAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: 'Lombong'
           }
         }
       ],
@@ -182,45 +142,45 @@ export class ReportThreeComponent implements OnInit {
   }
 
   get chartTitle() {
-    let s = '';
+    let s: any = '';
     if (this.mine === '0') {
       if (this.tab === 0) {
         if (this.opt === '0') {
-          s = 'Besi - Jumlah Tan (Negeri) dari 2016 - 2018';
+          s = ['Besi', 'Jumlah Tan (Negeri) dari 2016 - 2018'];
         }
         
         else {
-          s = 'Besi - Jumlah Tan (Negeri) dari 2014 - 2018';
+          s = ['Besi', 'Jumlah Tan (Negeri) dari 2014 - 2018'];
         }
       }
       
       else if (this.tab === 1) {
         if (this.opt === '0') {
-          s = 'Besi - Jumlah Lombong (Negeri) dari 2016 - 2018';
+          s = ['Besi', 'Jumlah Lombong (Negeri) dari 2016 - 2018'];
         }
         
         else {
-          s = 'Besi - Jumlah Lombong (Negeri) dari 2014 - 2018';
+          s = ['Besi', 'Jumlah Lombong (Negeri) dari 2014 - 2018'];
         }
       }
 
       else if (this.tab === 2) {
         if (this.opt === '0') {
-          s = 'Besi - Jumlah Tan dari 2016 - 2018';
+          s = ['Besi', 'Jumlah Tan dari 2016 - 2018'];
         }
         
         else {
-          s = 'Besi - Jumlah Tan dari 2014 - 2018';
+          s = ['Besi', 'Jumlah Tan dari 2014 - 2018'];
         }
       }
 
       else if (this.tab === 3) {
         if (this.opt === '0') {
-          s = 'Besi - Jumlah Lombong dari 2016 - 2018';
+          s = ['Besi', 'Jumlah Lombong dari 2016 - 2018'];
         }
         
         else {
-          s = 'Besi - Jumlah Lombong dari 2014 - 2018';
+          s = ['Besi', 'Jumlah Lombong dari 2014 - 2018'];
         }
       }
     }
@@ -228,41 +188,41 @@ export class ReportThreeComponent implements OnInit {
     else if (this.mine === '1') {
       if (this.tab === 0) {
         if (this.opt === '0') {
-          s = 'Timah - Jumlah Tan (Negeri) dari 2017 - 2019';
+          s = ['Timah',  'Jumlah Tan (Negeri) dari 2017 - 2019'];
         }
         
         else {
-          s = 'Timah - Jumlah Tan (Negeri) dari 2015 - 2019';
+          s = ['Timah', 'Jumlah Tan (Negeri) dari 2015 - 2019'];
         }
       }
 
       else if (this.tab === 1) {
         if (this.opt === '0') {
-          s = 'Timah - Jumlah Lombong (Negeri) dari 2017 - 2019';
+          s = ['Timah - Jumlah Lombong (Negeri) dari 2017 - 2019'];
         }
         
         else {
-          s = 'Timah - Jumlah Lombong (Negeri) dari 2015 - 2019';
+          s = ['Timah',  'Jumlah Lombong (Negeri) dari 2015 - 2019'];
         }
       }
 
       else if (this.tab === 2) {
         if (this.opt === '0') {
-          s = 'Timah - Jumlah Tan dari 2017 - 2019';
+          s = ['Timah', 'Jumlah Tan dari 2017 - 2019'];
         }
         
         else {
-          s = 'Timah - Jumlah Tan dari 2015 - 2019';
+          s = ['Timah', 'Jumlah Tan dari 2015 - 2019'];
         }
       }
 
       else if (this.tab === 3) {
         if (this.opt === '0') {
-          s = 'Timah - Jumlah Lombong dari 2017 - 2019';
+          s = ['Timah', 'Jumlah Lombong dari 2017 - 2019'];
         }
         
         else {
-          s = 'Timah - Jumlah Lombong dari 2015 - 2019';
+          s = ['Timah', 'Jumlah Lombong dari 2015 - 2019'];
         }
       }
     }
