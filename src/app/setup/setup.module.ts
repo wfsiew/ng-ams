@@ -25,6 +25,7 @@ import { UserListingComponent as BuyerUserListingComponent } from './buyer/user-
 import { MiningCompanyListingComponent } from './mining-company/mining-company-listing/mining-company-listing.component';
 import { MiningCompanyCreateComponent } from './mining-company/mining-company-create/mining-company-create.component';
 import { UserListingComponent as MiningCompanyUserListingComponent } from './mining-company/user-listing/user-listing.component';
+import { MaterialListingComponent as MiningMaterialListingComponent } from './mining-company/material-listing/material-listing.component';
 import { MaterialListingComponent } from './material/material-listing/material-listing.component';
 import { MaterialCreateComponent } from './material/material-create/material-create.component';
 
@@ -57,6 +58,7 @@ import { MaterialService } from './material/services/material.service';
     MiningCompanyListingComponent,
     MiningCompanyCreateComponent,
     MiningCompanyUserListingComponent,
+    MiningMaterialListingComponent,
     MaterialListingComponent,
     MaterialCreateComponent,
     BuyerUserListingComponent
