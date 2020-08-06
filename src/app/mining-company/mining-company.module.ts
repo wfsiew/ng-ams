@@ -12,6 +12,7 @@ import { MiningCompanyRoutingModule } from './mining-company-routing.module';
 import { SharedComponentModules } from '../shared/components/shared-components.module';
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import { DeliveryOrderListingComponent } from './delivery-order-listing/delivery-order-listing.component';
+import { DeliveryOrderCreateComponent } from './delivery-order-create/delivery-order-create.component';
 import { PermitDetailComponent } from './permit-detail/permit-detail.component';
 import { PurchaseOrderListingComponent } from './purchase-order-listing/purchase-order-listing.component';
 import { PurchaseOrderCreateComponent } from './purchase-order-create/purchase-order-create.component';
@@ -33,6 +34,7 @@ import { PurchaseOrderService } from './services/purchase-order.service';
   declarations: [
     CompanyDetailsComponent,
     DeliveryOrderListingComponent,
+    DeliveryOrderCreateComponent,
     PermitDetailComponent,
     CheckoutModalComponent,
     PurchaseOrderListingComponent,
