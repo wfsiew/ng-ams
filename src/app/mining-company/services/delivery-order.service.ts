@@ -51,6 +51,10 @@ export class DeliveryOrderService {
     return this.http.post(`${this.baseUrl}/api/delivery-orders`, { keyword: keyword }, { params: prm, observe: 'response' });
   }
 
+  create(o) {
+    return this.http.post(`${this.baseUrl}/api/delivery-order`, o);
+  }
+
   updateTime(o) {
     return this.http.post(`${this.baseUrl}/api/delivery-order/${o.id}/timestamp`, o);
   }

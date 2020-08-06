@@ -165,6 +165,19 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       recv_state_id: f.recv_state_id,
       recv_country_id: f.recv_country_id
     }
+    if (!this.isEdit) {
+      this.deliveryOrderService.create(o).subscribe((res: any) => {
+        this.toastr.success('New Delivery Order successfully created');
+        this.mform.reset();
+        // this.router.navigate([`/ams/setup/state/edit/${res.id}`]);
+      });
+    }
+
+    else {
+      // this.deliveryOrderService.update(this.data.id, o).subscribe((res: any) => {
+      //   this.toastr.success('Buyer successfully updated');
+      // });
+    }
   }
 
   onChangeBuyer(event) {
