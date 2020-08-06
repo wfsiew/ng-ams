@@ -21,6 +21,9 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
   buyer_id?: number;
   id: string;
   data: any = { id: '' };
+  file: File;
+  imgURL: any;
+  imgId = 0;
   isEdit = false;
 
   constructor(
@@ -63,6 +66,14 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     });
   }
 
+  setLicense() {
+    const o = this.data;
+    if (o.license) {
+      this.imgId = o.license.id;
+      this.imgURL = o.license.img;
+    }
+  }
+
   load() {
     if (_.isNull(this.id) || _.isUndefined(this.id)) {
       return;
@@ -72,11 +83,37 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     this.driverService.edit(this.buyer_id, this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+      this.setLicense();
     }, (error) => {
 
     }, () => {
       this.isLoading = false;
     });
+  }
+
+  uploadFile(files) {
+    if (files.length === 0) {
+      return;
+    }
+
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.toastr.error('Only images are supported');
+      return;
+    }
+ 
+    this.file = files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (event) => { 
+      this.imgURL = reader.result;
+    }
+  }
+
+  onRemoveFile(uploader) {
+    this.imgURL = null;
+    this.file = null;
+    uploader.value = '';
   }
 
   onBack() {
@@ -90,13 +127,16 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     }
     
     const f = this.mform.value;
-    const o = {
-      name: f.name,
-      id_num: f.id_num,
-      buyer_id: this.buyer_id
+    const formData = new FormData();
+    if (this.file) {
+      formData.append('file', this.file);
     }
+    
+    formData.append('name', f.name);
+    formData.append('id_num', f.id_num);
+    formData.append('buyer_id', `${this.buyer_id}`);
     if (!this.isEdit) {
-      this.driverService.create(this.buyer_id, o).subscribe((res: any) => {
+      this.driverService.create(this.buyer_id, formData).subscribe((res: any) => {
         this.toastr.success('New Driver successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
@@ -104,7 +144,7 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     }
 
     else {
-      this.driverService.update(this.buyer_id, this.data.id, o).subscribe((res: any) => {
+      this.driverService.update(this.buyer_id, this.data.id, formData).subscribe((res: any) => {
         this.toastr.success('Driver successfully updated');
       });
     }

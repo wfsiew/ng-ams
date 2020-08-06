@@ -22,6 +22,7 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
   data: any = { id: '' };
   file: File;
   imgURL: any;
+  imgId = 0;
   isEdit = false;
 
   constructor(
@@ -60,6 +61,14 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
     });
   }
 
+  setImage() {
+    const o = this.data;
+    if (o.img) {
+      this.imgId = o.img.id;
+      this.imgURL = o.img.img;
+    }
+  }
+
   load() {
     if (_.isNull(this.id) || _.isUndefined(this.id)) {
       return;
@@ -69,6 +78,7 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
     this.truckService.edit(this.buyer_id, this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+      this.setImage();
     }, (error) => {
 
     }, () => {
@@ -111,14 +121,22 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
       return;
     }
 
-    if (!this.file) {
+    if (!this.file && !this.isEdit) {
+      this.toastr.error('Please upload truck photo');
+      return;
+    }
+
+    else if (!this.file && this.imgId === 0 && this.isEdit) {
       this.toastr.error('Please upload truck photo');
       return;
     }
     
     const f = this.mform.value;
     const formData = new FormData();
-    formData.append('file', this.file);
+    if (this.file) {
+      formData.append('file', this.file);
+    }
+    
     formData.append('registration_num', f.registration_num);
     formData.append('buyer_id', this.buyer_id);
     if (!this.isEdit) {
@@ -130,7 +148,7 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
     }
 
     else {
-      this.truckService.update(this.buyer_id, this.data.id, o).subscribe((res: any) => {
+      this.truckService.update(this.buyer_id, this.data.id, formData).subscribe((res: any) => {
         this.toastr.success('Truck successfully updated');
       });
     }

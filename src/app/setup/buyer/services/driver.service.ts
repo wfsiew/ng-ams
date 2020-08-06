@@ -39,7 +39,7 @@ export class DriverService {
     return this.http.post(`${this.baseUrl}/api/buyer/${buyer_id}/drivers`, { keyword: keyword }, { params: prm, observe: 'response' });
   }
 
-  create(buyer_id, o) {
+  create(buyer_id, o: FormData) {
     return this.http.post(`${this.baseUrl}/api/buyer/${buyer_id}/driver`, o);
   }
 
@@ -47,7 +47,7 @@ export class DriverService {
     return this.http.get(`${this.baseUrl}/api/buyer/${buyer_id}/driver/${id}`);
   }
 
-  update(buyer_id, id, o) {
+  update(buyer_id, id, o: FormData) {
     return this.http.put(`${this.baseUrl}/api/buyer/${buyer_id}/driver/${id}`, o);
   }
 

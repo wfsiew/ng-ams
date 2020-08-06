@@ -22,6 +22,7 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
   data: any = { id: '' };
   file: File;
   imgURL: any;
+  imgId = 0;
   isEdit = false;
 
   constructor(
@@ -62,6 +63,14 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     });
   }
 
+  setLicense() {
+    const o = this.data;
+    if (o.license) {
+      this.imgId = o.license.id;
+      this.imgURL = o.license.img;
+    }
+  }
+
   load() {
     if (_.isNull(this.id) || _.isUndefined(this.id)) {
       return;
@@ -71,6 +80,7 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     this.driverService.edit(this.buyer_id, this.id).subscribe((res: any) => {
       this.data = res;
       this.setForm();
+      this.setLicense();
     }, (error) => {
 
     }, () => {
@@ -112,15 +122,28 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
       this.mform.markAllAsTouched();
       return;
     }
+
+    if (!this.file && !this.isEdit) {
+      this.toastr.error('Please upload driving license');
+      return;
+    }
+
+    else if (!this.file && this.imgId === 0 && this.isEdit) {
+      this.toastr.error('Please upload driving license');
+      return;
+    }
     
     const f = this.mform.value;
-    const o = {
-      name: f.name,
-      id_num: f.id_num,
-      buyer_id: this.buyer_id
+    const formData = new FormData();
+    if (this.file) {
+      formData.append('file', this.file);
     }
+
+    formData.append('name', f.name);
+    formData.append('id_num', f.id_num);
+    formData.append('buyer_id', this.buyer_id);
     if (!this.isEdit) {
-      this.driverService.create(this.buyer_id, o).subscribe((res: any) => {
+      this.driverService.create(this.buyer_id, formData).subscribe((res: any) => {
         this.toastr.success('New Driver successfully created');
         this.mform.reset();
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
@@ -128,7 +151,7 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
     }
 
     else {
-      this.driverService.update(this.buyer_id, this.data.id, o).subscribe((res: any) => {
+      this.driverService.update(this.buyer_id, this.data.id, formData).subscribe((res: any) => {
         this.toastr.success('Driver successfully updated');
       });
     }

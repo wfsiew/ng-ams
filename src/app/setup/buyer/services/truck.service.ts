@@ -47,7 +47,7 @@ export class TruckService {
     return this.http.get(`${this.baseUrl}/api/buyer/${buyer_id}/truck/${id}`);
   }
 
-  update(buyer_id, id, o) {
+  update(buyer_id, id, o: FormData) {
     return this.http.put(`${this.baseUrl}/api/buyer/${buyer_id}/truck/${id}`, o);
   }
 
