@@ -77,7 +77,7 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
   load() {
     this.isLoading = true;
     let q1 = this.lookupService.listMiningCompany();
-    let q2 = this.lookupService.listMaterial();
+    let q2 = this.lookupService.listMaterial(this.f.mining_company_id.value);
     let q3 = this.lookupService.listTruck(this.buyer_id);
     let q4 = this.lookupService.listDriver(this.buyer_id);
     let q5 = this.lookupService.listCountry();

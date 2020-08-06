@@ -76,7 +76,7 @@ export class PurchaseOrderCreateComponent extends GeneralForm implements OnInit 
   load() {
     this.isLoading = true;
     let q1 = this.lookupService.listBuyer();
-    let q2 = this.lookupService.listMaterial();
+    let q2 = this.lookupService.listMaterial(this.mining_company_id);
     let q3 = this.lookupService.listCountry();
     forkJoin([q1, q2, q3]).subscribe((res: any[]) => {
       this.buyerList = res[0];

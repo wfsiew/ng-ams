@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import { DeliveryOrderListingComponent } from './delivery-order-listing/delivery-order-listing.component';
+import { DeliveryOrderCreateComponent } from './delivery-order-create/delivery-order-create.component';
 import { PermitDetailComponent } from './permit-detail/permit-detail.component';
 import { BuyerListingComponent } from 'src/app/setup/buyer/buyer-listing/buyer-listing.component';
 import { BuyerCreateComponent } from 'src/app/setup/buyer/buyer-create/buyer-create.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   {
     path: 'delivery-order',
     children: [
-      { path: 'list', component: DeliveryOrderListingComponent }
+      { path: 'list', component: DeliveryOrderListingComponent },
+      { path: 'create', component: DeliveryOrderCreateComponent }
     ]
   },
   { path: 'permit/:id', component: PermitDetailComponent },

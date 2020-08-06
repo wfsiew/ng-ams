@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,8 +23,10 @@ export class LookupService {
     return this.http.get(`${this.baseUrl}/api/lookup/buyer/${buyer_id}/drivers`);
   }
 
-  listMaterial() {
-    return this.http.get(`${this.baseUrl}/api/lookup/materials`);
+  listMaterial(mining_company_id) {
+    let prm: HttpParams = new HttpParams()
+      .set('mining_company_id', mining_company_id);
+    return this.http.get(`${this.baseUrl}/api/lookup/materials`, { params: prm });
   }
 
   listMiningCompany() {
