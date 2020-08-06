@@ -26,7 +26,8 @@
               name="do_status"></ng-select>
           </div>
           <div class="col-sm-2 col-12 p-1 text-right">
-            <button class="btn btn-primary" (click)="onApplyFilter()">Apply</button>
+            <button class="btn btn-primary mr-2" (click)="onApplyFilter()">Apply</button>
+            <button type="button" class="btn btn-primary" (click)="goto('create')"><i class="fas fa-plus"></i> Issue DO</button>
           </div>
         </div>
       </div>
@@ -48,23 +49,19 @@
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'Material'" [sort]="'purchase_order_detail__material__name'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'Material'" [sort]="'material__name'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'Truck'" [sort]="'purchase_order_detail__truck__registration_num'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'Truck'" [sort]="'truck__registration_num'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'Driver'" [sort]="'purchase_order_detail__driver__name'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'Driver'" [sort]="'driver__name'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'I/C No.'" [sort]="'purchase_order_detail__driver__id_num'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
-                </th>
-                <th>
-                  <app-sort-column [name]="'Weight (tons)'" [sort]="'purchase_order_detail__weight'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'I/C No.'" [sort]="'driver__id_num'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>Status</th>
@@ -83,26 +80,18 @@
               <tr *ngFor="let o of list">
                 <td>{{ o.do_num }}</td>
                 <td>{{ o.created_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
-                <td>{{ o.purchase_order_detail.material.name }}</td>
-                <td>{{ o.purchase_order_detail.truck.registration_num }}</td>
-                <td>{{ o.purchase_order_detail.driver.name }}</td>
-                <td>{{ o.purchase_order_detail.driver.id_num }}</td>
-                <td>
-                  <ng-container *ngIf="!o.checkout_date">
-                    {{ o.purchase_order_detail.weight }}
-                  </ng-container>
-                  <ng-container *ngIf="o.checkout_date">
-                    {{ o.actual_weight }}
-                  </ng-container>
-                </td>
+                <td>{{ o.material.name }}</td>
+                <td>{{ o.truck.registration_num }}</td>
+                <td>{{ o.driver.name }}</td>
+                <td>{{ o.driver.id_num }}</td>
                 <td>{{ getDOStatus(o) }}</td>
                 <td>{{ o.checkin_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td>{{ o.checkout_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td class="text-nowrap">
                   <button class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date">Check In</button>
                   <button class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Check Out</button>
-                  <button class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button>
-                  <button class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
+                  <!-- <button class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button> -->
+                  <!-- <button class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button> -->
                 </td>
               </tr>
             </tbody>
