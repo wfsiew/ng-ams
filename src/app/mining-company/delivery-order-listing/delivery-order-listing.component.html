@@ -80,7 +80,7 @@
               <tr *ngFor="let o of list">
                 <td>{{ o.do_num }}</td>
                 <td>{{ o.created_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
-                <td>{{ o.material.name }}</td>
+                <td>{{ o.material.name }} ({{ o.material.material_type }}) - {{ o.material.grade }}</td>
                 <td>{{ o.truck.registration_num }}</td>
                 <td>{{ o.driver.name }}</td>
                 <td>{{ o.driver.id_num }}</td>
@@ -88,10 +88,11 @@
                 <td>{{ o.checkin_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td>{{ o.checkout_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td class="text-nowrap">
-                  <button class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date">Check In</button>
-                  <button class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Check Out</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)"><i class="fas fa-pencil-alt"></i></button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date">Check In</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Check Out</button>
                   <!-- <button class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button> -->
-                  <!-- <button class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button> -->
+                  <button type="button" class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
                 </td>
               </tr>
             </tbody>

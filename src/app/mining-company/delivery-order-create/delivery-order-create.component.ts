@@ -79,23 +79,42 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
   setForm() {
     const o = this.data;
     this.mform.patchValue({
-      // name: o.name,
-      // registration_num: o.registration_num,
-      // contact_no: o.contact_no,
-      // email: o.email,
-      // fax_no: o.fax_no,
-      // addr_line_1: o.addr_line_1,
-      // addr_line_2: o.addr_line_2,
-      // addr_line_3: o.addr_line_3,
-      // postcode: o.postcode,
-      // city: o.city,
-      // country_id: o.country.id
+      buyer_id: o.buyer.id,
+      material_id: o.material.id,
+      truck_id: o.truck.id,
+      driver_id: o.driver.id,
+      recv_name: o.recv_name,
+      recv_addr_line_1: o.recv_addr_line_1,
+      recv_addr_line_2: o.recv_addr_line_2,
+      recv_addr_line_3: o.recv_addr_line_3,
+      recv_postcode: o.recv_postcode,
+      recv_city: o.recv_city,
+      recv_country_id: o.recv_country
     });
 
-    // this.lookupService.listStates(o.country.id).subscribe((res: any) => {
-    //   this.stateList = res;
-    //   this.mform.patchValue({ state_id: o.state.id });
-    // });
+    let q1 = this.lookupService.listTruck(o.buyer.id);
+    let q2 = this.lookupService.listDriver(o.buyer.id);
+    let q3 = this.lookupService.listStates(o.recv_country);
+    forkJoin([q1, q2, q3]).subscribe((res: any[]) => {
+      this.truckList = res[0];
+      this.driverList = res[1];
+      this.stateList = res[2];
+
+      this.driverList = res[1].map((k) => {
+        k.label = `${k.name} - ${k.id_num}`;
+        return k;
+      });
+
+      this.mform.patchValue({
+        truck_id: o.truck.id,
+        driver_id: o.driver.id,
+        recv_state_id: o.recv_state
+      });
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
+    });
   }
 
   load() {
@@ -117,8 +136,6 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       this.onChangeReceiverCountry(this.countryList[0]);
       this.loadDetails();
     }, (error) => {
-
-    }, () => {
       this.isLoading = false;
     });
   }
@@ -129,14 +146,12 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       return;
     }
 
-    // this.buyerService.edit(this.id).subscribe((res: any) => {
-    //   this.data = res;
-    //   this.setForm();
-    // }, (error) => {
-
-    // }, () => {
-    //   this.isLoading = false;
-    // });
+    this.deliveryOrderService.edit(this.id).subscribe((res: any) => {
+      this.data = res;
+      this.setForm();
+    }, (error) => {
+      this.isLoading = false;
+    });
   }
 
   onBack() {
@@ -174,9 +189,9 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
     }
 
     else {
-      // this.deliveryOrderService.update(this.data.id, o).subscribe((res: any) => {
-      //   this.toastr.success('Buyer successfully updated');
-      // });
+      this.deliveryOrderService.update(this.data.id, o).subscribe((res: any) => {
+        this.toastr.success('Delivery Order successfully updated');
+      });
     }
   }
 
@@ -202,7 +217,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
   onChangeReceiverCountry(event) {
     this.lookupService.listStates(event.id).subscribe((res: any) => {
       this.stateList = res;
-      this.mform.patchValue({ state_id: null });
+      this.mform.patchValue({ recv_state_id: null });
     });
   }
 }

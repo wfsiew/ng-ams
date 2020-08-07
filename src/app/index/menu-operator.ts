@@ -1,7 +1,9 @@
 export const MenuOperator = {
 
   delivery_order_list: [
-    'delivery-order/list'
+    'delivery-order/list',
+    'delivery-order/create',
+    'delivery-order/edit'
   ]
 };
 

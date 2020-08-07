@@ -37,7 +37,7 @@
             <tr>
               <td class="w-min">NAMA:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.purchase_order.issue_to.name | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.issue_from.name | uppercase }}</div>
               </td>
             </tr>
           </tbody>
@@ -51,12 +51,12 @@
             <tr>
               <td class="w-min">ALAMAT PREMIS:</td>
               <td>
-                <div class="border-bottom border-dark">{{ issueToAddress1 | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ issueFromAddress1 | uppercase }}</div>
               </td>
             </tr>
             <tr>
               <td colspan="2">
-                <div class="border-bottom border-dark">{{ issueToAddress2 | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ issueFromAddress2 | uppercase }}</div>
               </td>
             </tr>
           </tbody>
@@ -70,11 +70,11 @@
             <tr>
               <td class="w-min">NO. LESEN MINERAL/MEMPROSES:</td>
               <td style="width: 200px">
-                <div class="border-bottom border-dark">{{ data.purchase_order.issue_to.mining_license_num }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.issue_from.mining_license_num }}</div>
               </td>
               <td class="w-min">TARIKH LUPUT LESEN:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.purchase_order.issue_to.mining_license_expiry_date | date:'d MMM yyyy' | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.issue_from.mining_license_expiry_date | date:'d MMM yyyy' | uppercase }}</div>
               </td>
             </tr>
           </tbody>
@@ -101,11 +101,11 @@
             <tr>
               <td class="w-min">NAMA PEMANDU:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.purchase_order_detail.driver.name | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.driver.name | uppercase }}</div>
               </td>
               <td class="w-min">NO. K.P.:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.purchase_order_detail.driver.id_num | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.driver.id_num | uppercase }}</div>
               </td>
             </tr>
           </tbody>
@@ -119,11 +119,11 @@
             <tr>
               <td class="w-min">NO. KENDERAAN:</td>
               <td style="width: 180px">
-                <div class="border-bottom border-dark">{{ data.purchase_order_detail.truck.registration_num }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.truck.registration_num }}</div>
               </td>
               <td class="w-min">DESTINASI:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.purchase_order_detail.recv_city | uppercase }} - {{ data.purchase_order_detail.recv_state.name | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.recv_city | uppercase }} - {{ data.do_master.recv_state.name | uppercase }}</div>
               </td>
             </tr>
           </tbody>
@@ -137,11 +137,11 @@
             <tr>
               <td class="w-min">JENIS MINERAL:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.purchase_order_detail.material.name | uppercase }}, {{ data.purchase_order_detail.material.material_type | uppercase }}, {{ data.purchase_order_detail.material.grade | uppercase }}</div>
+                <div class="border-bottom border-dark">{{ data.do_master.material.name | uppercase }}, {{ data.do_master.material.material_type | uppercase }}, {{ data.do_master.material.grade | uppercase }}</div>
               </td>
               <td class="w-min">BERAT:</td>
               <td>
-                <div class="border-bottom border-dark">{{ data.delivery_order.actual_weight | number }} tons</div>
+                <div class="border-bottom border-dark">{{ data.do_master.actual_weight | number }} tons</div>
               </td>
             </tr>
           </tbody>
@@ -167,7 +167,7 @@
           <tr>
             <td class="w-min">NAMA DAN ALAMAT PENERIMA:</td>
             <td>
-              <div class="border-bottom border-dark">{{ data.purchase_order_detail.recv_name | uppercase }}</div>
+              <div class="border-bottom border-dark">{{ data.do_master.recv_name | uppercase }}</div>
             </td>
           </tr>
           <tr>
@@ -184,7 +184,7 @@
           <tr>
             <td class="w-min">TARIKH TERIMA:</td>
             <td>
-              <div class="border-bottom border-dark">&nbsp;{{ data.delivery_order.accepted_date | date:'d MMM yyyy' | uppercase }}</div>
+              <div class="border-bottom border-dark">&nbsp;</div>
             </td>
             <td class="w-min">TANDATANGAN:</td>
             <td>

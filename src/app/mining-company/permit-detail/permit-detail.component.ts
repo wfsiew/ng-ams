@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import _ from 'lodash';
 
 import { PermitService } from 'src/app/mining-company/services/permit.service';
-import { retryWhen } from 'rxjs/operators';
 
 @Component({
   selector: 'app-permit-detail',
@@ -50,10 +49,10 @@ export class PermitDetailComponent implements OnInit {
     this.router.navigate(['/ams/mining-company/delivery-order/list']);
   }
 
-  get issueToAddress1() {
+  get issueFromAddress1() {
     let s = '';
-    if (this.data.purchase_order && this.data.purchase_order.issue_to) {
-      const o = this.data.purchase_order.issue_to;
+    if (this.data.do_master && this.data.do_master.issue_from) {
+      const o = this.data.do_master.issue_from;
       let ls = [o.addr_line_1];
       if (o.addr_line_2) {
         ls.push(o.addr_line_2);
@@ -69,10 +68,10 @@ export class PermitDetailComponent implements OnInit {
     return s;
   }
 
-  get issueToAddress2() {
+  get issueFromAddress2() {
     let s = '';
-    if (this.data.purchase_order && this.data.purchase_order.issue_to) {
-      const o = this.data.purchase_order.issue_to;
+    if (this.data.do_master && this.data.do_master.issue_from) {
+      const o = this.data.do_master.issue_from;
       s = ` ${o.postcode} ${o.city} ${o.state.name} ${o.country.name}`;
     }
 
@@ -81,8 +80,8 @@ export class PermitDetailComponent implements OnInit {
 
   get destinationAddress() {
     let s = '';
-    if (this.data.purchase_order_detail) {
-      const o = this.data.purchase_order_detail;
+    if (this.data.do_master) {
+      const o = this.data.do_master;
       let ls = [o.recv_addr_line_1];
       if (o.recv_addr_line_2) {
         ls.push(o.recv_addr_line_2);

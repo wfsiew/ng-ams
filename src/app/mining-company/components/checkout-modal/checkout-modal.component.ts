@@ -12,7 +12,7 @@ import { GeneralForm } from 'src/app/shared/classes/general.form';
 export class CheckoutModalComponent extends GeneralForm implements OnInit {
 
   title: string;
-  actual_weight: string;
+  weight: string;
 
   public onClose: Subject<any>;
 
@@ -25,12 +25,12 @@ export class CheckoutModalComponent extends GeneralForm implements OnInit {
 
   ngOnInit() {
     this.onClose = new Subject();
-    this.mform.patchValue({ actual_weight: this.actual_weight });
+    this.mform.patchValue({ weight: this.weight });
   }
 
   createForm() {
     this.mform = this.fb.group({
-      actual_weight: ['', [Validators.required]]
+      weight: ['', [Validators.required]]
     });
   }
 
@@ -41,7 +41,7 @@ export class CheckoutModalComponent extends GeneralForm implements OnInit {
     }
 
     const f = this.mform.value;
-    this.onClose.next({ result: true, actual_weight: f.actual_weight });
+    this.onClose.next({ result: true, weight: f.weight });
     this.bsModalRef.hide();
   }
 

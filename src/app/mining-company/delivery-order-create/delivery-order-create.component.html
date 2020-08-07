@@ -2,13 +2,13 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-12">
-        <h1 class="m-0 text-dark">Issue Purchase Order</h1>
+        <h1 class="m-0 text-dark">Issue DO</h1>
       </div>
     </div>
   </div>
 </section>
 <section class="content">
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="!isLoading">
     <form class="form-horizontal" [formGroup]="mform" (ngSubmit)="onSubmit()">
       <div class="card">
         <div class="card-body">

@@ -162,28 +162,42 @@ export class DeliveryOrderListingComponent implements OnInit {
     this.router.navigate([`/ams/mining-company/delivery-order/${s}`]);
   }
 
-  onCheckIn(o) {
-    this.isLoading = true;
-    this.deliveryOrderService.updateTime({ id: o.id, checkin: 1 }).subscribe((res: any) => {
-      this.toastr.success(`DO #${o.do_num} successfully checked in`);
-      this.load();
-    }, (error) => {
+  onEdit(o) {
+    let s = `edit/${o.id}`;
+    this.goto(s);
+  }
 
-    }, () => {
-      this.isLoading = false;
+  onCheckIn(o) {
+    const initialState = {
+      title: 'Check In DO',
+      weight: o.checkin_weight
+    };
+    this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
+    this.bsModalRef.content.onClose.subscribe(res => {
+      if (res.result === true) {
+        this.isLoading = true;
+        this.deliveryOrderService.updateTime({ id: o.id, checkin: 1, weight: res.weight }).subscribe((res: any) => {
+          this.toastr.success(`DO #${o.do_num} successfully checked in`);
+          this.load();
+        }, (error) => {
+
+        }, () => {
+          this.isLoading = false;
+        });
+      }
     });
   }
 
   onCheckOut(o) {
     const initialState = {
       title: 'Check Out DO',
-      actual_weight: o.actual_weight
+      weight: o.checkout_weight
     };
     this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.isLoading = true;
-        this.deliveryOrderService.updateTime({ id: o.id, checkin: 0, actual_weight: res.actual_weight }).subscribe((res: any) => {
+        this.deliveryOrderService.updateTime({ id: o.id, checkin: 0, weight: res.weight }).subscribe((res: any) => {
           this.toastr.success(`DO #${o.do_num} successfully checked out`);
           this.load();
         }, (error) => {
