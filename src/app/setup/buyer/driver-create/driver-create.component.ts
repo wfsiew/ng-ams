@@ -147,9 +147,7 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
       this.driverService.create(this.buyer_id, formData).subscribe((res: any) => {
         this.toastr.success('New Driver successfully created');
         this.mform.reset();
-        this.imgURL = null;
-        this.file = null;
-        this.uploader.nativeElement.value = '';
+        this.onRemoveFile(this.uploader.nativeElement);
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
       });
     }

@@ -147,9 +147,7 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
       this.truckService.create(this.buyer_id, formData).subscribe((res: any) => {
         this.toastr.success('New Truck successfully created');
         this.mform.reset();
-        this.imgURL = null;
-        this.file = null;
-        this.uploader.nativeElement.value = '';
+        this.onRemoveFile(this.uploader.nativeElement);
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
       });
     }
