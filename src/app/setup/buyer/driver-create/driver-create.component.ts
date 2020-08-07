@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -24,6 +24,7 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
   imgURL: any;
   imgId = 0;
   isEdit = false;
+  @ViewChild('uploader', { static: true }) uploader: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -146,6 +147,9 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
       this.driverService.create(this.buyer_id, formData).subscribe((res: any) => {
         this.toastr.success('New Driver successfully created');
         this.mform.reset();
+        this.imgURL = null;
+        this.file = null;
+        this.uploader.nativeElement.value = '';
         // this.router.navigate([`/ams/setup/country/edit/${res.id}`]);
       });
     }
