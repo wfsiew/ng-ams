@@ -23,7 +23,8 @@ const routes: Routes = [
     children: [
       { path: 'list', component: DeliveryOrderListingComponent },
       { path: 'create', component: DeliveryOrderCreateComponent },
-      { path: 'edit/:id', component: DeliveryOrderCreateComponent }
+      { path: 'edit/:id', component: DeliveryOrderCreateComponent },
+      { path: 'detail/:id/:view', component: DeliveryOrderCreateComponent }
     ]
   },
   { path: 'permit/:id', component: PermitDetailComponent },

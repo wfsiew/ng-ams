@@ -24,6 +24,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
   id: string;
   data: any = { id: '' };
   isEdit = false;
+  isView = false;
   mining_company_id?: number;
   buyerList = [];
   materialList = [];
@@ -51,6 +52,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
+      this.isView = params.get('view') === '0' ? true : false;
       if (!_.isNull(this.id)) {
         this.isEdit = true;
       }
@@ -89,12 +91,12 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       recv_addr_line_3: o.recv_addr_line_3,
       recv_postcode: o.recv_postcode,
       recv_city: o.recv_city,
-      recv_country_id: o.recv_country
+      recv_country_id: o.recv_country.id
     });
 
     let q1 = this.lookupService.listTruck(o.buyer.id);
     let q2 = this.lookupService.listDriver(o.buyer.id);
-    let q3 = this.lookupService.listStates(o.recv_country);
+    let q3 = this.lookupService.listStates(o.recv_country.id);
     forkJoin([q1, q2, q3]).subscribe((res: any[]) => {
       this.truckList = res[0];
       this.driverList = res[1];
@@ -108,7 +110,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       this.mform.patchValue({
         truck_id: o.truck.id,
         driver_id: o.driver.id,
-        recv_state_id: o.recv_state
+        recv_state_id: o.recv_state.id
       });
     }, (error) => {
 
@@ -219,5 +221,59 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       this.stateList = res;
       this.mform.patchValue({ recv_state_id: null });
     });
+  }
+
+  get buyer() {
+    let buyer = this.data.buyer;
+    if (buyer) {
+      return buyer.name;
+    }
+    
+    return '';
+  }
+
+  get material() {
+    let material = this.data.material;
+    if (material) {
+      return `${material.name} (${material.material_type}) - ${material.grade}`
+    }
+
+    return '';
+  }
+
+  get truck() {
+    let truck = this.data.truck;
+    if (truck) {
+      return truck.registration_num;
+    }
+
+    return '';
+  }
+
+  get driver() {
+    let driver = this.data.driver;
+    if (driver) {
+      return `${driver.name} - ${driver.id_num}`;
+    }
+
+    return '';
+  }
+
+  get recvState() {
+    let state = this.data.recv_state;
+    if (state) {
+      return state.name;
+    }
+
+    return '';
+  }
+
+  get recvCountry() {
+    let country = this.data.recv_country;
+    if (country) {
+      return country.name;
+    }
+
+    return '';
   }
 }

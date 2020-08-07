@@ -167,6 +167,11 @@ export class DeliveryOrderListingComponent implements OnInit {
     this.goto(s);
   }
 
+  onView(o) {
+    let s = `detail/${o.id}/0`;
+    this.goto(s);
+  }
+
   onCheckIn(o) {
     const initialState = {
       title: 'Check In DO',
