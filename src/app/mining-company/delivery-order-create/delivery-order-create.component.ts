@@ -24,7 +24,6 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
   id: string;
   data: any = { id: '' };
   isEdit = false;
-  isView = false;
   mining_company_id?: number;
   buyerList = [];
   materialList = [];
@@ -52,7 +51,6 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
-      this.isView = params.get('view') === '0' ? true : false;
       if (!_.isNull(this.id)) {
         this.isEdit = true;
       }
@@ -221,59 +219,5 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       this.stateList = res;
       this.mform.patchValue({ recv_state_id: null });
     });
-  }
-
-  get buyer() {
-    let buyer = this.data.buyer;
-    if (buyer) {
-      return buyer.name;
-    }
-    
-    return '';
-  }
-
-  get material() {
-    let material = this.data.material;
-    if (material) {
-      return `${material.name} (${material.material_type}) - ${material.grade}`
-    }
-
-    return '';
-  }
-
-  get truck() {
-    let truck = this.data.truck;
-    if (truck) {
-      return truck.registration_num;
-    }
-
-    return '';
-  }
-
-  get driver() {
-    let driver = this.data.driver;
-    if (driver) {
-      return `${driver.name} - ${driver.id_num}`;
-    }
-
-    return '';
-  }
-
-  get recvState() {
-    let state = this.data.recv_state;
-    if (state) {
-      return state.name;
-    }
-
-    return '';
-  }
-
-  get recvCountry() {
-    let country = this.data.recv_country;
-    if (country) {
-      return country.name;
-    }
-
-    return '';
   }
 }

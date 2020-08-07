@@ -168,7 +168,7 @@ export class DeliveryOrderListingComponent implements OnInit {
   }
 
   onView(o) {
-    let s = `detail/${o.id}/0`;
+    let s = `detail/${o.id}`;
     this.goto(s);
   }
 

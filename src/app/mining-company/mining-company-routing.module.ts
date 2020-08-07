@@ -11,6 +11,7 @@ import { TruckListingComponent } from 'src/app/setup/buyer/truck-listing/truck-l
 import { TruckCreateComponent } from 'src/app/setup/buyer/truck-create/truck-create.component';
 import { DriverListingComponent } from 'src/app/setup/buyer/driver-listing/driver-listing.component';
 import { DriverCreateComponent } from 'src/app/setup/buyer/driver-create/driver-create.component';
+import { DeliveryOrderDetailComponent } from './delivery-order-detail/delivery-order-detail.component';
 import { UserListingComponent as BuyerUserListingComponent } from 'src/app/setup/buyer/user-listing/user-listing.component';
 import { PurchaseOrderListingComponent } from './purchase-order-listing/purchase-order-listing.component';
 import { PurchaseOrderCreateComponent } from './purchase-order-create/purchase-order-create.component';
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: 'list', component: DeliveryOrderListingComponent },
       { path: 'create', component: DeliveryOrderCreateComponent },
       { path: 'edit/:id', component: DeliveryOrderCreateComponent },
-      { path: 'detail/:id/:view', component: DeliveryOrderCreateComponent }
+      { path: 'detail/:id', component: DeliveryOrderDetailComponent }
     ]
   },
   { path: 'permit/:id', component: PermitDetailComponent },

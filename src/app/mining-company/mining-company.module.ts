@@ -13,6 +13,7 @@ import { SharedComponentModules } from '../shared/components/shared-components.m
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import { DeliveryOrderListingComponent } from './delivery-order-listing/delivery-order-listing.component';
 import { DeliveryOrderCreateComponent } from './delivery-order-create/delivery-order-create.component';
+import { DeliveryOrderDetailComponent } from './delivery-order-detail/delivery-order-detail.component';
 import { PermitDetailComponent } from './permit-detail/permit-detail.component';
 import { PurchaseOrderListingComponent } from './purchase-order-listing/purchase-order-listing.component';
 import { PurchaseOrderCreateComponent } from './purchase-order-create/purchase-order-create.component';
@@ -35,6 +36,7 @@ import { PurchaseOrderService } from './services/purchase-order.service';
     CompanyDetailsComponent,
     DeliveryOrderListingComponent,
     DeliveryOrderCreateComponent,
+    DeliveryOrderDetailComponent,
     PermitDetailComponent,
     CheckoutModalComponent,
     PurchaseOrderListingComponent,

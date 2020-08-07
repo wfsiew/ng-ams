@@ -15,85 +15,58 @@
           <div class="form-group row">
             <label class="col-sm-1 col-form-label">Buyer&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-11">
-              <ng-container *ngIf="isView">
-                <input type="text" class="form-control" readonly [value]="buyer">
-              </ng-container>
-              <ng-container *ngIf="!isView">
-                <ng-select 
-                  [items]="buyerList" 
-                  bindLabel="name" 
-                  bindValue="id" 
-                  placeholder="Please select"
-                  (change)="onChangeBuyer($event)"
-                  formControlName="buyer_id" 
-                  name="buyer_id"></ng-select>
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('buyer_id') && f.buyer_id.hasError('required')">
-                  Buyer is required
-                </small>
-              </ng-container>
+              <ng-select 
+                [items]="buyerList" 
+                bindLabel="name" 
+                bindValue="id" 
+                placeholder="Please select"
+                (change)="onChangeBuyer($event)"
+                formControlName="buyer_id" 
+                name="buyer_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('buyer_id') && f.buyer_id.hasError('required')">
+                Buyer is required
+              </small>
             </div>
-          </div>
-          <div class="form-group row" *ngIf="isView">
-            <label class="col-sm-1 col-form-label">Weight</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" readonly [value]="data.actual_weight">
-            </div>
-            <label class="col-sm-1 col-form-label">tons</label>
           </div>
           <div class="form-group row">
             <label class="col-sm-1 col-form-label">Material&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-4">
-              <ng-container *ngIf="isView">
-                <input type="text" class="form-control" readonly [value]="material">
-              </ng-container>
-              <ng-container *ngIf="!isView">
-                <ng-select 
-                  [items]="materialList" 
-                  bindLabel="label" 
-                  bindValue="id" 
-                  placeholder="Please select"
-                  formControlName="material_id" 
-                  name="material_id"></ng-select>
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('material_id') && f.material_id.hasError('required')">
-                  Material is required
-                </small>
-              </ng-container>
+              <ng-select 
+                [items]="materialList" 
+                bindLabel="label" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="material_id" 
+                name="material_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('material_id') && f.material_id.hasError('required')">
+                Material is required
+              </small>
             </div>
             <label class="col-sm-1 col-form-label">Truck&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-2">
-              <ng-container *ngIf="isView">
-                <input type="text" class="form-control" readonly [value]="truck">
-              </ng-container>
-              <ng-container *ngIf="!isView">
-                <ng-select 
-                  [items]="truckList" 
-                  bindLabel="registration_num" 
-                  bindValue="id" 
-                  placeholder="Please select"
-                  formControlName="truck_id" 
-                  name="truck_id"></ng-select>
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('truck_id') && f.truck_id.hasError('required')">
-                  Truck is required
-                </small>
-              </ng-container>
+              <ng-select 
+                [items]="truckList" 
+                bindLabel="registration_num" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="truck_id" 
+                name="truck_id"></ng-select>
+              <small class="badge badge-danger" 
+                *ngIf="invalid('truck_id') && f.truck_id.hasError('required')">
+                Truck is required
+              </small>
             </div>
             <label class="col-sm-1 col-form-label">Driver</label>
             <div class="col-sm-3">
-              <ng-container *ngIf="isView">
-                <input type="text" class="form-control" readonly [value]="driver">
-              </ng-container>
-              <ng-container *ngIf="!isView">
-                <ng-select 
-                  [items]="driverList" 
-                  bindLabel="label" 
-                  bindValue="id" 
-                  placeholder="Please select"
-                  formControlName="driver_id" 
-                  name="driver_id"></ng-select>
-              </ng-container>
+              <ng-select 
+                [items]="driverList" 
+                bindLabel="label" 
+                bindValue="id" 
+                placeholder="Please select"
+                formControlName="driver_id" 
+                name="driver_id"></ng-select>
             </div>
           </div>
         </div>
@@ -107,8 +80,7 @@
               <label class="col-sm-1 col-form-label">Name&nbsp;<span class="text-danger">*</span></label>
               <div class="col-sm-11">
                 <input type="text" class="form-control" placeholder="Name" name="recv_name" formControlName="recv_name"
-                  [ngClass]="{'is-invalid': invalid('recv_name')}"
-                  [attr.readonly]="isView ? 1 : null">
+                  [ngClass]="{'is-invalid': invalid('recv_name')}">
                 <small class="badge badge-danger" 
                   *ngIf="invalid('recv_name') && f.recv_name.hasError('required')">
                   Name is required
@@ -119,8 +91,7 @@
               <label class="col-sm-1 col-form-label">Address&nbsp;<span class="text-danger">*</span></label>
               <div class="col-sm-11">
                 <input type="text" class="form-control" placeholder="Address" name="recv_addr_line_1" formControlName="recv_addr_line_1"
-                  [ngClass]="{'is-invalid': invalid('recv_addr_line_1')}"
-                  [attr.readonly]="isView ? 1 : null">
+                  [ngClass]="{'is-invalid': invalid('recv_addr_line_1')}">
                 <small class="badge badge-danger" 
                   *ngIf="invalid('recv_addr_line_1') && f.recv_addr_line_1.hasError('required')">
                   Address is required
@@ -129,20 +100,19 @@
             </div>
             <div class="form-group row">
               <div class="col-sm-11 offset-sm-1">
-                <input type="text" class="form-control" placeholder="Address 2" name="recv_addr_line_2" formControlName="recv_addr_line_2" [attr.readonly]="isView ? 1 : null">
+                <input type="text" class="form-control" placeholder="Address 2" name="recv_addr_line_2" formControlName="recv_addr_line_2">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-11 offset-sm-1">
-                <input type="text" class="form-control" placeholder="Address 3" name="recv_addr_line_3" formControlName="recv_addr_line_3" [attr.readonly]="isView ? 1 : null">
+                <input type="text" class="form-control" placeholder="Address 3" name="recv_addr_line_3" formControlName="recv_addr_line_3">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-1 col-form-label">Postcode&nbsp;<span class="text-danger">*</span></label>
               <div class="col-sm-3">
                 <input type="text" class="form-control" placeholder="Postcode" name="recv_postcode" formControlName="recv_postcode"
-                  [ngClass]="{'is-invalid': invalid('recv_postcode')}"
-                  [attr.readonly]="isView ? 1 : null">
+                  [ngClass]="{'is-invalid': invalid('recv_postcode')}">
                 <small class="badge badge-danger" 
                   *ngIf="invalid('recv_postcode') && f.recv_postcode.hasError('required')">
                   Postcode is required
@@ -151,8 +121,7 @@
               <label class="col-sm-1 col-form-label">City&nbsp;<span class="text-danger">*</span></label>
               <div class="col-sm-7">
                 <input type="text" class="form-control" placeholder="City" name="recv_city" formControlName="recv_city"
-                  [ngClass]="{'is-invalid': invalid('recv_city')}"
-                  [attr.readonly]="isView ? 1 : null">
+                  [ngClass]="{'is-invalid': invalid('recv_city')}">
                 <small class="badge badge-danger" 
                   *ngIf="invalid('recv_city') && f.recv_city.hasError('required')">
                   City is required
@@ -162,42 +131,32 @@
             <div class="form-group row">
               <label class="col-sm-1 col-form-label">State&nbsp;<span class="text-danger">*</span></label>
               <div class="col-sm-3">
-                <ng-container *ngIf="isView">
-                  <input type="text" class="form-control" readonly [value]="recvState">
-                </ng-container>
-                <ng-container *ngIf="!isView">
-                  <ng-select 
-                    [items]="stateList" 
-                    bindLabel="name" 
-                    bindValue="id" 
-                    placeholder="Please select"
-                    formControlName="recv_state_id" 
-                    name="recv_state_id"></ng-select>
-                  <small class="badge badge-danger" 
-                    *ngIf="invalid('recv_state_id') && f.recv_state_id.hasError('required')">
-                    State is required
-                  </small>
-                </ng-container>
+                <ng-select 
+                  [items]="stateList" 
+                  bindLabel="name" 
+                  bindValue="id" 
+                  placeholder="Please select"
+                  formControlName="recv_state_id" 
+                  name="recv_state_id"></ng-select>
+                <small class="badge badge-danger" 
+                  *ngIf="invalid('recv_state_id') && f.recv_state_id.hasError('required')">
+                  State is required
+                </small>
               </div>
               <label class="col-sm-1 col-form-label">Country&nbsp;<span class="text-danger">*</span></label>
               <div class="col-sm-7">
-                <ng-container *ngIf="isView">
-                  <input type="text" class="form-control" readonly [value]="recvCountry">
-                </ng-container>
-                <ng-container *ngIf="!isView">
-                  <ng-select
-                    [items]="countryList" 
-                    bindLabel="name" 
-                    bindValue="id" 
-                    placeholder="Please select"
-                    (change)="onChangeReceiverCountry($event)"
-                    name="recv_country_id"
-                    formControlName="recv_country_id"></ng-select>
-                  <small class="badge badge-danger" 
-                    *ngIf="invalid('recv_country_id') && f.recv_country_id.hasError('required')">
-                    Country is required
-                  </small>
-                </ng-container>
+                <ng-select
+                  [items]="countryList" 
+                  bindLabel="name" 
+                  bindValue="id" 
+                  placeholder="Please select"
+                  (change)="onChangeReceiverCountry($event)"
+                  name="recv_country_id"
+                  formControlName="recv_country_id"></ng-select>
+                <small class="badge badge-danger" 
+                  *ngIf="invalid('recv_country_id') && f.recv_country_id.hasError('required')">
+                  Country is required
+                </small>
               </div>
             </div>
           </fieldset>
@@ -205,7 +164,7 @@
         <div class="card-footer">
           <div class="col-12">
             <button type="button" class="btn btn-outline-dark mr-2" (click)="onBack()"><i class="fas fa-chevron-circle-left"></i> Back</button>
-            <button type="submit" class="btn btn-primary" *ngIf="!isView"><i class="fas fa-save"></i> Submit</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit</button>
           </div>
         </div>
       </div>
