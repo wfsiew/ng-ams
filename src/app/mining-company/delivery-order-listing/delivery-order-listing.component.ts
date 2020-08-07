@@ -27,7 +27,7 @@ export class DeliveryOrderListingComponent implements OnInit {
   pageSize = AppConstant.PAGE_SIZE;
   page = 1;
   search = '';
-  do_status = ['0'];
+  do_status = ['all'];
   isRoleMiningHQ = false;
   sort = 'created_date';
   sortDir = 'desc';
@@ -175,7 +175,8 @@ export class DeliveryOrderListingComponent implements OnInit {
   onCheckIn(o) {
     const initialState = {
       title: 'Check In DO',
-      weight: o.checkin_weight
+      weight: o.checkin_weight,
+      btnYesText: 'Check In'
     };
     this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
@@ -196,7 +197,8 @@ export class DeliveryOrderListingComponent implements OnInit {
   onCheckOut(o) {
     const initialState = {
       title: 'Check Out DO',
-      weight: o.checkout_weight
+      weight: o.checkout_weight,
+      btnYesText: 'Check Out'
     };
     this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {

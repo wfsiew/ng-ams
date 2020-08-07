@@ -13,6 +13,7 @@ export class CheckoutModalComponent extends GeneralForm implements OnInit {
 
   title: string;
   weight: string;
+  btnYesText: string;
 
   public onClose: Subject<any>;
 
