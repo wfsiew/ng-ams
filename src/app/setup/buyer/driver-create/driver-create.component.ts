@@ -24,7 +24,7 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
   imgURL: any;
   imgId = 0;
   isEdit = false;
-  @ViewChild('uploader', { static: true }) uploader: ElementRef;
+  @ViewChild('uploader', { static: false }) uploader: ElementRef;
 
   constructor(
     private fb: FormBuilder,
