@@ -66,7 +66,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       buyer_id: [null, [Validators.required]],
       material_id: [null, [Validators.required]],
       truck_id: [null, [Validators.required]],
-      driver_id: [null, [Validators.required]],
+      driver_id: [null],
       recv_name: ['', [Validators.required]],
       recv_addr_line_1: ['', [Validators.required]],
       recv_addr_line_2: [''],

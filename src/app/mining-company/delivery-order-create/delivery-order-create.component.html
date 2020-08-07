@@ -80,7 +80,7 @@
                 </small>
               </ng-container>
             </div>
-            <label class="col-sm-1 col-form-label">Driver&nbsp;<span class="text-danger">*</span></label>
+            <label class="col-sm-1 col-form-label">Driver</label>
             <div class="col-sm-3">
               <ng-container *ngIf="isView">
                 <input type="text" class="form-control" readonly [value]="driver">
@@ -93,10 +93,6 @@
                   placeholder="Please select"
                   formControlName="driver_id" 
                   name="driver_id"></ng-select>
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('driver_id') && f.driver_id.hasError('required')">
-                  Driver is required
-                </small>
               </ng-container>
             </div>
           </div>
