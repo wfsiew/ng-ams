@@ -13,8 +13,8 @@
       <div class="card">
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label">Buyer&nbsp;<span class="text-danger">*</span></label>
-            <div class="col-sm-11">
+            <label class="col-sm-2 col-form-label">Buyer&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-10">
               <ng-select 
                 [items]="buyerList" 
                 bindLabel="name" 
@@ -30,8 +30,25 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-1 col-form-label">Material&nbsp;<span class="text-danger">*</span></label>
-            <div class="col-sm-4">
+            <label class="col-sm-2 col-form-label">PO No.&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="PO No." name="po_num" formControlName="po_num"
+                [ngClass]="{'is-invalid': invalid('po_num')}">
+              <small class="badge badge-danger" 
+                *ngIf="invalid('po_num') && f.po_num.hasError('required')">
+                PO No. is required
+              </small>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Contract No.</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Contract No." name="contract_num" formControlName="contract_num">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Material&nbsp;<span class="text-danger">*</span></label>
+            <div class="col-sm-3">
               <ng-select 
                 [items]="materialList" 
                 bindLabel="label" 
@@ -72,100 +89,198 @@
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-body">
-          <fieldset>
-            <legend>Receiver Details</legend>
-            <div class="form-group row">
-              <label class="col-sm-1 col-form-label">Name&nbsp;<span class="text-danger">*</span></label>
-              <div class="col-sm-11">
-                <input type="text" class="form-control" placeholder="Name" name="recv_name" formControlName="recv_name"
-                  [ngClass]="{'is-invalid': invalid('recv_name')}">
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('recv_name') && f.recv_name.hasError('required')">
-                  Name is required
-                </small>
-              </div>
+      <div class="row">
+        <div class="col-sm-6 col-12">
+          <div class="card">
+            <div class="card-body">
+              <fieldset>
+                <legend>Pickup Location</legend>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Name&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Name" name="recv_name" formControlName="pickup_name"
+                      [ngClass]="{'is-invalid': invalid('pickup_name')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('pickup_name') && f.pickup_name.hasError('required')">
+                      Name is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Address&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Address" name="pickup_addr_line_1" formControlName="pickup_addr_line_1"
+                      [ngClass]="{'is-invalid': invalid('pickup_addr_line_1')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('pickup_addr_line_1') && f.pickup_addr_line_1.hasError('required')">
+                      Address is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10 offset-sm-2">
+                    <input type="text" class="form-control" placeholder="Address 2" name="pickup_addr_line_2" formControlName="pickup_addr_line_2">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10 offset-sm-2">
+                    <input type="text" class="form-control" placeholder="Address 3" name="pickup_addr_line_3" formControlName="pickup_addr_line_3">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Postcode&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Postcode" name="pickup_postcode" formControlName="pickup_postcode"
+                      [ngClass]="{'is-invalid': invalid('pickup_postcode')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('pickup_postcode') && f.pickup_postcode.hasError('required')">
+                      Postcode is required
+                    </small>
+                  </div>
+                  <label class="col-sm-2 col-form-label">City&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" placeholder="City" name="pickup_city" formControlName="pickup_city"
+                      [ngClass]="{'is-invalid': invalid('pickup_city')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('pickup_city') && f.pickup_city.hasError('required')">
+                      City is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">State&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <ng-select 
+                      [items]="stateList" 
+                      bindLabel="name" 
+                      bindValue="id" 
+                      placeholder="Please select"
+                      formControlName="pickup_state_id" 
+                      name="recv_state_id"></ng-select>
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('pickup_state_id') && f.pickup_state_id.hasError('required')">
+                      State is required
+                    </small>
+                  </div>
+                  <label class="col-sm-2 col-form-label">Country&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                    <ng-select
+                      [items]="countryList" 
+                      bindLabel="name" 
+                      bindValue="id" 
+                      placeholder="Please select"
+                      (change)="onChangeReceiverCountry($event)"
+                      name="pickup_country_id"
+                      formControlName="pickup_country_id"></ng-select>
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('pickup_country_id') && f.pickup_country_id.hasError('required')">
+                      Country is required
+                    </small>
+                  </div>
+                </div>
+              </fieldset>
             </div>
-            <div class="form-group row">
-              <label class="col-sm-1 col-form-label">Address&nbsp;<span class="text-danger">*</span></label>
-              <div class="col-sm-11">
-                <input type="text" class="form-control" placeholder="Address" name="recv_addr_line_1" formControlName="recv_addr_line_1"
-                  [ngClass]="{'is-invalid': invalid('recv_addr_line_1')}">
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('recv_addr_line_1') && f.recv_addr_line_1.hasError('required')">
-                  Address is required
-                </small>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-11 offset-sm-1">
-                <input type="text" class="form-control" placeholder="Address 2" name="recv_addr_line_2" formControlName="recv_addr_line_2">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-11 offset-sm-1">
-                <input type="text" class="form-control" placeholder="Address 3" name="recv_addr_line_3" formControlName="recv_addr_line_3">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-1 col-form-label">Postcode&nbsp;<span class="text-danger">*</span></label>
-              <div class="col-sm-3">
-                <input type="text" class="form-control" placeholder="Postcode" name="recv_postcode" formControlName="recv_postcode"
-                  [ngClass]="{'is-invalid': invalid('recv_postcode')}">
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('recv_postcode') && f.recv_postcode.hasError('required')">
-                  Postcode is required
-                </small>
-              </div>
-              <label class="col-sm-1 col-form-label">City&nbsp;<span class="text-danger">*</span></label>
-              <div class="col-sm-7">
-                <input type="text" class="form-control" placeholder="City" name="recv_city" formControlName="recv_city"
-                  [ngClass]="{'is-invalid': invalid('recv_city')}">
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('recv_city') && f.recv_city.hasError('required')">
-                  City is required
-                </small>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-1 col-form-label">State&nbsp;<span class="text-danger">*</span></label>
-              <div class="col-sm-3">
-                <ng-select 
-                  [items]="stateList" 
-                  bindLabel="name" 
-                  bindValue="id" 
-                  placeholder="Please select"
-                  formControlName="recv_state_id" 
-                  name="recv_state_id"></ng-select>
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('recv_state_id') && f.recv_state_id.hasError('required')">
-                  State is required
-                </small>
-              </div>
-              <label class="col-sm-1 col-form-label">Country&nbsp;<span class="text-danger">*</span></label>
-              <div class="col-sm-7">
-                <ng-select
-                  [items]="countryList" 
-                  bindLabel="name" 
-                  bindValue="id" 
-                  placeholder="Please select"
-                  (change)="onChangeReceiverCountry($event)"
-                  name="recv_country_id"
-                  formControlName="recv_country_id"></ng-select>
-                <small class="badge badge-danger" 
-                  *ngIf="invalid('recv_country_id') && f.recv_country_id.hasError('required')">
-                  Country is required
-                </small>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-        <div class="card-footer">
-          <div class="col-12">
-            <button type="button" class="btn btn-outline-dark mr-2" (click)="onBack()"><i class="fas fa-chevron-circle-left"></i> Back</button>
-            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit</button>
           </div>
+        </div>
+
+        <div class="col-sm-6 col-12">
+          <div class="card">
+            <div class="card-body">
+              <fieldset>
+                <legend>Receiver Details</legend>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Name&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Name" name="recv_name" formControlName="recv_name"
+                      [ngClass]="{'is-invalid': invalid('recv_name')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('recv_name') && f.recv_name.hasError('required')">
+                      Name is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Address&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Address" name="recv_addr_line_1" formControlName="recv_addr_line_1"
+                      [ngClass]="{'is-invalid': invalid('recv_addr_line_1')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('recv_addr_line_1') && f.recv_addr_line_1.hasError('required')">
+                      Address is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10 offset-sm-2">
+                    <input type="text" class="form-control" placeholder="Address 2" name="recv_addr_line_2" formControlName="recv_addr_line_2">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-10 offset-sm-2">
+                    <input type="text" class="form-control" placeholder="Address 3" name="recv_addr_line_3" formControlName="recv_addr_line_3">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Postcode&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Postcode" name="recv_postcode" formControlName="recv_postcode"
+                      [ngClass]="{'is-invalid': invalid('recv_postcode')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('recv_postcode') && f.recv_postcode.hasError('required')">
+                      Postcode is required
+                    </small>
+                  </div>
+                  <label class="col-sm-2 col-form-label">City&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" placeholder="City" name="recv_city" formControlName="recv_city"
+                      [ngClass]="{'is-invalid': invalid('recv_city')}">
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('recv_city') && f.recv_city.hasError('required')">
+                      City is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">State&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-3">
+                    <ng-select 
+                      [items]="stateList" 
+                      bindLabel="name" 
+                      bindValue="id" 
+                      placeholder="Please select"
+                      formControlName="recv_state_id" 
+                      name="recv_state_id"></ng-select>
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('recv_state_id') && f.recv_state_id.hasError('required')">
+                      State is required
+                    </small>
+                  </div>
+                  <label class="col-sm-2 col-form-label">Country&nbsp;<span class="text-danger">*</span></label>
+                  <div class="col-sm-5">
+                    <ng-select
+                      [items]="countryList" 
+                      bindLabel="name" 
+                      bindValue="id" 
+                      placeholder="Please select"
+                      (change)="onChangeReceiverCountry($event)"
+                      name="recv_country_id"
+                      formControlName="recv_country_id"></ng-select>
+                    <small class="badge badge-danger" 
+                      *ngIf="invalid('recv_country_id') && f.recv_country_id.hasError('required')">
+                      Country is required
+                    </small>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <button type="button" class="btn btn-outline-dark mr-2" (click)="onBack()"><i class="fas fa-chevron-circle-left"></i> Back</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Submit</button>
         </div>
       </div>
     </form>

@@ -62,9 +62,21 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
   createForm() {
     this.mform = this.fb.group({
       buyer_id: [null, [Validators.required]],
+      po_num: ['', [Validators.required]],
+      contract_num: [''],
       material_id: [null, [Validators.required]],
       truck_id: [null, [Validators.required]],
       driver_id: [null],
+
+      pickup_name: ['', [Validators.required]],
+      pickup_addr_line_1: ['', [Validators.required]],
+      pickup_addr_line_2: [''],
+      pickup_addr_line_3: [''],
+      pickup_postcode: ['', [Validators.required]],
+      pickup_city: ['', [Validators.required]],
+      pickup_state_id: [null, [Validators.required]],
+      pickup_country_id: [null, [Validators.required]],
+
       recv_name: ['', [Validators.required]],
       recv_addr_line_1: ['', [Validators.required]],
       recv_addr_line_2: [''],
