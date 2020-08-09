@@ -1,0 +1,164 @@
+<div class="wrapper">
+  <section class="invoice">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h2 class="page-header">
+          DELIVERY ORDER
+        </h2>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2">
+        <div>Date:</div>
+      </div>
+      <div class="col-6">
+        <div class="border-bottom border-dark">{{ data.issued_date | date:'d MMM yyyy' }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <div>DO no.:</div>
+      </div>
+      <div class="col-6">
+        <div class="border-bottom border-dark">{{ data.do_num }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <div>Delivery to:</div>
+      </div>
+      <div class="col-6">
+        <div class="border-bottom border-dark">{{ data.recv_name }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-2">
+        <div class="border-bottom border-dark">
+          {{ data.recv_addr_line_1 | uppercase }}<ng-container *ngIf="data.recv_addr_line_2">,&nbsp;{{ data.recv_addr_line_2 | uppercase }},</ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-2">
+        <div class="border-bottom border-dark">
+          <ng-container *ngIf="data.recv_addr_line_3">{{ data.recv_addr_line_3 | uppercase }}&nbsp;</ng-container>
+          {{ data.recv_postcode }}&nbsp;{{ data.recv_city | uppercase }}&nbsp;
+          {{ data.recv_state.name | uppercase }}&nbsp;{{ data.recv_country.name | uppercase }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-2">
+        <div class="border-bottom border-dark">&nbsp;</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <div>Contract no.:</div>
+      </div>
+      <div class="col-6">
+        <div class="border-bottom border-dark">{{ data.contract_num }}&nbsp;</div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-2">
+        <div>PO no:</div>
+      </div>
+      <div class="col-6">
+        <div class="border-bottom border-dark">{{ data.po_num }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <div>Pick up location:</div>
+      </div>
+      <div class="col-6">
+        <div class="border-bottom border-dark">{{ data.pickup_name }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-2">
+        <div class="border-bottom border-dark">
+          {{ data.pickup_addr_line_1 | uppercase }}<ng-container *ngIf="data.pickup_addr_line_2">,&nbsp;{{ data.pickup_addr_line_2 | uppercase }},</ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-2">
+        <div class="border-bottom border-dark">
+          <ng-container *ngIf="data.pickup_addr_line_3">{{ data.pickup_addr_line_3 | uppercase }}&nbsp;</ng-container>
+          {{ data.pickup_postcode }}&nbsp;{{ data.pickup_city | uppercase }}&nbsp;
+          {{ data.pickup_state.name | uppercase }}&nbsp;{{ data.pickup_country.name | uppercase }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-2">
+        <div class="border-bottom border-dark">&nbsp;</div>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-6 offset-2">
+        <div class="border-bottom border-dark">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-12 table-responsive">
+        <table class="table table-bordered border-dark">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Vehicle No.</th>
+              <th>Driver</th>
+              <th>I/C no.</th>
+              <th>Remarks</th>
+              <th>Tonnage (MT)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <td>1</td>
+            <td>{{ data.truck.registration_num }}</td>
+            <td>{{ data.driver.name }}</td>
+            <td>{{ data.driver.id_num }}</td>
+            <td></td>
+            <td>{{ data.actual_weight }}</td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 offset-1">
+        <div class="border-bottom border-dark ml-3">&nbsp;</div>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-3">
+        <div class="border-bottom border-dark ml-3">&nbsp;</div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4 offset-1">
+        <div class="ml-3">Prepared by:</div>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-3">
+        <div class="ml-3">Received By:</div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="text-center text-bold">SMGB Group Sdn Bhd 1119144M</div>
+        <div class="text-center">
+          {{ data.issue_from.addr_line_1 }},
+          <ng-container *ngIf="data.issue_from.addr_line_2">&nbsp;{{ data.issue_from.addr_line_2 }},</ng-container>
+          <ng-container *ngIf="data.issue_from.addr_line_3">&nbsp;{{ data.issue_from.addr_line_3 }},</ng-container>
+          &nbsp;{{ data.issue_from.postcode }}&nbsp;{{ data.issue_from.city }}<br>
+          {{ data.issue_from.state.name }}&nbsp;{{ data.issue_from.country.name }}
+        </div>
+        <div class="text-center"><b>T</b> {{ data.issue_from.contact_no }}&emsp;|&emsp;<b>F</b> <ng-container *ngIf="data.issue_from.fax_no">+{{ data.issue_from.fax_no }}</ng-container></div>
+      </div>
+    </div>
+  </section>
+</div>

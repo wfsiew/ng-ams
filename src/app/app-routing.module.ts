@@ -4,6 +4,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { PurchaseOrderPrintComponent } from './purchase-order-print/purchase-order-print.component';
+import { DeliveryOrderPrintComponent } from './delivery-order-print/delivery-order-print.component';
 import { PermitPrintComponent } from './permit-print/permit-print.component';
 
 import { AuthGuardService } from 'src/app/shared/services/auth.guard.service';
@@ -44,6 +45,11 @@ const routes: Routes = [
   {
     path: 'purchase-order/:id/print',
     component: PurchaseOrderPrintComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'delivery-order/:id/print',
+    component: DeliveryOrderPrintComponent,
     canActivate: [AuthGuardService]
   },
   {

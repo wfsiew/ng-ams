@@ -26,6 +26,7 @@ import { LookupService } from './shared/services/lookup.service';
 import { PurchaseOrderService } from './buyer/services/purchase-order.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuardService } from './shared/services/auth.guard.service';
+import { DeliveryOrderPrintComponent } from './delivery-order-print/delivery-order-print.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
     LoginComponent,
     ErrorModalComponent,
     PurchaseOrderPrintComponent,
-    PermitPrintComponent
+    PermitPrintComponent,
+    DeliveryOrderPrintComponent
   ],
   imports: [
     BrowserModule,
