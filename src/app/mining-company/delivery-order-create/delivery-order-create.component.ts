@@ -61,9 +61,9 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
   createForm() {
     this.mform = this.fb.group({
-      buyer_id: [null, [Validators.required]],
       po_num: ['', [Validators.required]],
       contract_num: [''],
+      buyer_id: [null, [Validators.required]],
       material_id: [null, [Validators.required]],
       truck_id: [null, [Validators.required]],
       driver_id: [null],
@@ -91,10 +91,21 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
   setForm() {
     const o = this.data;
     this.mform.patchValue({
+      po_num: o.po_num,
+      contract_num: o.contract_num,
       buyer_id: o.buyer.id,
       material_id: o.material.id,
       truck_id: o.truck.id,
       driver_id: o.driver.id,
+
+      pickup_name: o.pickup_name,
+      pickup_addr_line_1: o.pickup_addr_line_1,
+      pickup_addr_line_2: o.pickup_addr_line_2,
+      pickup_addr_line_3: o.pickup_addr_line_3,
+      pickup_postcode: o.pickup_postcode,
+      pickup_city: o.pickup_city,
+      pickup_country_id: o.pickup_country.id,
+
       recv_name: o.recv_name,
       recv_addr_line_1: o.recv_addr_line_1,
       recv_addr_line_2: o.recv_addr_line_2,
@@ -120,6 +131,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       this.mform.patchValue({
         truck_id: o.truck.id,
         driver_id: o.driver.id,
+        pickup_state_id: o.pickup_state.id,
         recv_state_id: o.recv_state.id
       });
     }, (error) => {
@@ -145,6 +157,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       });
 
       this.mform.patchValue({ recv_country_id: this.countryList[0].id });
+      this.onChangePickupCountry(this.countryList[0]);
       this.onChangeReceiverCountry(this.countryList[0]);
       this.loadDetails();
     }, (error) => {
@@ -178,11 +191,23 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
     const f = this.mform.value;
     const o = {
+      po_num: f.po_num,
+      contract_num: f.contract_num,
       buyer_id: f.buyer_id,
       issue_from_id: this.mining_company_id,
       material_id: f.material_id,
       truck_id: f.truck_id,
       driver_id: f.driver_id,
+
+      pickup_name: f.pickup_name,
+      pickup_addr_line_1: f.pickup_addr_line_1,
+      pickup_addr_line_2: f.pickup_addr_line_2,
+      pickup_addr_line_3: f.pickup_addr_line_3,
+      pickup_postcode: f.pickup_postcode,
+      pickup_city: f.pickup_city,
+      pickup_state_id: f.pickup_state_id,
+      pickup_country_id: f.pickup_country_id,
+
       recv_name: f.recv_name,
       recv_addr_line_1: f.recv_addr_line_1,
       recv_addr_line_2: f.recv_addr_line_2,
@@ -223,6 +248,13 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
         truck_id: null,
         driver_id: null
       });
+    });
+  }
+
+  onChangePickupCountry(event) {
+    this.lookupService.listStates(event.id).subscribe((res: any) => {
+      this.stateList = res;
+      this.mform.patchValue({ pickup_state_id: null });
     });
   }
 

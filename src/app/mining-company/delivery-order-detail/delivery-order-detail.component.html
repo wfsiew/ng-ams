@@ -37,16 +37,16 @@
     <div class="row">
       <div class="col-sm-6 offset-sm-2">
         <div class="border-bottom border-dark">
-          {{ data.recv_addr_line_1 | uppercase }}<ng-container *ngIf="data.recv_addr_line_2">,{{ data.recv_addr_line_2 | uppercase }},</ng-container>
+          {{ data.recv_addr_line_1 | uppercase }}<ng-container *ngIf="data.recv_addr_line_2">,&nbsp;{{ data.recv_addr_line_2 | uppercase }},</ng-container>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6 offset-sm-2">
         <div class="border-bottom border-dark">
-          <ng-container *ngIf="data.buyer.addr_line_3">,{{ data.buyer.addr_line_3 | uppercase }}&nbsp;</ng-container>
-          {{ data.buyer.postcode }}&nbsp;{{ data.buyer.city | uppercase }}&nbsp;
-          {{ data.issue_from.state.name | uppercase }}&nbsp;{{ data.issue_from.country.name | uppercase }}
+          <ng-container *ngIf="data.recv_addr_line_3">{{ data.recv_addr_line_3 | uppercase }}&nbsp;</ng-container>
+          {{ data.recv_postcode }}&nbsp;{{ data.recv_city | uppercase }}&nbsp;
+          {{ data.recv_state.name | uppercase }}&nbsp;{{ data.recv_country.name | uppercase }}
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
         <div>Contract no.:</div>
       </div>
       <div class="col-sm-6">
-        <div class="border-bottom border-dark">&nbsp;</div>
+        <div class="border-bottom border-dark">{{ data.contract_num }}&nbsp;</div>
       </div>
     </div>
     <div class="row mb-3">
@@ -68,7 +68,7 @@
         <div>PO no:</div>
       </div>
       <div class="col-sm-6">
-        <div class="border-bottom border-dark">&nbsp;</div>
+        <div class="border-bottom border-dark">{{ data.po_num }}</div>
       </div>
     </div>
     <div class="row">
@@ -76,17 +76,23 @@
         <div>Pick up location:</div>
       </div>
       <div class="col-sm-6">
-        <div class="border-bottom border-dark">&nbsp;</div>
+        <div class="border-bottom border-dark">{{ data.pickup_name }}</div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6 offset-sm-2">
-        <div class="border-bottom border-dark">&nbsp;</div>
+        <div class="border-bottom border-dark">
+          {{ data.pickup_addr_line_1 | uppercase }}<ng-container *ngIf="data.pickup_addr_line_2">,&nbsp;{{ data.pickup_addr_line_2 | uppercase }},</ng-container>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6 offset-sm-2">
-        <div class="border-bottom border-dark">&nbsp;</div>
+        <div class="border-bottom border-dark">
+          <ng-container *ngIf="data.pickup_addr_line_3">{{ data.pickup_addr_line_3 | uppercase }}&nbsp;</ng-container>
+          {{ data.pickup_postcode }}&nbsp;{{ data.pickup_city | uppercase }}&nbsp;
+          {{ data.pickup_state.name | uppercase }}&nbsp;{{ data.pickup_country.name | uppercase }}
+        </div>
       </div>
     </div>
     <div class="row">
