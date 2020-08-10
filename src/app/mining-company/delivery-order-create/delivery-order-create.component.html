@@ -52,44 +52,61 @@
               <textarea class="form-control" placeholder="Remarks" name="remarks" formControlName="remarks" rows="3" cols="20"></textarea>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Material&nbsp;<span class="text-danger">*</span></label>
-            <div class="col-sm-3">
-              <ng-select 
-                [items]="materialList" 
-                bindLabel="label" 
-                bindValue="id" 
-                placeholder="Please select"
-                formControlName="material_id" 
-                name="material_id"></ng-select>
-              <small class="badge badge-danger" 
-                *ngIf="invalid('material_id') && f.material_id.hasError('required')">
-                Material is required
-              </small>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>Material&nbsp;<span class="text-danger">*</span></label>
+                <ng-select 
+                  [items]="materialList" 
+                  bindLabel="label" 
+                  bindValue="id" 
+                  placeholder="Please select"
+                  formControlName="material_id" 
+                  name="material_id"></ng-select>
+                <small class="badge badge-danger" 
+                  *ngIf="invalid('material_id') && f.material_id.hasError('required')">
+                  Material is required
+                </small>
+              </div>
             </div>
-            <label class="col-sm-1 col-form-label">Truck&nbsp;<span class="text-danger">*</span></label>
-            <div class="col-sm-2">
-              <ng-select 
-                [items]="truckList" 
-                bindLabel="registration_num" 
-                bindValue="id" 
-                placeholder="Please select"
-                formControlName="truck_id" 
-                name="truck_id"></ng-select>
-              <small class="badge badge-danger" 
-                *ngIf="invalid('truck_id') && f.truck_id.hasError('required')">
-                Truck is required
-              </small>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>Truck&nbsp;<span class="text-danger">*</span></label>
+                <div class="d-inline float-right" *ngIf="f.truck_id.value !== null">
+                  <a href="#" (click)="onViewTruck(truckIm)">View</a>
+                </div>
+                <ng-select 
+                  [items]="truckList" 
+                  bindLabel="registration_num" 
+                  bindValue="id" 
+                  placeholder="Please select"
+                  formControlName="truck_id" 
+                  name="truck_id"></ng-select>
+                <small class="badge badge-danger" 
+                  *ngIf="invalid('truck_id') && f.truck_id.hasError('required')">
+                  Truck is required
+                </small>
+              </div>
             </div>
-            <label class="col-sm-1 col-form-label">Driver</label>
-            <div class="col-sm-3">
-              <ng-select 
-                [items]="driverList" 
-                bindLabel="label" 
-                bindValue="id" 
-                placeholder="Please select"
-                formControlName="driver_id" 
-                name="driver_id"></ng-select>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>Driver</label>
+                <div class="d-inline float-right" *ngIf="f.driver_id.value !== null">
+                  <a href="#" (click)="onViewDriver(driverIm)">View</a>
+                </div>
+                <ng-select 
+                  [items]="driverList" 
+                  bindLabel="label" 
+                  bindValue="id" 
+                  placeholder="Please select"
+                  formControlName="driver_id" 
+                  name="driver_id"></ng-select>
+              </div>
             </div>
           </div>
         </div>
@@ -292,3 +309,31 @@
     </form>
   </div>
 </section>
+
+<ng-template #truckIm>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Truck {{ truckReg }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center">
+      <img [src]="truckImg" class="img-fluid">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #driverIm>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Driver {{ driverId }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center">
+      <img [src]="driverImg" class="img-fluid">
+    </div>
+  </div>
+</ng-template>

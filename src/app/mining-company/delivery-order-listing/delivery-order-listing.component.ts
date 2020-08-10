@@ -18,7 +18,7 @@ import { CheckoutModalComponent } from '../components/checkout-modal/checkout-mo
   templateUrl: './delivery-order-listing.component.html',
   styleUrls: ['./delivery-order-listing.component.css']
 })
-export class DeliveryOrderListingComponent implements OnInit {
+export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
 
   mining_company_id?: number;
   isLoading = false;

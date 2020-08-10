@@ -5,9 +5,12 @@ import { forkJoin } from 'rxjs';
 
 import _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LookupService } from 'src/app/shared/services/lookup.service';
+import { TruckService } from 'src/app/setup/buyer/services/truck.service';
+import { DriverService } from 'src/app/setup/buyer/services/driver.service';
 import { DeliveryOrderService } from 'src/app/mining-company/services/delivery-order.service';
 import { Helper } from 'src/app/shared/utils/helper';
 import { AppConstant } from 'src/app/shared/constants/app.constant';
@@ -25,12 +28,17 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
   data: any = { id: '' };
   isEdit = false;
   mining_company_id?: number;
+  truckImg = null;
+  truckReg = '';
+  driverImg = null;
+  driverId = '';
   buyerList = [];
   materialList = [];
   truckList = [];
   driverList = [];
   countryList = [];
   stateList = [];
+  bsModalRef: BsModalRef;
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +47,10 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
     private authService: AuthService,
     private lookupService: LookupService,
     private deliveryOrderService: DeliveryOrderService,
-    private toastr: ToastrService
+    private truckService: TruckService,
+    private driverService: DriverService,
+    private toastr: ToastrService,
+    private modalService: BsModalService
   ) {
     super();
     this.createForm();
@@ -182,6 +193,50 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
     }, (error) => {
       this.isLoading = false;
     });
+  }
+
+  onViewTruck(truckIm) {
+    const f = this.mform.value;
+    this.isLoading = true;
+    this.truckService.edit(f.buyer_id, f.truck_id).subscribe((res: any) => {
+      if (res.img) {
+        this.truckReg = res.registration_num;
+        this.truckImg = res.img.img;
+        this.bsModalRef = this.modalService.show(truckIm, { class: 'modal-lg' });
+      }
+
+      else {
+        this.toastr.info('No image found for this truck');
+      }
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
+    });
+
+    return false;
+  }
+
+  onViewDriver(driverIm) {
+    const f = this.mform.value;
+    this.isLoading = true;
+    this.driverService.edit(f.buyer_id, f.driver_id).subscribe((res: any) => {
+      if (res.license) {
+        this.driverId = res.id_num;
+        this.driverImg = res.license.img;
+        this.bsModalRef = this.modalService.show(driverIm, { class: 'modal-lg' });
+      }
+
+      else {
+        this.toastr.info('No image found for this driver');
+      }
+    }, (error) => {
+
+    }, () => {
+      this.isLoading = false;
+    });
+
+    return false;
   }
 
   onBack() {
