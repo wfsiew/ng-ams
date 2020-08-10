@@ -63,6 +63,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
     this.mform = this.fb.group({
       po_num: ['', [Validators.required]],
       contract_num: [''],
+      remarks: [''],
       buyer_id: [null, [Validators.required]],
       material_id: [null, [Validators.required]],
       truck_id: [null, [Validators.required]],
@@ -93,6 +94,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
     this.mform.patchValue({
       po_num: o.po_num,
       contract_num: o.contract_num,
+      remarks: o.remarks,
       buyer_id: o.buyer.id,
       material_id: o.material.id,
       truck_id: o.truck.id,
@@ -156,7 +158,10 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
         return k;
       });
 
-      this.mform.patchValue({ recv_country_id: this.countryList[0].id });
+      this.mform.patchValue({
+        pickup_country_id: this.countryList[0].id,
+        recv_country_id: this.countryList[0].id
+      });
       this.onChangePickupCountry(this.countryList[0]);
       this.onChangeReceiverCountry(this.countryList[0]);
       this.loadDetails();
@@ -193,6 +198,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
     const o = {
       po_num: f.po_num,
       contract_num: f.contract_num,
+      remarks: f.remarks,
       buyer_id: f.buyer_id,
       issue_from_id: this.mining_company_id,
       material_id: f.material_id,
