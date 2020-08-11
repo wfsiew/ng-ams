@@ -46,7 +46,7 @@
                 </th>
                 <th>
                   <app-sort-column [name]="'DO Created Date'" [sort]="'created_date'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
                 </th>
                 <th>
                   <app-sort-column [name]="'Material'" [sort]="'material__name'" [dir]="sortDir" [current]="sort"
@@ -54,15 +54,15 @@
                 </th>
                 <th>
                   <app-sort-column [name]="'Truck'" [sort]="'truck__registration_num'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
                 </th>
                 <th>
                   <app-sort-column [name]="'Driver'" [sort]="'driver__name'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
                 </th>
                 <th>
                   <app-sort-column [name]="'I/C No.'" [sort]="'driver__id_num'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)"></app-sort-column>
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
                 </th>
                 <th>Status</th>
                 <th>
@@ -81,7 +81,7 @@
                 <td>{{ o.do_num }}</td>
                 <td>{{ o.created_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
                 <td>{{ o.material.name }} ({{ o.material.material_type }}) - {{ o.material.grade }}</td>
-                <td>{{ o.truck.registration_num }}</td>
+                <td><span class="text-nowrap">{{ o.truck.registration_num }}</span></td>
                 <td>{{ o.driver.name }}</td>
                 <td>{{ o.driver.id_num }}</td>
                 <td>{{ getDOStatus(o) }}</td>
