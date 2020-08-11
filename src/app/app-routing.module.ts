@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PurchaseOrderPrintComponent } from './purchase-order-print/purchase-order-print.component';
 import { DeliveryOrderPrintComponent } from './delivery-order-print/delivery-order-print.component';
@@ -20,6 +21,11 @@ const routes: Routes = [
     component: IndexComponent,
     canActivate: [AuthGuardService],
     children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [AuthGuardService]
+      },
       {
         path: 'setup',
         canActivate: [AuthGuardService],
@@ -57,7 +63,7 @@ const routes: Routes = [
     component: PermitPrintComponent,
     canActivate: [AuthGuardService]
   },
-  { path: '**', redirectTo: '/ams' }
+  { path: '**', redirectTo: '/ams/home' }
 ];
 
 @NgModule({

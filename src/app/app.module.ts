@@ -10,6 +10,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule, POSITION } from 'ngx-ui-loade
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PurchaseOrderPrintComponent } from './purchase-order-print/purchase-order-print.component';
 import { PermitPrintComponent } from './permit-print/permit-print.component';
@@ -36,7 +37,8 @@ import { DeliveryOrderPrintComponent } from './delivery-order-print/delivery-ord
     ErrorModalComponent,
     PurchaseOrderPrintComponent,
     PermitPrintComponent,
-    DeliveryOrderPrintComponent
+    DeliveryOrderPrintComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
