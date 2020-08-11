@@ -165,7 +165,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       this.countryList = res[2];
 
       this.materialList = res[1].map((k) => {
-        k.label = `${k.name} (${k.material_type}) - ${k.grade}`;
+        k.label = `${k.name.toUpperCase()} / ${k.material_type.toUpperCase()} / ${k.grade.toUpperCase()}`;
         return k;
       });
 

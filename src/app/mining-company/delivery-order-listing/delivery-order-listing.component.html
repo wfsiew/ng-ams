@@ -80,7 +80,7 @@
               <tr *ngFor="let o of list">
                 <td>{{ o.do_num }}</td>
                 <td>{{ o.created_date | date:'dd MMM yyyy hh:mm:ss aaa' }}</td>
-                <td>{{ o.material.name }} ({{ o.material.material_type }}) - {{ o.material.grade }}</td>
+                <td>{{ o.material.name | uppercase }} / {{ o.material.material_type | uppercase }} / {{ o.material.grade | uppercase }}</td>
                 <td><span class="text-nowrap">{{ o.truck.registration_num }}</span></td>
                 <td>{{ o.driver.name }}</td>
                 <td>{{ o.driver.id_num }}</td>
