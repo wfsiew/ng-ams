@@ -74,7 +74,17 @@
                 </small>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
+              <div class="form-group">
+                <label>Weight&nbsp;<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Weight" name="weight" formControlName="weight"
+                [ngClass]="{'is-invalid': invalid('weight')}">
+              <small class="badge badge-danger" 
+                *ngIf="invalid('weight') && f.weight.hasError('required')">
+                Weight is required
+              </small>
+              </div>
+            <div class="col-sm-2">
               <div class="form-group">
                 <label>Truck&nbsp;<span class="text-danger">*</span></label>
                 <div class="d-inline float-right" *ngIf="f.truck_id.value !== null">
