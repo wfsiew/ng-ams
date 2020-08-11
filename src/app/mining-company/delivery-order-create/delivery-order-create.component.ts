@@ -197,7 +197,6 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
   onViewTruck(truckIm) {
     const f = this.mform.value;
-    this.isLoading = true;
     this.truckService.edit(f.buyer_id, f.truck_id).subscribe((res: any) => {
       if (res.img) {
         this.truckReg = res.registration_num;
@@ -208,10 +207,6 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       else {
         this.toastr.info('No image found for this truck');
       }
-    }, (error) => {
-
-    }, () => {
-      this.isLoading = false;
     });
 
     return false;
@@ -219,7 +214,6 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
   onViewDriver(driverIm) {
     const f = this.mform.value;
-    this.isLoading = true;
     this.driverService.edit(f.buyer_id, f.driver_id).subscribe((res: any) => {
       if (res.license) {
         this.driverId = res.id_num;
@@ -230,10 +224,6 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       else {
         this.toastr.info('No image found for this driver');
       }
-    }, (error) => {
-
-    }, () => {
-      this.isLoading = false;
     });
 
     return false;
