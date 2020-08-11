@@ -79,14 +79,14 @@
             <tbody>
               <tr *ngFor="let o of list">
                 <td>{{ o.do_num }}</td>
-                <td>{{ o.created_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
+                <td>{{ o.created_date | date:'dd MMM yyyy hh:mm:ss aaa' }}</td>
                 <td>{{ o.material.name }} ({{ o.material.material_type }}) - {{ o.material.grade }}</td>
                 <td><span class="text-nowrap">{{ o.truck.registration_num }}</span></td>
                 <td>{{ o.driver.name }}</td>
                 <td>{{ o.driver.id_num }}</td>
                 <td>{{ getDOStatus(o) }}</td>
-                <td>{{ o.checkin_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
-                <td>{{ o.checkout_date | date:'d MMM yyyy h:mm:ss aaa' }}</td>
+                <td>{{ o.checkin_date | date:'dd MMM yyyy hh:mm:ss aaa' }}</td>
+                <td>{{ o.checkout_date | date:'dd MMM yyyy hh:mm:ss aaa' }}</td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)" *ngIf="o.status === DOStatus.NEW"><i class="fas fa-pencil-alt"></i></button>
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onView(o)" *ngIf="o.status !== DOStatus.NEW"><i class="fas fa-eye"></i></button>
