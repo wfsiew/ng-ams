@@ -66,11 +66,11 @@
                 </th>
                 <th>Status</th>
                 <th>
-                  <app-sort-column [name]="'Check In Time'" [sort]="'checkin_date'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'Vehicle Entry Time'" [sort]="'checkin_date'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'Check Out Time'" [sort]="'checkout_date'" [dir]="sortDir" [current]="sort"
+                  <app-sort-column [name]="'Vehicle Exit Time'" [sort]="'checkout_date'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
                 <th></th>
@@ -90,8 +90,8 @@
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)" *ngIf="o.status === DOStatus.NEW"><i class="fas fa-pencil-alt"></i></button>
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onView(o)" *ngIf="o.status !== DOStatus.NEW"><i class="fas fa-eye"></i></button>
-                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date">Check In</button>
-                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Check Out</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date && o.driver">Vehicle Entry</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Vehicle Exit</button>
                   <!-- <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button> -->
                   <button type="button" class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
                 </td>

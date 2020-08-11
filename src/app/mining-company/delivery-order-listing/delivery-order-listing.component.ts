@@ -174,16 +174,16 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
 
   onCheckIn(o) {
     const initialState = {
-      title: 'Check In DO',
+      title: 'Vehicle Entry',
       weight: o.checkin_weight,
-      btnYesText: 'Check In'
+      btnYesText: 'Submit'
     };
     this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.isLoading = true;
         this.deliveryOrderService.updateTime({ id: o.id, checkin: 1, weight: res.weight }).subscribe((res: any) => {
-          this.toastr.success(`DO #${o.do_num} successfully checked in`);
+          this.toastr.success(`DO #${o.do_num} successfully updated`);
           this.load();
         }, (error) => {
 
@@ -196,16 +196,16 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
 
   onCheckOut(o) {
     const initialState = {
-      title: 'Check Out DO',
+      title: 'Vehicle Exit',
       weight: o.checkout_weight,
-      btnYesText: 'Check Out'
+      btnYesText: 'Submit'
     };
     this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.isLoading = true;
         this.deliveryOrderService.updateTime({ id: o.id, checkin: 0, weight: res.weight }).subscribe((res: any) => {
-          this.toastr.success(`DO #${o.do_num} successfully checked out`);
+          this.toastr.success(`DO #${o.do_num} successfully updated`);
           this.load();
         }, (error) => {
 
