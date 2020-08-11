@@ -90,7 +90,7 @@
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)" *ngIf="o.status === DOStatus.NEW"><i class="fas fa-pencil-alt"></i></button>
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onView(o)" *ngIf="o.status !== DOStatus.NEW"><i class="fas fa-eye"></i></button>
-                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date && o.driver">Vehicle Entry</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date && o.driver.id">Vehicle Entry</button>
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Vehicle Exit</button>
                   <!-- <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button> -->
                   <button type="button" class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
