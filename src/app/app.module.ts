@@ -49,10 +49,10 @@ import { DeliveryOrderPrintComponent } from './delivery-order-print/delivery-ord
     ModalModule.forRoot(),
     NgxUiLoaderModule.forRoot({
       bgsPosition: POSITION.centerCenter,
-      bgsColor: '#dc143c',
-      bgsType: 'three-bounce',
-      fgsColor: '#dc143c',
-      fgsType: 'three-bounce'
+      // bgsColor: '#dc143c',
+      bgsType: 'ball-scale-multiple',
+      // fgsColor: '#dc143c',
+      fgsType: 'ball-scale-multiple'
     }),
     NgxUiLoaderHttpModule.forRoot({
       showForeground: false,
