@@ -27,11 +27,11 @@ export const SubmenuMiningHQ = [
     path: 'company-details',
     icon: 'fas fa-home'
   },
-  {
-    title: 'Purchase Order',
-    path: 'purchase-order/list',
-    icon: 'fas fa-shopping-cart'
-  },
+  // {
+  //   title: 'Purchase Order',
+  //   path: 'purchase-order/list',
+  //   icon: 'fas fa-shopping-cart'
+  // },
   {
     title: 'Delivery Order',
     path: 'delivery-order/list',

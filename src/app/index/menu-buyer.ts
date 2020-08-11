@@ -35,10 +35,10 @@ export const SubmenuBuyer = [
     title: 'Driver',
     path: 'driver/list',
     icon: 'fas fa-id-card'
-  },
-  {
-    title: 'Purchase Order',
-    path: 'purchase-order/list',
-    icon: 'fas fa-shopping-cart'
   }
+  // {
+  //   title: 'Purchase Order',
+  //   path: 'purchase-order/list',
+  //   icon: 'fas fa-shopping-cart'
+  // }
 ];
