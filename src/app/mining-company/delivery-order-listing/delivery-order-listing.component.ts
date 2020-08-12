@@ -115,6 +115,7 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
+      alert(this.totalCount)
       this.isLoading = false;
       setTimeout(() => {
         window.scrollTo(this.sx, this.sy);
@@ -229,17 +230,17 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
     this.router.navigate([`/ams/mining-company/permit/${o.permit.id}`]);
   }
 
-  onReceived(o) {
-    this.isLoading = true;
-    this.deliveryOrderService.receive(o.id).subscribe((res: any) => {
-      this.toastr.success(`DO #${o.do_num} successfully received`);
-      this.load();
-    }, (error) => {
+  // onReceived(o) {
+  //   this.isLoading = true;
+  //   this.deliveryOrderService.receive(o.id).subscribe((res: any) => {
+  //     this.toastr.success(`DO #${o.do_num} successfully received`);
+  //     this.load();
+  //   }, (error) => {
 
-    }, () => {
-      this.isLoading = false;
-    });
-  }
+  //   }, () => {
+  //     this.isLoading = false;
+  //   });
+  // }
 
   getDOStatus(o) {
     if (o.status === AppConstant.DOStatus.NEW) return 'NEW';
