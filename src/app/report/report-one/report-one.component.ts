@@ -18,6 +18,7 @@ export class ReportOneComponent implements OnInit {
   isLoading = false;
   list = [];
   total = 0;
+  count = 0;
   miningCompanyList = [];
   opt = '3';
   dateFrom = null;
@@ -59,6 +60,7 @@ export class ReportOneComponent implements OnInit {
       Helper.getDateStr(this.dateTo)).subscribe((res: any) => {
         this.list = res.data;
         this.total = res.total;
+        this.count = res.count;
         this.setChart();
     }, (error) => {
 

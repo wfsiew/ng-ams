@@ -120,6 +120,20 @@
                     <td>{{ o.count }}</td>
                   </tr>
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <ng-container *ngIf="opt !== '3'">
+                      <td colspan="2" class="text-right">Total</td>
+                      <td>{{ total }}</td>
+                      <td>{{ count }}</td>
+                    </ng-container>
+                    <ng-container *ngIf="opt === '3'">
+                      <td class="text-right">Total</td>
+                      <td>{{ total }}</td>
+                      <td>{{ count }}</td>
+                    </ng-container>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
