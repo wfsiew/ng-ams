@@ -106,34 +106,23 @@
               <table class="table table-striped table-hover">
                 <thead>
                   <tr>
-                    <th *ngIf="opt !== '3'">Date</th>
                     <th>Material Name</th>
-                    <th>Total Weight (tons)</th>
-                    <th>Load</th>
+                    <th class="text-right">Total Weight (tons)</th>
+                    <th class="text-right">Load</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let o of list">
-                    <td *ngIf="opt !== '3'">{{ o.month | date:'MMMM yyyy' }}</td>
                     <td>{{ o.material__name }}</td>
-                    <td>{{ o.sum | number }}</td>
-                    <td>{{ o.count }}</td>
+                    <td class="text-right">{{ o.sum | number }}</td>
+                    <td class="text-right">{{ o.count }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-bold">Total</td>
+                    <td class="text-right">{{ total }}</td>
+                    <td class="text-right">{{ count }}</td>
                   </tr>
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <ng-container *ngIf="opt !== '3'">
-                      <td colspan="2" class="text-right">Total</td>
-                      <td>{{ total }}</td>
-                      <td>{{ count }}</td>
-                    </ng-container>
-                    <ng-container *ngIf="opt === '3'">
-                      <td class="text-right">Total</td>
-                      <td>{{ total }}</td>
-                      <td>{{ count }}</td>
-                    </ng-container>
-                  </tr>
-                </tfoot>
               </table>
             </div>
           </div>

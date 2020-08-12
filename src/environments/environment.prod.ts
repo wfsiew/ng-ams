@@ -3,5 +3,5 @@ export const environment = {
   // client_id: '0t8yFmNoeqbYjP4hhPjxKMQ5nUeyHjggHdNZb6c2',
   // baseUrl: 'https://mysite-ams.herokuapp.com'
   client_id: '9BMd5I89dGwEnyxQk4v9fjIMElRBdRUwF4JINpc5',
-  baseUrl: 'http://10.238.5.32/mysite'
+  baseUrl: 'http://211.24.77.252/mysite'
 };
