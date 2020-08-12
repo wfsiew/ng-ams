@@ -19,7 +19,7 @@ export class ReportOneComponent implements OnInit {
   list = [];
   total = 0;
   miningCompanyList = [];
-  opt = '0';
+  opt = '3';
   dateFrom = null;
   dateTo = null;
   mining_company_id = null;
@@ -70,7 +70,7 @@ export class ReportOneComponent implements OnInit {
   setChart() {
     const labels = _.map(this.list, (x) => {
       let pct = Helper.getPercentage(x.sum, this.total);
-      return `${x.material__name} (${x.material__grade}) - ${pct}`;
+      return `${x.material__name} - ${pct}`;
     });
 
     const colorList = Helper.getColorList(this.list);

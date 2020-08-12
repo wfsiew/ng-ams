@@ -17,7 +17,7 @@ export class ReportTwoComponent implements OnInit {
   isLoading = false;
   list = [];
   total = 0;
-  opt = '0';
+  opt = '3';
   dateFrom = null;
   dateTo = null;
   chartData: any;
@@ -58,7 +58,7 @@ export class ReportTwoComponent implements OnInit {
   setChart() {
     const labels = _.map(this.list, (x) => {
       let pct = Helper.getPercentage(x.sum, this.total);
-      return `${x.material__name} (${x.material__grade}) - ${pct}`;
+      return `${x.material__name} - ${pct}`;
     });
 
     const colorList = Helper.getColorList(this.list);
