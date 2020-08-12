@@ -10,7 +10,7 @@
       <div class="form-group row">
         <label class="col-sm-4 col-form-label">Weight&nbsp;<span class="text-danger">*</span></label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" placeholder="Actual Weight (tons)" name="weight" formControlName="weight"
+          <input #weightInput type="text" class="form-control" placeholder="Actual Weight (tons)" name="weight" formControlName="weight"
             [ngClass]="{'is-invalid': invalid('weight')}">
           <small class="badge badge-danger" 
             *ngIf="invalid('weight') && f.weight.hasError('required')">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -14,6 +14,7 @@ export class CheckoutModalComponent extends GeneralForm implements OnInit {
   title: string;
   weight: string;
   btnYesText: string;
+  @ViewChild('weightInput', { static: true }) weightInput: ElementRef;
 
   public onClose: Subject<any>;
 
@@ -27,6 +28,9 @@ export class CheckoutModalComponent extends GeneralForm implements OnInit {
   ngOnInit() {
     this.onClose = new Subject();
     this.mform.patchValue({ weight: this.weight });
+    setTimeout(() => {
+      this.weightInput.nativeElement.focus();
+    }, 200);
   }
 
   createForm() {
