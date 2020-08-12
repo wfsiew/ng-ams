@@ -275,6 +275,10 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       this.deliveryOrderService.create(o).subscribe((res: any) => {
         this.toastr.success('New Delivery Order successfully created');
         this.mform.reset();
+        this.mform.patchValue({
+          pickup_country_id: this.countryList[0].id,
+          recv_country_id: this.countryList[0].id
+        });
         // this.router.navigate([`/ams/setup/state/edit/${res.id}`]);
       });
     }

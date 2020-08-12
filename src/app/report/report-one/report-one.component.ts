@@ -137,6 +137,10 @@ export class ReportOneComponent implements OnInit {
       s = `${s} - Last 14 days`;
     }
 
+    else if (this.opt === '3') {
+      s = `${s} - Today`;
+    }
+
     else if (this.opt === '2') {
       s = `${s} - From ${Helper.getDateStr(this.dateFrom)} To ${Helper.getDateStr(this.dateTo)}`;
     }
