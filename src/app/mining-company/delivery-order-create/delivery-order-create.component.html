@@ -32,12 +32,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">PO No.&nbsp;<span class="text-danger">*</span></label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="PO No." name="po_num" formControlName="po_num"
-                [ngClass]="{'is-invalid': invalid('po_num')}">
-              <small class="badge badge-danger" 
-                *ngIf="invalid('po_num') && f.po_num.hasError('required')">
-                PO No. is required
-              </small>
+              <input type="text" class="form-control" placeholder="PO No." name="po_num" formControlName="po_num">
             </div>
           </div>
           <div class="form-group row">
@@ -164,21 +159,11 @@
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label">Postcode&nbsp;<span class="text-danger">*</span></label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Postcode" name="pickup_postcode" formControlName="pickup_postcode"
-                      [ngClass]="{'is-invalid': invalid('pickup_postcode')}">
-                    <small class="badge badge-danger" 
-                      *ngIf="invalid('pickup_postcode') && f.pickup_postcode.hasError('required')">
-                      Postcode is required
-                    </small>
+                    <input type="text" class="form-control" placeholder="Postcode" name="pickup_postcode" formControlName="pickup_postcode">
                   </div>
                   <label class="col-sm-2 col-form-label">City&nbsp;<span class="text-danger">*</span></label>
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="City" name="pickup_city" formControlName="pickup_city"
-                      [ngClass]="{'is-invalid': invalid('pickup_city')}">
-                    <small class="badge badge-danger" 
-                      *ngIf="invalid('pickup_city') && f.pickup_city.hasError('required')">
-                      City is required
-                    </small>
+                    <input type="text" class="form-control" placeholder="City" name="pickup_city" formControlName="pickup_city">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -257,21 +242,11 @@
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label">Postcode&nbsp;<span class="text-danger">*</span></label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Postcode" name="recv_postcode" formControlName="recv_postcode"
-                      [ngClass]="{'is-invalid': invalid('recv_postcode')}">
-                    <small class="badge badge-danger" 
-                      *ngIf="invalid('recv_postcode') && f.recv_postcode.hasError('required')">
-                      Postcode is required
-                    </small>
+                    <input type="text" class="form-control" placeholder="Postcode" name="recv_postcode" formControlName="recv_postcode">
                   </div>
                   <label class="col-sm-2 col-form-label">City&nbsp;<span class="text-danger">*</span></label>
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="City" name="recv_city" formControlName="recv_city"
-                      [ngClass]="{'is-invalid': invalid('recv_city')}">
-                    <small class="badge badge-danger" 
-                      *ngIf="invalid('recv_city') && f.recv_city.hasError('required')">
-                      City is required
-                    </small>
+                    <input type="text" class="form-control" placeholder="City" name="recv_city" formControlName="recv_city">
                   </div>
                 </div>
                 <div class="form-group row">

@@ -72,7 +72,7 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
   createForm() {
     this.mform = this.fb.group({
-      po_num: ['', [Validators.required]],
+      po_num: [''],
       contract_num: [''],
       remarks: [''],
       buyer_id: [null, [Validators.required]],
@@ -85,8 +85,8 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       pickup_addr_line_1: ['', [Validators.required]],
       pickup_addr_line_2: [''],
       pickup_addr_line_3: [''],
-      pickup_postcode: ['', [Validators.required]],
-      pickup_city: ['', [Validators.required]],
+      pickup_postcode: [''],
+      pickup_city: [''],
       pickup_state_id: [null, [Validators.required]],
       pickup_country_id: [null, [Validators.required]],
 
@@ -94,8 +94,8 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
       recv_addr_line_1: ['', [Validators.required]],
       recv_addr_line_2: [''],
       recv_addr_line_3: [''],
-      recv_postcode: ['', [Validators.required]],
-      recv_city: ['', [Validators.required]],
+      recv_postcode: [''],
+      recv_city: [''],
       recv_state_id: [null, [Validators.required]],
       recv_country_id: [null, [Validators.required]]
     });

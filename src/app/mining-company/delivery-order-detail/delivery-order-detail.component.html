@@ -44,7 +44,8 @@
       <div class="col-sm-6 offset-sm-2">
         <div class="border-bottom border-dark">
           <ng-container *ngIf="data.recv_addr_line_3">{{ data.recv_addr_line_3 | uppercase }}&nbsp;</ng-container>
-          {{ data.recv_postcode }}&nbsp;{{ data.recv_city | uppercase }}&nbsp;
+          <ng-container *ngIf="data.recv_postcode">{{ data.recv_postcode }}&nbsp;</ng-container>
+          <ng-container *ngIf="data.recv_city">{{ data.recv_city | uppercase }}&nbsp;</ng-container>
           {{ data.recv_state.name | uppercase }}&nbsp;{{ data.recv_country.name | uppercase }}
         </div>
       </div>
@@ -89,7 +90,8 @@
       <div class="col-sm-6 offset-sm-2">
         <div class="border-bottom border-dark">
           <ng-container *ngIf="data.pickup_addr_line_3">{{ data.pickup_addr_line_3 | uppercase }}&nbsp;</ng-container>
-          {{ data.pickup_postcode }}&nbsp;{{ data.pickup_city | uppercase }}&nbsp;
+          <ng-container *ngIf="data.pickup_postcode">{{ data.pickup_postcode }}&nbsp;</ng-container>
+          <ng-container *ngIf="data.pickup_city">{{ data.pickup_city | uppercase }}&nbsp;</ng-container>
           {{ data.pickup_state.name | uppercase }}&nbsp;{{ data.pickup_country.name | uppercase }}
         </div>
       </div>
@@ -151,7 +153,7 @@
 
     <div class="row mb-3">
       <div class="col-sm-12">
-        <div class="text-center text-bold">{{data.issue_from.name}} {{ data.issue_from.registration_num }}</div>
+        <div class="text-center text-bold">{{ data.issue_from.name }} {{ data.issue_from.registration_num }}</div>
         <div class="text-center">
           {{ data.issue_from.addr_line_1 }},
           <ng-container *ngIf="data.issue_from.addr_line_2">&nbsp;{{ data.issue_from.addr_line_2 }},</ng-container>
