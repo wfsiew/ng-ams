@@ -57,15 +57,6 @@
                     (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
                 </th>
                 <th>
-                  <app-sort-column [name]="'Driver'" [sort]="'driver__name'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
-                </th>
-                <th>
-                  <app-sort-column [name]="'I/C No.'" [sort]="'driver__id_num'" [dir]="sortDir" [current]="sort"
-                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
-                </th>
-                <th>Status</th>
-                <th>
                   <app-sort-column [name]="'Vehicle Entry Time'" [sort]="'checkin_date'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
@@ -73,25 +64,29 @@
                   <app-sort-column [name]="'Vehicle Exit Time'" [sort]="'checkout_date'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)"></app-sort-column>
                 </th>
-                <th></th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let o of list">
-                <td>{{ o.do_num }}</td>
-                <td>{{ o.created_date | date:'dd MMM yyyy hh:mm:ss aaa' }}</td>
+                <td>
+                  <div>{{ o.do_num }}</div>
+                  <div><h5><span class="badge badge-info">{{ getDOStatus(o) }}</span></h5></div>
+                </td>
+                <td>{{ o.created_date | date:'dd/MM/yyyy hh:mm aaa' }}</td>
                 <td>{{ o.material.name | uppercase }}</td>
-                <td><span class="text-nowrap">{{ o.truck.registration_num }}</span></td>
-                <td>{{ o.driver.name }}</td>
-                <td>{{ o.driver.id_num }}</td>
-                <td>{{ getDOStatus(o) }}</td>
-                <td>{{ o.checkin_date | date:'dd MMM yyyy hh:mm:ss aaa' }}</td>
-                <td>{{ o.checkout_date | date:'dd MMM yyyy hh:mm:ss aaa' }}</td>
+                <td>
+                  <div class="text-nowrap"><h5><span class="badge badge-dark">{{ o.truck.registration_num }}</span></h5></div>
+                  <div>{{ o.driver.name }}</div>
+                  <div>{{ o.driver.id_num }}</div>
+                </td>
+                <td>{{ o.checkin_date | date:'dd/MM/yyyy hh:mm aaa' }}</td>
+                <td>{{ o.checkout_date | date:'dd/MM/yyyy hh:mm aaa' }}</td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)" *ngIf="o.status === DOStatus.NEW"><i class="fas fa-pencil-alt"></i></button>
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onView(o)" *ngIf="o.status !== DOStatus.NEW"><i class="fas fa-eye"></i></button>
-                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date && o.driver.id">Vehicle Entry</button>
-                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Vehicle Exit</button>
+                  <button type="button" class="btn btn-sm btn-success mr-2" (click)="onCheckIn(o)" *ngIf="!o.checkin_date && o.driver.id">Vehicle Entry</button>
+                  <button type="button" class="btn btn-sm btn-danger mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Vehicle Exit</button>
                   <!-- <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button> -->
                   <button type="button" class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
                 </td>
