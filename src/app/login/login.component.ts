@@ -43,7 +43,7 @@ export class LoginComponent extends GeneralForm implements OnInit, OnDestroy {
         this.nextUrl = params['next'];
         
         if (this.authService.hasValidToken() && currentPath) {
-          this.router.navigate(['/ems']);
+          this.router.navigate(['/ams/home']);
         }
 
         else if (this.authService.hasValidToken() && !currentPath) {
@@ -53,7 +53,7 @@ export class LoginComponent extends GeneralForm implements OnInit, OnDestroy {
     });
 
     if (this.authService.hasValidToken()) {
-      this.router.navigate(['/ems']);
+      this.router.navigate(['/ams/home']);
     }
   }
 
@@ -81,7 +81,7 @@ export class LoginComponent extends GeneralForm implements OnInit, OnDestroy {
     }
 
     else {
-      this.router.navigate(['/ams']);
+      this.router.navigate(['/ams/home']);
     }
   }
 
