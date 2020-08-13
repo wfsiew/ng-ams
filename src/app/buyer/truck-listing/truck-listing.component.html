@@ -48,7 +48,7 @@
           </table>
         </div>
       </div>
-      <div class="card-footer" *ngIf="totalCount">
+      <div class="card-footer" *ngIf="totalCount" [ngClass]="{'d-none': isLoading}">
         <div class="float-right">
           <pagination 
             [totalItems]="totalCount" 
