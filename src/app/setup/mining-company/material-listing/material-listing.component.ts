@@ -92,7 +92,7 @@ export class MaterialListingComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     let q = null;
     if (this.tab === 0) {
-      q = this.materialService.listPending(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir);
+      q = this.materialService.listPending(this.mining_company_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir);
     }
 
     else {
@@ -119,7 +119,7 @@ export class MaterialListingComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     let q = null;
     if (this.tab === 0) {
-      q = this.materialService.searchPending(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s);
+      q = this.materialService.searchPending(this.mining_company_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s);
     }
 
     else {

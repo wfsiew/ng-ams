@@ -11,7 +11,7 @@ export class MaterialService {
 
   constructor(private http: HttpClient) { }
 
-  listPending(page, limit, sort, dir) {
+  listPending(mining_company_id, page, limit, sort, dir) {
     let prm: HttpParams = new HttpParams()
       .set('_page', page)
       .set('_limit', limit);
@@ -22,10 +22,10 @@ export class MaterialService {
 
       prm = prm.append('sort', `${sort}:${dir}`);
     }
-    return this.http.get(`${this.baseUrl}/api/assign/materials`, { params: prm, observe: 'response' });
+    return this.http.get(`${this.baseUrl}/api/assign/materials/${mining_company_id}`, { params: prm, observe: 'response' });
   }
 
-  searchPending(page, limit, sort, dir, keyword) {
+  searchPending(mining_company_id, page, limit, sort, dir, keyword) {
     let prm: HttpParams = new HttpParams()
       .set('_page', page)
       .set('_limit', limit);
@@ -36,7 +36,7 @@ export class MaterialService {
 
       prm = prm.append('sort', `${sort}:${dir}`);
     }
-    return this.http.post(`${this.baseUrl}/api/assign/materials`, { keyword: keyword }, { params: prm, observe: 'response' });
+    return this.http.post(`${this.baseUrl}/api/assign/materials/${mining_company_id}`, { keyword: keyword }, { params: prm, observe: 'response' });
   }
 
   listActive(mining_company_id, page, limit, sort, dir) {
