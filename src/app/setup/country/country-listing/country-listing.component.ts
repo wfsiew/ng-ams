@@ -148,7 +148,7 @@ export class CountryListingComponent implements OnInit, OnDestroy {
       title: 'Delete Country',
       message: `Are you sure to delete this Country ${o.name} ?`
     };
-    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.countryService.remove(o.id).subscribe((res: any) => {

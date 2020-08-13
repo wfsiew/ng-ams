@@ -147,7 +147,7 @@ export class StateListingComponent implements OnInit, OnDestroy {
       title: 'Delete State',
       message: `Are you sure to delete this State ${o.name} ?`
     };
-    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.stateService.remove(o.id).subscribe((res: any) => {

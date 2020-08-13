@@ -179,7 +179,7 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
       weight: o.checkin_weight,
       btnYesText: 'Submit'
     };
-    this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(CheckoutModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.isLoading = true;
@@ -201,7 +201,7 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
       weight: o.checkout_weight,
       btnYesText: 'Submit'
     };
-    this.bsModalRef = this.modalService.show(CheckoutModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(CheckoutModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.isLoading = true;

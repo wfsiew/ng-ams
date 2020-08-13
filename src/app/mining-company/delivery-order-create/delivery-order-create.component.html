@@ -78,6 +78,10 @@
                   *ngIf="invalid('weight') && f.weight.hasError('required')">
                   Weight is required
                 </small>
+                <small class="badge badge-danger" 
+                  *ngIf="invalid('weight') && f.weight.hasError('pattern')">
+                  Weight is invalid
+                </small>
               </div>
             </div>
             <div class="col-sm-2">

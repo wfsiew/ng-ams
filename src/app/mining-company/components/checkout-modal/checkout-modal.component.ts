@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+
 import { BsModalRef } from 'ngx-bootstrap/modal';
+
+import { AppConstant } from 'src/app/shared/constants/app.constant';
 import { GeneralForm } from 'src/app/shared/classes/general.form';
 
 @Component({
@@ -35,7 +38,7 @@ export class CheckoutModalComponent extends GeneralForm implements OnInit {
 
   createForm() {
     this.mform = this.fb.group({
-      weight: ['', [Validators.required]]
+      weight: ['', [Validators.required, Validators.pattern(AppConstant.VALIDATE.AMOUNT)]]
     });
   }
 

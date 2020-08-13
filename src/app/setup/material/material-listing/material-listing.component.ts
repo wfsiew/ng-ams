@@ -148,7 +148,7 @@ export class MaterialListingComponent implements OnInit, OnDestroy {
       title: 'Delete Material',
       message: `Are you sure to delete this Material ${o.name} ?`
     };
-    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.materialService.remove(o.id).subscribe((res: any) => {

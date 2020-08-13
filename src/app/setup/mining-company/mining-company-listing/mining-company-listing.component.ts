@@ -158,7 +158,7 @@ export class MiningCompanyListingComponent implements OnInit, OnDestroy {
       title: 'Delete Mining Company',
       message: `Are you sure to delete this Mining Company ${o.name} ?`
     };
-    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.miningCompanyService.remove(o.id).subscribe((res: any) => {

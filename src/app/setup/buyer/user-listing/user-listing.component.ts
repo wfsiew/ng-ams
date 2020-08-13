@@ -187,7 +187,7 @@ export class UserListingComponent implements OnInit, OnDestroy {
       title: `Delete User from ${this._buyer}`,
       message: `Are you sure to delete this User ${o.username} from ${this._buyer} ?`
     };
-    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { initialState });
+    this.bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
         this.userService.remove({ buyer_id: this.buyer_id, user_id: o.id }).subscribe((res: any) => {
