@@ -27,7 +27,7 @@ export class CheckoutModalComponent extends GeneralForm implements OnInit {
 
   ngOnInit() {
     this.onClose = new Subject();
-    this.mform.patchValue({ weight: this.weight });
+    this.mform.patchValue({ weight: '' });
     setTimeout(() => {
       this.weightInput.nativeElement.focus();
     }, 200);
