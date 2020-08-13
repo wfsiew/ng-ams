@@ -116,6 +116,7 @@ export class UserListingComponent implements OnInit, OnDestroy {
 
   onSearch(s: string) {
     this.search = s;
+    this.page = 1;
     this.isLoading = true;
     let q = null;
     if (this.tab === 0) {

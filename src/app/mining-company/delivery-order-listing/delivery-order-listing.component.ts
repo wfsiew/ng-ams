@@ -110,12 +110,12 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
 
   onSearch(s: string) {
     this.search = s;
+    this.page = 1;
     this.isLoading = true;
     this.deliveryOrderService.search(this.do_status, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
-      alert(this.totalCount)
       this.isLoading = false;
       setTimeout(() => {
         window.scrollTo(this.sx, this.sy);

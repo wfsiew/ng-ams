@@ -90,6 +90,7 @@ export class MaterialListingComponent implements OnInit, OnDestroy {
 
   onSearch(s: string) {
     this.search = s;
+    this.page = 1;
     this.isLoading = true;
     this.materialService.search(this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;

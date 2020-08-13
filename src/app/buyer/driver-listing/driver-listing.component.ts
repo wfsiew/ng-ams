@@ -107,6 +107,7 @@ export class DriverListingComponent implements OnInit, OnDestroy {
 
   onSearch(s: string) {
     this.search = s;
+    this.page = 1;
     this.isLoading = true;
     this.driverService.search(this.buyer_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir, s).subscribe((res: any) => {
       this.list = res.body;
