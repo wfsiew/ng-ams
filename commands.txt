@@ -1,6 +1,6 @@
   
 ng build --prod --base-href https://wfsiew.github.io/ng-ams/ --output-path docs
 
-ng build --prod --base-href /ng-ams/
+ng build --prod --base-href /ams/
 
 https://shermandigital.com/blog/fix-404-errors-from-angular-projects-hosted-on-github-pages/
