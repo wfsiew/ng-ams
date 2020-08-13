@@ -83,11 +83,11 @@
                 </td>
                 <td>
                   <div>{{ o.checkin_date | date:'dd/MM/yyyy hh:mm aaa' }}</div>
-                  <div><h6><span class="badge badge-warning">{{ o.checkin_weight }} tons</span></h6></div>
+                  <div *ngIf="o.checkin_date"><h6><span class="badge badge-warning">{{ o.checkin_weight }} tons</span></h6></div>
                 </td>
                 <td>
                   <div>{{ o.checkout_date | date:'dd/MM/yyyy hh:mm aaa' }}</div>
-                  <div><h6><span class="badge badge-warning">{{ o.checkout_weight }} tons</span></h6></div>
+                  <div *ngIf="o.checkout_date"><h6><span class="badge badge-warning">{{ o.checkout_weight }} tons</span></h6></div>
                 </td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)" *ngIf="o.status === DOStatus.NEW"><i class="fas fa-pencil-alt"></i></button>
