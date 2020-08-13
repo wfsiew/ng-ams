@@ -1,0 +1,130 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Permit Report By States</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card no-print">
+      <div class="card-header">
+        <div class="row mb-2">
+          <div class="col-sm-3 col-12 p-1">
+            <ng-select 
+              [items]="stateList" 
+              bindLabel="name" 
+              bindValue="id" 
+              placeholder="Please select"
+              [(ngModel)]="state_id" 
+              name="state_id"></ng-select>
+          </div>
+          <div class="col-sm-1 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt4" name="opt" value="3" [(ngModel)]="opt">
+              <label for="ropt4">Today</label>
+            </div>
+          </div>
+          <div class="col-sm-1 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt1" name="opt" value="0" [(ngModel)]="opt">
+              <label for="ropt1">7 Days</label>
+            </div>
+          </div>
+          <div class="col-sm-1 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt2" name="opt" value="1" [(ngModel)]="opt">
+              <label for="ropt2">14 Days</label>
+            </div>
+          </div>
+          <div class="col-sm-2 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt3" name="opt" value="2" [(ngModel)]="opt">
+              <label for="ropt3">Date Range</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-sm-3 col-12 p-1">
+            <div class="input-group date" *ngIf="opt === '2'">
+              <input type="text" class="form-control" placeholder="Date From"name="dateFrom" [(ngModel)]="dateFrom" 
+                bsDatepicker #dp1="bsDatepicker"
+                [bsConfig]="{ containerClass: 'theme-blue', dateInputFormat: 'YYYY-MM-DD' }">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-default" (click)="dp1.show()" [attr.aria-expanded]="dp1.isOpen">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-12 p-1">
+            <div class="input-group date" *ngIf="opt === '2'">
+              <input type="text" class="form-control" placeholder="Date To" name="dateTo" [(ngModel)]="dateTo" 
+                bsDatepicker #dp2="bsDatepicker"
+                [bsConfig]="{ containerClass: 'theme-blue', dateInputFormat: 'YYYY-MM-DD' }">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-default" (click)="dp2.show()" [attr.aria-expanded]="dp2.isOpen">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-12 p-1 text-right">
+            <button type="button" class="btn btn-primary" (click)="onApplyFilter(chart)" [disabled]="!state_id">Apply</button>
+            <span class="mr-2"></span>
+            <button type="button" class="btn btn-default" (click)="onClearFilter()">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="isEmpty(list) && !isLoading">
+      <div class="card-body">
+        <div class="text-center">
+          <h4>No records found</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card" *ngIf="!isEmpty(list) && !isLoading">
+          <div class="card-body">
+            <p-chart #chart type="bar" [data]="chartData" [options]="options" [plugins]="plugin"></p-chart>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card" *ngIf="!isEmpty(list) && !isLoading">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Mining Company Name</th>
+                    <th class="text-right">No. of Permits</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let o of list">
+                    <td>{{ o.do_master__issue_from__name }}</td>
+                    <td class="text-right">{{ o.count }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-bold">Total</td>
+                    <td class="text-right">{{ count }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

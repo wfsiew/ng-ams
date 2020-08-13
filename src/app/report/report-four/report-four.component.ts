@@ -9,21 +9,20 @@ import { ReportService } from 'src/app/report/services/report.service';
 import { Helper } from 'src/app/shared/utils/helper';
 
 @Component({
-  selector: 'app-report-one',
-  templateUrl: './report-one.component.html',
-  styleUrls: ['./report-one.component.css']
+  selector: 'app-report-four',
+  templateUrl: './report-four.component.html',
+  styleUrls: ['./report-four.component.css']
 })
-export class ReportOneComponent implements OnInit {
+export class ReportFourComponent implements OnInit {
 
   isLoading = false;
   list = [];
-  total = 0;
   count = 0;
-  miningCompanyList = [];
+  stateList = [];
   opt = '3';
   dateFrom = null;
   dateTo = null;
-  mining_company_id = null;
+  state_id = null;
   chartData: any;
   options: any;
   plugin = ChartDataLabels;
@@ -41,25 +40,27 @@ export class ReportOneComponent implements OnInit {
   }
 
   load() {
-    this.lookupService.listMiningCompany().subscribe((res: any) => {
-      this.miningCompanyList = res;
+    this.lookupService.listCountry().subscribe((res: any) => {
+      const country_id = res[0].id;
+      this.lookupService.listStates(country_id).subscribe((res: any) => {
+        this.stateList = res;
+      });
     });
   }
-  
+
   loadReport() {
-    if (!this.mining_company_id) return;
+    if (!this.state_id) return;
     let days = '0';
     if (this.opt === '0') days = '7';
     if (this.opt === '1') days = '14';
     this.isLoading = true;
-    this.reportService.list1(
-      this.mining_company_id,
+    this.reportService.list3(
+      this.state_id,
       this.opt,
       days,
       Helper.getDateStr(this.dateFrom), 
       Helper.getDateStr(this.dateTo)).subscribe((res: any) => {
         this.list = res.data;
-        this.total = res.total;
         this.count = res.count;
         this.setChart();
     }, (error) => {
@@ -71,22 +72,21 @@ export class ReportOneComponent implements OnInit {
 
   setChart() {
     const labels = _.map(this.list, (x) => {
-      let pct = Helper.getPercentage(x.sum, this.total);
-      return `${x.material__name} - ${pct}`;
+      return x.do_master__issue_from__name;
     });
-
-    const colorList = Helper.getColorList(this.list);
 
     const data = _.map(this.list, (x) => {
-      return x.sum;
+      return x.count;
     });
+
     this.chartData = {
       labels: labels,
       datasets: [
         {
-          label: 'First Dataset',
+          label: 'No. of Permit',
           data: data,
-          backgroundColor: colorList
+          backgroundColor: '#42A5F5',
+          borderColor: '#42A5F5'
         }
       ]
     };
@@ -104,9 +104,17 @@ export class ReportOneComponent implements OnInit {
         datalabels: {
           color: '#ffffff',
           formatter: (x, context) => {
-            return Helper.getPercentage(x, this.total);
+            return `${x}`;
           }
         }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            min: 0,
+            stepSize: 1
+          }
+        }]
       }
     };
 
@@ -123,14 +131,14 @@ export class ReportOneComponent implements OnInit {
   }
 
   onClearFilter() {
-    this.mining_company_id = null;
+    this.state_id = null;
     this.opt = '3';
     this.dateFrom = null;
     this.dateTo = null;
   }
 
   get chartTitle() {
-    let s = this.miningCompany;
+    let s = this.state;
     if (this.opt === '0') {
       s = `${s} - Last 7 days`;
     }
@@ -150,14 +158,14 @@ export class ReportOneComponent implements OnInit {
     return s;
   }
 
-  get miningCompany() {
-    let mid = this.mining_company_id;
-    let s = mid;
-    if (!mid) {
+  get state() {
+    let sid = this.state_id;
+    let s = sid;
+    if (!sid) {
       return '';
     }
 
-    let o = _.find(this.miningCompanyList, { id: mid });
+    let o = _.find(this.stateList, { id: sid });
     if (!_.isUndefined(o)) {
       s = o.name;
     }

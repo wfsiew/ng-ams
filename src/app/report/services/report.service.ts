@@ -42,4 +42,20 @@ export class ReportService {
 
     return this.http.get(`${this.baseUrl}/api/report/2`, { params: prm });
   }
+
+  list3(state_id, opt, days, dateFrom, dateTo) {
+    let prm: HttpParams = new HttpParams()
+      .set('state_id', state_id)
+      .set('opt', opt)
+      .set('days', days);
+    if (!Helper.isEmpty(dateFrom)) {
+      prm = prm.append('datefrom', dateFrom);
+    }
+
+    if (!Helper.isEmpty(dateTo)) {
+      prm = prm.append('dateto', dateTo);
+    }
+
+    return this.http.get(`${this.baseUrl}/api/report/3`, { params: prm });
+  }
 }

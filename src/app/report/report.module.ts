@@ -11,14 +11,17 @@ import { SharedComponentModules } from '../shared/components/shared-components.m
 import { ReportOneComponent } from './report-one/report-one.component';
 import { ReportTwoComponent } from './report-two/report-two.component';
 import { ReportThreeComponent } from './report-three/report-three.component';
+import { ReportFourComponent } from './report-four/report-four.component';
 
 import { ReportService } from './services/report.service';
 
 
 @NgModule({
   declarations: [
-    ReportOneComponent, 
-    ReportTwoComponent, ReportThreeComponent
+    ReportOneComponent,
+    ReportTwoComponent,
+    ReportThreeComponent,
+    ReportFourComponent
   ],
   imports: [
     CommonModule,
