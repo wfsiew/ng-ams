@@ -13,7 +13,7 @@
       <div class="card-header">
         <div class="row">
           <div class="col-sm-6 col-12 p-1">
-            <app-search-input [search]="search" (onSearch)="onSearch($event)"></app-search-input>
+            <app-search-input [search]="search" (onSearch)="onSearch($event)" (onSearchChange)="onSearchChange($event)"></app-search-input>
           </div>
           <div class="col-sm-4 col-12 p-1">
             <ng-select

@@ -127,6 +127,10 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
     });
   }
 
+  onSearchChange(s: string) {
+    this.search = s;
+  }
+
   pageChanged(event: any) {
     this.page = event.page;
     this.load();

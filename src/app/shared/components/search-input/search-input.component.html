@@ -1,6 +1,6 @@
 <div class="input-group">
   <input (keyup)="onSearchDbKeyUp($event)" type="search" name="q" class="form-control" placeholder="Search..."
-    [(ngModel)]="search" (keydown.enter)="onSearchKeypress($event)">
+    [(ngModel)]="search" (keydown.enter)="onSearchKeypress($event)" (change)="onSearchChg($event)">
   <div class="input-group-append">
     <button type="button" class="btn btn-default" (click)="onHandleSearch()">
       <i class="fas fa-search"></i>

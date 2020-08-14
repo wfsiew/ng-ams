@@ -10,6 +10,7 @@ export class SearchInputComponent implements OnInit {
   @Input() search = '';
   @Output() onSearch: EventEmitter<string> = new EventEmitter();
   @Output() onSearchKeyUp: EventEmitter<string> = new EventEmitter();
+  @Output() onSearchChange: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
 
@@ -25,6 +26,10 @@ export class SearchInputComponent implements OnInit {
 
   onSearchDbKeyUp(e) {
     this.onSearchKeyUp.emit(this.search);
+  }
+
+  onSearchChg(e) {
+    this.onSearchChange.emit(this.search);
   }
 
   reset() {
