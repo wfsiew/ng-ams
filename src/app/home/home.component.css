@@ -11,7 +11,9 @@
 }
 
 .home-box {
-  width: 650px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .img-logo {
