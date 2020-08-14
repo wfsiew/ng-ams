@@ -11,6 +11,8 @@ import { TruckListingComponent } from 'src/app/setup/buyer/truck-listing/truck-l
 import { TruckCreateComponent } from 'src/app/setup/buyer/truck-create/truck-create.component';
 import { DriverListingComponent } from 'src/app/setup/buyer/driver-listing/driver-listing.component';
 import { DriverCreateComponent } from 'src/app/setup/buyer/driver-create/driver-create.component';
+import { MaterialListingComponent } from 'src/app/setup/material/material-listing/material-listing.component';
+import { MaterialCreateComponent } from 'src/app/setup/material/material-create/material-create.component';
 import { DeliveryOrderDetailComponent } from './delivery-order-detail/delivery-order-detail.component';
 import { UserListingComponent as BuyerUserListingComponent } from 'src/app/setup/buyer/user-listing/user-listing.component';
 import { PurchaseOrderListingComponent } from './purchase-order-listing/purchase-order-listing.component';
@@ -65,6 +67,14 @@ const routes: Routes = [
           { path: 'list', component: BuyerUserListingComponent }
         ]
       }
+    ]
+  },
+  {
+    path: 'material',
+    children: [
+      { path: 'list', component: MaterialListingComponent },
+      { path: 'create', component: MaterialCreateComponent },
+      { path: 'edit/:id', component: MaterialCreateComponent }
     ]
   }
 ];

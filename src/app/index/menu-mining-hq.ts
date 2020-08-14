@@ -14,6 +14,11 @@ export const MenuMiningHQ = {
     'buyer/driver',
     'buyer/user'
   ],
+  material_list: [
+    'material/list',
+    'material/create',
+    'material/edit'
+  ],
   purchase_order_list: [
     'purchase-order/list',
     'purchase-order/create',
@@ -40,6 +45,11 @@ export const SubmenuMiningHQ = [
   {
     title: 'Buyer',
     path: 'buyer/list',
+    icon: 'far fa-circle'
+  },
+  {
+    title: 'Material',
+    path: 'material/list',
     icon: 'far fa-circle'
   }
 ];
