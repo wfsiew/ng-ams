@@ -74,7 +74,7 @@ export class LoginComponent extends GeneralForm implements OnInit, OnDestroy {
   }
 
   onSuccess(res) {
-    //this.msService.send('home.index', { reload: true });
+    this.msService.send('home.index', { reload: true });
     if (this.nextUrl) {
       this.router.navigateByUrl(this.nextUrl)
         .catch(() => { this.router.navigate(['/ams']); });
