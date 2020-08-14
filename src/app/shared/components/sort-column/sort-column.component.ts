@@ -28,7 +28,7 @@ export class SortColumnComponent implements OnInit {
     else {
       this.dir = this.dir === 'asc' ? 'desc' : 'asc';
       if (this.dir === 'asc') {
-        this.current = '';
+        this.current = this.sort;
       }
     }
 
