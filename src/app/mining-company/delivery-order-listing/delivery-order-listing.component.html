@@ -72,7 +72,7 @@
                 <td>
                   <div>{{ o.do_num }}</div>
                   <div><h5><span class="badge badge-info">{{ getDOStatus(o) }}</span></h5></div>
-                  <div><h6><span class="badge badge-warning">{{ o.weight }} tons</span></h6></div>
+                  <div><h5><span class="badge badge-warning">{{ o.weight }} kg</span></h5></div>
                 </td>
                 <td>{{ o.created_date | date:'dd/MM/yyyy hh:mm aaa' }}</td>
                 <td>{{ o.material.name | uppercase }}</td>
@@ -83,11 +83,11 @@
                 </td>
                 <td>
                   <div>{{ o.checkin_date | date:'dd/MM/yyyy hh:mm aaa' }}</div>
-                  <div *ngIf="o.checkin_date"><h6><span class="badge badge-warning">{{ o.checkin_weight }} tons</span></h6></div>
+                  <div *ngIf="o.checkin_date"><h5><span class="badge badge-warning">{{ o.checkin_weight }} kg</span></h5></div>
                 </td>
                 <td>
                   <div>{{ o.checkout_date | date:'dd/MM/yyyy hh:mm aaa' }}</div>
-                  <div *ngIf="o.checkout_date"><h6><span class="badge badge-warning">{{ o.checkout_weight }} tons</span></h6></div>
+                  <div *ngIf="o.checkout_date"><h5><span class="badge badge-warning">{{ o.checkout_weight }} kg</span></h5></div>
                 </td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onEdit(o)" *ngIf="o.status === DOStatus.NEW"><i class="fas fa-pencil-alt"></i></button>
@@ -96,6 +96,9 @@
                   <button type="button" class="btn btn-sm btn-danger mr-2" (click)="onCheckOut(o)" *ngIf="!o.checkout_date && o.checkin_date">Vehicle Exit</button>
                   <!-- <button type="button" class="btn btn-sm btn-primary mr-2" (click)="onReceived(o)" *ngIf="o.status === DOStatus.DELIVERING && isRoleMiningHQ">Received</button> -->
                   <button type="button" class="btn btn-sm btn-primary" (click)="onPermit(o)" *ngIf="o.permit !== null">Permit</button>
+                  <ng-container *ngIf="o.permit !== null">
+                    <div><h5><span class="badge badge-warning">{{ o.actual_weight }} kg</span></h5></div>
+                  </ng-container>
                 </td>
               </tr>
             </tbody>

@@ -101,6 +101,24 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
     });
   }
 
+  setDefault() {
+    this.mform.patchValue({
+      pickup_name: 'SMGB Group Sdn Bhd',
+      pickup_addr_line_1: 'LMS N. A SR D60/01',
+      pickup_addr_line_2: 'Kg Leleh',
+      pickup_addr_line_3: 'Mukim Semantan',
+      pickup_postcode: '28000',
+      pickup_city: 'Daerah Temerloh',
+
+      recv_name: 'Established Metal Industries Sdn. Bhd',
+      recv_addr_line_1: 'Lot 763',
+      recv_addr_line_2: 'Jalan Monorel',
+      recv_addr_line_3: 'Sungei Choh',
+      recv_postcode: '48000',
+      recv_city: 'Rawang'
+    });
+  }
+
   setForm() {
     const o = this.data;
     this.mform.patchValue({
@@ -175,8 +193,14 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
         pickup_country_id: this.countryList[0].id,
         recv_country_id: this.countryList[0].id
       });
+
+      if (this.buyerList.length > 1) {
+        this.mform.patchValue({buyer_id: this.buyerList[1].id });
+      }
+      this.onChangeBuyer(this.buyerList[1]);
       this.onChangePickupCountry(this.countryList[0]);
       this.onChangeReceiverCountry(this.countryList[0]);
+      this.setDefault();
       this.loadDetails();
     }, (error) => {
       this.isLoading = false;
@@ -306,20 +330,28 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
         truck_id: null,
         driver_id: null
       });
+
+      if (this.truckList.length > 0) {
+        this.mform.patchValue({ truck_id: this.truckList[0].id });
+      }
+
+      if (this.driverList.length > 0) {
+        this.mform.patchValue({ driver_id: this.driverList[0].id });
+      }
     });
   }
 
   onChangePickupCountry(event) {
     this.lookupService.listStates(event.id).subscribe((res: any) => {
       this.stateList = res;
-      this.mform.patchValue({ pickup_state_id: null });
+      this.mform.patchValue({ pickup_state_id: 4 });
     });
   }
 
   onChangeReceiverCountry(event) {
     this.lookupService.listStates(event.id).subscribe((res: any) => {
       this.stateList = res;
-      this.mform.patchValue({ recv_state_id: null });
+      this.mform.patchValue({ recv_state_id: 2 });
     });
   }
 }
