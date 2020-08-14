@@ -187,6 +187,8 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.modalService.show(CheckoutModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
+        this.sx = window.scrollX;
+        this.sy = window.scrollY;
         this.isLoading = true;
         this.deliveryOrderService.updateTime({ id: o.id, checkin: 1, weight: res.weight }).subscribe((res: any) => {
           this.toastr.success(`DO #${o.do_num} successfully updated`);
@@ -209,6 +211,8 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.modalService.show(CheckoutModalComponent, { class: 'modal-dialog-centered', initialState });
     this.bsModalRef.content.onClose.subscribe(res => {
       if (res.result === true) {
+        this.sx = window.scrollX;
+        this.sy = window.scrollY;
         this.isLoading = true;
         this.deliveryOrderService.updateTime({ id: o.id, checkin: 0, weight: res.weight }).subscribe((res: any) => {
           this.toastr.success(`DO #${o.do_num} successfully updated`);
