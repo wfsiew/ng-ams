@@ -14,11 +14,6 @@ export const MenuMiningHQ = {
     'buyer/driver',
     'buyer/user'
   ],
-  material_list: [
-    'material/list',
-    'material/create',
-    'material/edit'
-  ],
   purchase_order_list: [
     'purchase-order/list',
     'purchase-order/create',
