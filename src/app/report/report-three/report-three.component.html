@@ -41,30 +41,26 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-body">
-            <ul class="nav nav-tabs no-print" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 0}" (click)="onTab(0)">Jumlah Tan</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 1}" (click)="onTab(1)">Jumlah Lombong</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 2}" (click)="onTab(2)">Jumlah Tan (Semua Negeri)</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 3}" (click)="onTab(3)">Jumlah Lombong (Semua Negeri)</a>
-              </li>
-            </ul>
-
-            <p-chart #chart type="bar" [data]="data" [options]="options" [plugins]="plugin"></p-chart>
-          </div>
+    <div class="card">
+      <div class="card-body">
+        <ul class="nav nav-tabs no-print" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 0}" (click)="onTab(0)">Jumlah Tan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 1}" (click)="onTab(1)">Jumlah Lombong</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 2}" (click)="onTab(2)">Jumlah Tan (Semua Negeri)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#" role="tab" [ngClass]="{'active': tab === 3}" (click)="onTab(3)">Jumlah Lombong (Semua Negeri)</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <p-chart #chart type="bar" [data]="data" [options]="options" [plugins]="plugin"></p-chart>
         </div>
       </div>
     </div>
-
   </div>
 </section>
