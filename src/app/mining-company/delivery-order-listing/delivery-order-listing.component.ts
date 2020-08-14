@@ -147,6 +147,7 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
   }
 
   onApplyFilter() {
+    this.page = 1;
     this.load();
   }
 
