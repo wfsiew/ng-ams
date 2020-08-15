@@ -122,15 +122,15 @@ export class TruckCreateComponent extends GeneralForm implements OnInit {
       return;
     }
 
-    if (!this.file && !this.isEdit) {
-      this.toastr.error('Please upload truck photo');
-      return;
-    }
+    // if (!this.file && !this.isEdit) {
+    //   this.toastr.error('Please upload truck photo');
+    //   return;
+    // }
 
-    else if (!this.file && this.imgId === 0 && this.isEdit) {
-      this.toastr.error('Please upload truck photo');
-      return;
-    }
+    // else if (!this.file && this.imgId === 0 && this.isEdit) {
+    //   this.toastr.error('Please upload truck photo');
+    //   return;
+    // }
     
     const f = this.mform.value;
     const formData = new FormData();

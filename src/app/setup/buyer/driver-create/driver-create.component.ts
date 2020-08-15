@@ -124,15 +124,15 @@ export class DriverCreateComponent extends GeneralForm implements OnInit {
       return;
     }
 
-    if (!this.file && !this.isEdit) {
-      this.toastr.error('Please upload driving license');
-      return;
-    }
+    // if (!this.file && !this.isEdit) {
+    //   this.toastr.error('Please upload driving license');
+    //   return;
+    // }
 
-    else if (!this.file && this.imgId === 0 && this.isEdit) {
-      this.toastr.error('Please upload driving license');
-      return;
-    }
+    // else if (!this.file && this.imgId === 0 && this.isEdit) {
+    //   this.toastr.error('Please upload driving license');
+    //   return;
+    // }
     
     const f = this.mform.value;
     const formData = new FormData();
