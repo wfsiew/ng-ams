@@ -196,11 +196,12 @@ export class DeliveryOrderCreateComponent extends GeneralForm implements OnInit 
 
       if (this.buyerList.length > 1) {
         this.mform.patchValue({buyer_id: this.buyerList[1].id });
+        this.onChangeBuyer(this.buyerList[1]);
       }
-      this.onChangeBuyer(this.buyerList[1]);
+      
       this.onChangePickupCountry(this.countryList[0]);
       this.onChangeReceiverCountry(this.countryList[0]);
-      this.setDefault();
+      //this.setDefault();
       this.loadDetails();
     }, (error) => {
       this.isLoading = false;
