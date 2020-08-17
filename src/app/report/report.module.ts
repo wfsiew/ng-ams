@@ -12,6 +12,7 @@ import { ReportOneComponent } from './report-one/report-one.component';
 import { ReportTwoComponent } from './report-two/report-two.component';
 import { ReportThreeComponent } from './report-three/report-three.component';
 import { ReportFourComponent } from './report-four/report-four.component';
+import { ReportFiveComponent } from './report-five/report-five.component';
 
 import { ReportService } from './services/report.service';
 
@@ -21,7 +22,8 @@ import { ReportService } from './services/report.service';
     ReportOneComponent,
     ReportTwoComponent,
     ReportThreeComponent,
-    ReportFourComponent
+    ReportFourComponent,
+    ReportFiveComponent
   ],
   imports: [
     CommonModule,

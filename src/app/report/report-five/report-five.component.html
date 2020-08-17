@@ -1,0 +1,48 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Mineral Producer Report By States</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card no-print">
+      <div class="card-header">
+        <div class="row mb-2">
+          <div class="col-sm-1 col-12 p-1">
+            <ng-select 
+              [items]="yearList" 
+              bindLabel="name" 
+              bindValue="id" 
+              placeholder="Please select"
+              [(ngModel)]="year" 
+              name="year"></ng-select>
+          </div>
+          <div class="col-sm-3 col-12 p-1">
+            <ng-select 
+              [items]="mineList" 
+              bindLabel="name" 
+              bindValue="id" 
+              placeholder="Please select"
+              [(ngModel)]="mine" 
+              name="mine"></ng-select>
+          </div>
+          <div class="col-sm-7 col-12 p-1 text-right">
+            <button type="button" class="btn btn-primary" (click)="onApplyFilter(chart)" [disabled]="!mine">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="tab-content">
+          <p-chart #chart type="bar" [data]="data" [options]="options" [plugins]="plugin"></p-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

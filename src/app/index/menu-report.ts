@@ -11,6 +11,9 @@ export const MenuReport = {
   ],
   report_four: [
     'four'
+  ],
+  report_five: [
+    'five'
   ]
 };
 
@@ -28,6 +31,11 @@ export const SubmenuReport = [
   {
     title: 'Permit',
     path: 'four',
+    icon: 'far fa-circle'
+  },
+  {
+    title: 'Mineral Producer',
+    path: 'five',
     icon: 'far fa-circle'
   }
   // {
