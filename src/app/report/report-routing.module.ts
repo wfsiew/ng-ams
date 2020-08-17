@@ -6,13 +6,15 @@ import { ReportTwoComponent } from './report-two/report-two.component';
 import { ReportThreeComponent } from './report-three/report-three.component';
 import { ReportFourComponent } from './report-four/report-four.component';
 import { ReportFiveComponent } from './report-five/report-five.component';
+import { ReportSixComponent } from './report-six/report-six.component';
 
 const routes: Routes = [
   { path: 'one', component: ReportOneComponent },
   { path: 'two', component: ReportTwoComponent },
   { path: 'three', component: ReportThreeComponent },
   { path: 'four', component: ReportFourComponent },
-  { path: 'five', component: ReportFiveComponent }
+  { path: 'five', component: ReportFiveComponent },
+  { path: 'six', component: ReportSixComponent }
 ];
 
 @NgModule({

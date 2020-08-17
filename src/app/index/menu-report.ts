@@ -14,6 +14,9 @@ export const MenuReport = {
   ],
   report_five: [
     'five'
+  ],
+  report_six: [
+    'six'
   ]
 };
 
@@ -36,6 +39,11 @@ export const SubmenuReport = [
   {
     title: 'Mineral Producer',
     path: 'five',
+    icon: 'far fa-circle'
+  },
+  {
+    title: 'Export Summary',
+    path: 'six',
     icon: 'far fa-circle'
   }
   // {

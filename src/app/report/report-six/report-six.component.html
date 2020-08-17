@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-12">
-        <h1 class="m-0 text-dark">Number of Industrial Mineral Producers by States</h1>
+        <h1 class="m-0 text-dark">Export Summary</h1>
       </div>
     </div>
   </div>
@@ -30,7 +30,19 @@
               [(ngModel)]="mine" 
               name="mine"></ng-select>
           </div>
-          <div class="col-sm-8 col-12 p-1 text-right">
+          <div class="col-sm-2 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt1" name="opt" value="0" [(ngModel)]="opt">
+              <label for="ropt1">Quantity (Tonnes)</label>
+            </div>
+          </div>
+          <div class="col-sm-2 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt2" name="opt" value="1" [(ngModel)]="opt">
+              <label for="ropt2">Value (RM)</label>
+            </div>
+          </div>
+          <div class="col-sm-4 col-12 p-1 text-right">
             <button type="button" class="btn btn-primary" (click)="onApplyFilter(chart)" [disabled]="!mine">Apply</button>
           </div>
         </div>

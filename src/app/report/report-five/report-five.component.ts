@@ -63,7 +63,7 @@ export class ReportFiveComponent implements OnInit {
         {
           scaleLabel: {
             display: true,
-            labelString: 'Tahun'
+            labelString: 'State'
           }
         }
       ]

@@ -125,6 +125,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.setTargetMenu('/ams/report', 'report', 'three', MenuReport.report_three);
     this.setTargetMenu('/ams/report', 'report', 'four', MenuReport.report_four);
     this.setTargetMenu('/ams/report', 'report', 'five', MenuReport.report_five);
+    this.setTargetMenu('/ams/report', 'report', 'six', MenuReport.report_six);
   }
 
   setTargetMenu(url: string, targetMenu: string, targetSubmenu: string, matchList: string[]) {
