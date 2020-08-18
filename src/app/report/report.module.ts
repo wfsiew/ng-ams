@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ChartModule } from 'primeng/chart';
 
 import { ReportRoutingModule } from './report-routing.module';
@@ -14,6 +15,7 @@ import { ReportThreeComponent } from './report-three/report-three.component';
 import { ReportFourComponent } from './report-four/report-four.component';
 import { ReportFiveComponent } from './report-five/report-five.component';
 import { ReportSixComponent } from './report-six/report-six.component';
+import { ReportSevenComponent } from './report-seven/report-seven.component';
 
 import { ReportService } from './services/report.service';
 
@@ -25,7 +27,8 @@ import { ReportService } from './services/report.service';
     ReportThreeComponent,
     ReportFourComponent,
     ReportFiveComponent,
-    ReportSixComponent
+    ReportSixComponent,
+    ReportSevenComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,7 @@ import { ReportService } from './services/report.service';
     SharedComponentModules,
     NgSelectModule,
     BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
     ChartModule
   ],
   providers: [

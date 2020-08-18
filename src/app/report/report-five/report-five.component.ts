@@ -55,7 +55,7 @@ export class ReportFiveComponent implements OnInit {
         {
           scaleLabel: {
             display: true,
-            labelString: 'Tonne'
+            labelString: 'Total'
           }
         }
       ],

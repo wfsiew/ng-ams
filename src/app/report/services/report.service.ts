@@ -58,4 +58,20 @@ export class ReportService {
 
     return this.http.get(`${this.baseUrl}/api/report/3`, { params: prm });
   }
+
+  list4(mining_company_id, material_id, page, limit, sort, dir) {
+    let prm: HttpParams = new HttpParams()
+      .set('mining_company_id', mining_company_id)
+      .set('material_id', material_id)
+      .set('_page', page)
+      .set('_limit', limit);
+    if (sort !== '') {
+      if (dir === '') {
+        dir = 'asc';
+      }
+
+      prm = prm.append('sort', `${sort}:${dir}`);
+    }
+    return this.http.get(`${this.baseUrl}/api/report/4`, { params: prm, observe: 'response' });
+  }
 }

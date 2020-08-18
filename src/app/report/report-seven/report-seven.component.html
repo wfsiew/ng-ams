@@ -1,0 +1,105 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="m-0 text-dark">Report By </h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="card no-print">
+      <div class="card-header">
+        <div class="row mb-2">
+          <div class="col-sm-3 col-12 p-1">
+            <ng-select 
+              [items]="miningCompanyList" 
+              bindLabel="name" 
+              bindValue="id" 
+              placeholder="Please select"
+              (change)="onChangeMiningCompany($event)"
+              [(ngModel)]="mining_company_id" 
+              name="mining_company_id"></ng-select>
+          </div>
+          <div class="col-sm-3 col-12 p-1">
+            <ng-select 
+              [items]="materialList" 
+              bindLabel="label" 
+              bindValue="id" 
+              placeholder="Please select"
+              [(ngModel)]="material_id"
+              name="material_id"></ng-select>
+          </div>
+
+          <div class="col-sm-6 col-12 p-1 text-right">
+            <button type="button" class="btn btn-primary" (click)="onApplyFilter()" [disabled]="!mining_company_id || !material_id">Apply</button>
+            <span class="mr-2"></span>
+            <button type="button" class="btn btn-default" (click)="onClearFilter()">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
+          <h4>No records found</h4>
+        </div>
+
+        <div class="table-responsive" *ngIf="!isEmpty(list) && !isLoading">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <app-sort-column [name]="'DO Created Date'" [sort]="'created_date'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'State'" [sort]="'pickup_state__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Mining Company'" [sort]="'issue_from__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Material'" [sort]="'material__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Weight (kg)'" [sort]="'actual_weight'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
+                </th>
+                <th>
+                  <app-sort-column [name]="'Buyer'" [sort]="'buyer__name'" [dir]="sortDir" [current]="sort"
+                    (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let o of list">
+                <td>{{ o.created_date | date:'dd/MM/yyyy hh:mm aaa' }}</td>
+                <td>{{ o.pickup_state.name | uppercase }}</td>
+                <td>{{ o.issue_from.name | uppercase }}</td>
+                <td>{{ o.material.name | uppercase }}</td>
+                <td>{{ o.actual_weight }}</td>
+                <td>{{ o.buyer.name | uppercase }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer" *ngIf="totalCount" [ngClass]="{'d-none': isLoading}">
+        <div class="float-right">
+          <pagination 
+            [totalItems]="totalCount" 
+            [itemsPerPage]="pageSize" 
+            [maxSize]="MAX_PAGE_NUMBERS" 
+            [(ngModel)]="page" 
+            (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
