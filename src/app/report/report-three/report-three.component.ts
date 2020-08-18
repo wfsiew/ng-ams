@@ -31,7 +31,7 @@ export class ReportThreeComponent implements OnInit {
   options = {
     title: {
       display: true,
-      text: ['Besi', 'Jumlah Tan (Negeri) dari 2016 - 2018'],
+      text: ['Besi', 'Total Tonnes (State) from 2016 - 2018'],
       fontSize: 16
     },
     legend: {
@@ -53,7 +53,7 @@ export class ReportThreeComponent implements OnInit {
         {
           scaleLabel: {
             display: true,
-            labelString: 'Tan'
+            labelString: 'Tonne'
           }
         }
       ],
@@ -61,7 +61,7 @@ export class ReportThreeComponent implements OnInit {
         {
           scaleLabel: {
             display: true,
-            labelString: 'Tahun'
+            labelString: 'Year'
           }
         }
       ]
@@ -116,11 +116,11 @@ export class ReportThreeComponent implements OnInit {
       this.chart.options.title.text = this.chartTitle;
 
       if (this.tab === 0 || this.tab === 2) {
-        this.chart.options.scales.yAxes[0].scaleLabel.labelString = 'Tan';
+        this.chart.options.scales.yAxes[0].scaleLabel.labelString = 'Tonnes';
       }
 
       else if (this.tab === 1 || this.tab === 3) {
-        this.chart.options.scales.yAxes[0].scaleLabel.labelString = 'Lombong';
+        this.chart.options.scales.yAxes[0].scaleLabel.labelString = 'Mines';
       }
       this.chart.reinit();
     }
@@ -146,41 +146,41 @@ export class ReportThreeComponent implements OnInit {
     if (this.mine === '0') {
       if (this.tab === 0) {
         if (this.opt === '0') {
-          s = ['Besi', 'Jumlah Tan (Negeri) dari 2016 - 2018'];
+          s = ['Besi', 'Total Tonnes (State) from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Jumlah Tan (Negeri) dari 2014 - 2018'];
+          s = ['Besi', 'Total Tonnes (State) from 2014 - 2018'];
         }
       }
       
       else if (this.tab === 1) {
         if (this.opt === '0') {
-          s = ['Besi', 'Jumlah Lombong (Negeri) dari 2016 - 2018'];
+          s = ['Besi', 'Total Mines (State) from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Jumlah Lombong (Negeri) dari 2014 - 2018'];
+          s = ['Besi', 'Total Mines (State) from 2014 - 2018'];
         }
       }
 
       else if (this.tab === 2) {
         if (this.opt === '0') {
-          s = ['Besi', 'Jumlah Tan dari 2016 - 2018'];
+          s = ['Besi', 'Total Tonnes from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Jumlah Tan dari 2014 - 2018'];
+          s = ['Besi', 'Total Tonnes from 2014 - 2018'];
         }
       }
 
       else if (this.tab === 3) {
         if (this.opt === '0') {
-          s = ['Besi', 'Jumlah Lombong dari 2016 - 2018'];
+          s = ['Besi', 'Total Mines from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Jumlah Lombong dari 2014 - 2018'];
+          s = ['Besi', 'Total Mines from 2014 - 2018'];
         }
       }
     }
@@ -188,41 +188,41 @@ export class ReportThreeComponent implements OnInit {
     else if (this.mine === '1') {
       if (this.tab === 0) {
         if (this.opt === '0') {
-          s = ['Timah',  'Jumlah Tan (Negeri) dari 2017 - 2019'];
+          s = ['Timah',  'Total Tonnes (State) from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah', 'Jumlah Tan (Negeri) dari 2015 - 2019'];
+          s = ['Timah', 'Total Tonnes (State) from 2015 - 2019'];
         }
       }
 
       else if (this.tab === 1) {
         if (this.opt === '0') {
-          s = ['Timah - Jumlah Lombong (Negeri) dari 2017 - 2019'];
+          s = ['Timah - Total Mines (State) from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah',  'Jumlah Lombong (Negeri) dari 2015 - 2019'];
+          s = ['Timah',  'Total Mines (State) from 2015 - 2019'];
         }
       }
 
       else if (this.tab === 2) {
         if (this.opt === '0') {
-          s = ['Timah', 'Jumlah Tan dari 2017 - 2019'];
+          s = ['Timah', 'Total Tonnes from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah', 'Jumlah Tan dari 2015 - 2019'];
+          s = ['Timah', 'Total Tonnes from 2015 - 2019'];
         }
       }
 
       else if (this.tab === 3) {
         if (this.opt === '0') {
-          s = ['Timah', 'Jumlah Lombong dari 2017 - 2019'];
+          s = ['Timah', 'Total Mines from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah', 'Jumlah Lombong dari 2015 - 2019'];
+          s = ['Timah', 'Total Mines from 2015 - 2019'];
         }
       }
     }
@@ -321,7 +321,7 @@ export class ReportThreeComponent implements OnInit {
         labels: _.slice(data_besi_ton.labels, 2),
         datasets: [
           {
-            label: 'Jumlah Tan',
+            label: 'Total Tonnes',
             data: ls,
             backgroundColor: '#42A5F5',
             borderColor: '#42A5F5'
@@ -350,7 +350,7 @@ export class ReportThreeComponent implements OnInit {
         labels: data_besi_ton.labels,
         datasets: [
           {
-            label: 'Jumlah Tan',
+            label: 'Total Tonnes',
             data: ls,
             backgroundColor: '#42A5F5',
             borderColor: '#42A5F5'
@@ -383,7 +383,7 @@ export class ReportThreeComponent implements OnInit {
         labels: _.slice(data_besi_lombong.labels, 2),
         datasets: [
           {
-            label: 'Jumlah Lombong',
+            label: 'Total Mines',
             data: ls,
             backgroundColor: '#9CCC65',
             borderColor: '#9CCC65'
@@ -412,7 +412,7 @@ export class ReportThreeComponent implements OnInit {
         labels: data_besi_lombong.labels,
         datasets: [
           {
-            label: 'Jumlah Lombong',
+            label: 'Total Mines',
             data: ls,
             backgroundColor: '#9CCC65',
             borderColor: '#9CCC65'
@@ -513,7 +513,7 @@ export class ReportThreeComponent implements OnInit {
         labels: _.slice(data_timah_ton.labels, 2),
         datasets: [
           {
-            label: 'Jumlah Tan',
+            label: 'Total Tonnes',
             data: ls,
             backgroundColor: '#42A5F5',
             borderColor: '$42A5F5'
@@ -542,7 +542,7 @@ export class ReportThreeComponent implements OnInit {
         labels: data_timah_ton.labels,
         datasets: [
           {
-            label: 'Jumlah Tan',
+            label: 'Total Tonnes',
             data: ls,
             backgroundColor: '#42A5F5',
             borderColor: '#42A5F5'
@@ -575,7 +575,7 @@ export class ReportThreeComponent implements OnInit {
         labels: _.slice(data_timah_lombong.labels, 2),
         datasets: [
           {
-            label: 'Jumlah Lombong',
+            label: 'Total Mines',
             data: ls,
             backgroundColor: '#9CCC65',
             borderColor: '#9CCC65'
@@ -604,7 +604,7 @@ export class ReportThreeComponent implements OnInit {
         labels: data_timah_lombong.labels,
         datasets: [
           {
-            label: 'Jumlah Lombong',
+            label: 'Total Mines',
             data: ls,
             backgroundColor: '#9CCC65',
             borderColor: '#9CCC65'
