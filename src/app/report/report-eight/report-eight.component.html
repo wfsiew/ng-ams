@@ -11,7 +11,11 @@
   <div class="container-fluid">
     <div class="card">
       <div class="card-body">
-        <p-chart #chart type="bar" [data]="data" [options]="options" [plugins]="plugin" height="520"></p-chart>
+        <div class="row">
+          <div class="col-sm-6 col-12">
+            <p-chart #chart type="bar" [data]="data" [options]="options" [plugins]="plugin" height="520"></p-chart>
+          </div>
+        </div>
       </div>
     </div>
   </div>

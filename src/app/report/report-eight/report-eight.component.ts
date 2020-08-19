@@ -79,7 +79,6 @@ export class ReportEightComponent implements OnInit {
       return {
         label: x,
         data: [0, 0],
-        barThickness: 100,
         backgroundColor: colorList[i],
         borderColor: colorList[i]
       }
