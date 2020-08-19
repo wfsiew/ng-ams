@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
 import _ from 'lodash';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -11,11 +11,17 @@ import { Helper } from 'src/app/shared/utils/helper';
   templateUrl: './report-eight.component.html',
   styleUrls: ['./report-eight.component.css']
 })
-export class ReportEightComponent implements OnInit {
+export class ReportEightComponent implements OnInit, AfterViewInit {
 
+  mth = 0;
+  j = 0;
+  n = 0;
+  lx: number[] = [];
   data: any;
   plugin = ChartDataLabels;
   @ViewChild('chart', { static: false }) chart: UIChart;
+
+  readonly mthlist = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
 
   options = {
     title: {
@@ -45,6 +51,11 @@ export class ReportEightComponent implements OnInit {
     scales: {
       yAxes: [
         {
+          ticks: {
+            max: 35,
+            min: 0,
+            autoSkip: false
+          },
           stacked: false,
           scaleLabel: {
             display: true,
@@ -66,11 +77,20 @@ export class ReportEightComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.load();
   }
 
+  ngOnInit() {
+  }
+
   load() {
+    this.initChart();
+    this.lx = this.getRandomIndexList();
+    this.startProc1();
+  }
+
+  initChart() {
     const colorList = Helper.getColorList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
     const labels = ['Johor', 'Kedah', 'Kelantan', 'W.P.', 'Melaka', 'Negeri Sembilan', 'Pahang', 'Perak', 'Perlis', 'Pulau Pinang', 'Putrajaya', 'Sabah', 'Sarawak', 'Selangor', 'Terengganu'];
 
@@ -86,7 +106,48 @@ export class ReportEightComponent implements OnInit {
       ]
     }
 
-    this.refreshChart();
+    this.chart.data = this.data;
+    this.chart.options.title.text = `Report For Month of ${this.mthlist[this.mth]}`;
+    this.chart.reinit();
+  }
+
+  startProc1() {
+    setTimeout(() => {
+      let o = this.chart.data.datasets[0];
+      let i = this.lx[this.j];
+      o.data[i] = o.data[i] + this.getRandom();
+      this.chart.refresh();
+      ++this.j;
+
+      if (this.j < this.lx.length) {
+        this.startProc1();
+      }
+
+      else {
+        this.j = 0;
+        this.startProc2();
+      }
+    }, 2000);
+  }
+
+  startProc2() {
+    ++this.n;
+    if (this.n === 3) {
+      this.n = 0;
+      ++this.mth;
+      setTimeout(() => {
+        this.initChart();
+        this.lx = this.getRandomIndexList();
+        this.startProc1();
+      }, 10000);
+    }
+
+    else {
+      setTimeout(() => {
+        this.lx = this.getRandomIndexList();
+        this.startProc1();
+      }, 5000);
+    }
   }
 
   refreshChart() {
@@ -117,12 +178,24 @@ export class ReportEightComponent implements OnInit {
     this.refreshChart();
   }
 
-  private getRandom() {
-    let x = Math.floor(Math.random() * 6) + 5;
+  getRandomIndexList(): number[] {
+    let lx: number[] = [];
+    while (lx.length < 15) {
+      let k = this.getRandomLabel();
+      if (lx.indexOf(k) < 0) {
+        lx.push(k);
+      }
+    }
+
+    return lx;
+  }
+
+  getRandom() {
+    let x = Math.floor(Math.random() * 9) + 2;
     return x;
   }
 
-  private getRandomLabel() {
+  getRandomLabel() {
     let x = Math.floor(Math.random() * 15);
     return x;
   }
