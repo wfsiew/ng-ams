@@ -35,6 +35,10 @@ export class ReportEightComponent implements OnInit {
         anchor: 'center',
         align: 'center',
         formatter: (x, context) => {
+          if (x === 0) {
+            return '';
+          }
+
           return Number(x).toLocaleString('en-GB');
         }
       }
@@ -75,85 +79,85 @@ export class ReportEightComponent implements OnInit {
       datasets: [
         {
           label: 'Jan',
-          data: [20, 32],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[0],
           borderColor: colorList[0]
         },
         {
           label: 'Feb',
-          data: [43, 12],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[1],
           borderColor: colorList[1]
         },
         {
           label: 'Mar',
-          data: [30, 17],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[2],
           borderColor: colorList[2]
         },
         {
           label: 'Apr',
-          data: [35, 23],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[3],
           borderColor: colorList[3]
         },
         {
           label: 'May',
-          data: [26, 48],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[4],
           borderColor: colorList[4]
         },
         {
           label: 'June',
-          data: [33, 22],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[5],
           borderColor: colorList[5]
         },
         {
           label: 'July',
-          data: [23, 32],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[6],
           borderColor: colorList[6]
         },
         {
           label: 'Aug',
-          data: [26, 40],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[7],
           borderColor: colorList[7]
         },
         {
           label: 'Sep',
-          data: [36, 28],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[8],
           borderColor: colorList[8]
         },
         {
           label: 'Oct',
-          data: [38, 31],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[9],
           borderColor: colorList[9]
         },
         {
           label: 'Nov',
-          data: [19, 22],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[10],
           borderColor: colorList[10]
         },
         {
           label: 'Dec',
-          data: [23, 42],
-          barThickness: 150,
+          data: [0, 0],
+          barThickness: 100,
           backgroundColor: colorList[11],
           borderColor: colorList[11]
         }
@@ -188,12 +192,7 @@ export class ReportEightComponent implements OnInit {
   }
 
   private getRandom() {
-    let x = Math.floor(Math.random() * 11);
-    return x;
-  }
-
-  private getRandomMonth() {
-    let x = Math.floor(Math.random() * 12);
+    let x = Math.floor(Math.random() * 6) + 5;
     return x;
   }
 }
