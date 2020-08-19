@@ -52,16 +52,16 @@ export const SubmenuReport = [
     path: 'six',
     icon: 'far fa-circle'
   },
-  {
-    title: 'Report ???',
-    path: 'seven',
-    icon: 'far fa-circle'
-  },
-  {
-    title: 'Testing Report',
-    path: 'eight',
-    icon: 'far fa-circle'
-  }
+  // {
+  //   title: 'Details Report',
+  //   path: 'seven',
+  //   icon: 'far fa-circle'
+  // },
+  // {
+  //   title: 'Testing Report',
+  //   path: 'eight',
+  //   icon: 'far fa-circle'
+  // }
   // {
   //   title: 'Summary',
   //   path: 'two',

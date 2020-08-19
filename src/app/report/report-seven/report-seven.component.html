@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-12">
-        <h1 class="m-0 text-dark">Report By </h1>
+        <h1 class="m-0 text-dark">Report By Company / Material</h1>
       </div>
     </div>
   </div>
@@ -30,6 +30,45 @@
               placeholder="Please select"
               [(ngModel)]="material_id"
               name="material_id"></ng-select>
+          </div>
+          <div class="col-sm-1 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt4" name="opt" value="0" [(ngModel)]="opt">
+              <label for="ropt4">Today</label>
+            </div>
+          </div>
+          <div class="col-sm-2 col-12 p-1">
+            <div class="icheck-primary d-inline">
+              <input type="radio" id="ropt3" name="opt" value="1" [(ngModel)]="opt">
+              <label for="ropt3">Date Range</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-sm-3 col-12 p-1">
+            <div class="input-group date" *ngIf="opt === '1'">
+              <input type="text" class="form-control" placeholder="Date From"name="dateFrom" [(ngModel)]="dateFrom" 
+                bsDatepicker #dp1="bsDatepicker"
+                [bsConfig]="{ containerClass: 'theme-blue', dateInputFormat: 'YYYY-MM-DD' }">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-default" (click)="dp1.show()" [attr.aria-expanded]="dp1.isOpen">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-12 p-1">
+            <div class="input-group date" *ngIf="opt === '1'">
+              <input type="text" class="form-control" placeholder="Date To" name="dateTo" [(ngModel)]="dateTo" 
+                bsDatepicker #dp2="bsDatepicker"
+                [bsConfig]="{ containerClass: 'theme-blue', dateInputFormat: 'YYYY-MM-DD' }">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-default" (click)="dp2.show()" [attr.aria-expanded]="dp2.isOpen">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+              </div>
+            </div>
           </div>
 
           <div class="col-sm-6 col-12 p-1 text-right">

@@ -21,6 +21,9 @@ export class ReportSevenComponent implements OnInit {
   materialList = [];
   mining_company_id = null;
   material_id = null;
+  opt = '0';
+  dateFrom = null;
+  dateTo = null;
   totalCount = 0;
   pageSize = AppConstant.PAGE_SIZE;
   page = 1;
@@ -53,7 +56,7 @@ export class ReportSevenComponent implements OnInit {
 
   loadReport() {
     this.isLoading = true;
-    this.reportService.list4(this.mining_company_id, this.material_id, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
+    this.reportService.list4(this.mining_company_id, this.material_id, this.opt, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
       this.list = res.body;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));

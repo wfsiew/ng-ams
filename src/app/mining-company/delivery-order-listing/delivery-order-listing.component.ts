@@ -194,8 +194,6 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
           this.toastr.success(`DO #${o.do_num} successfully updated`);
           this.load();
         }, (error) => {
-
-        }, () => {
           this.isLoading = false;
         });
       }
@@ -218,9 +216,8 @@ export class DeliveryOrderListingComponent implements OnInit, OnDestroy {
           this.toastr.success(`DO #${o.do_num} successfully updated`);
           this.load();
         }, (error) => {
-
-        }, () => {
           this.isLoading = false;
+          this.onCheckOut(o);
         });
       }
     });

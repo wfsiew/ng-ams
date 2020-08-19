@@ -59,10 +59,11 @@ export class ReportService {
     return this.http.get(`${this.baseUrl}/api/report/3`, { params: prm });
   }
 
-  list4(mining_company_id, material_id, page, limit, sort, dir) {
+  list4(mining_company_id, material_id, opt, page, limit, sort, dir) {
     let prm: HttpParams = new HttpParams()
       .set('mining_company_id', mining_company_id)
       .set('material_id', material_id)
+      .set('opt', opt)
       .set('_page', page)
       .set('_limit', limit);
     if (sort !== '') {
