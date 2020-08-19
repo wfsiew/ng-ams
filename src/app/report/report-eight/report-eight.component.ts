@@ -73,95 +73,21 @@ export class ReportEightComponent implements OnInit {
 
   load() {
     const colorList = Helper.getColorList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    const mths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUNE', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+    const lx = _.map(mths, (x, i) => {
+      return {
+        label: x,
+        data: [0, 0],
+        barThickness: 100,
+        backgroundColor: colorList[i],
+        borderColor: colorList[i]
+      }
+    });
 
     this.data = {
       labels: ['Besi', 'Timah'],
-      datasets: [
-        {
-          label: 'Jan',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[0],
-          borderColor: colorList[0]
-        },
-        {
-          label: 'Feb',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[1],
-          borderColor: colorList[1]
-        },
-        {
-          label: 'Mar',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[2],
-          borderColor: colorList[2]
-        },
-        {
-          label: 'Apr',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[3],
-          borderColor: colorList[3]
-        },
-        {
-          label: 'May',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[4],
-          borderColor: colorList[4]
-        },
-        {
-          label: 'June',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[5],
-          borderColor: colorList[5]
-        },
-        {
-          label: 'July',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[6],
-          borderColor: colorList[6]
-        },
-        {
-          label: 'Aug',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[7],
-          borderColor: colorList[7]
-        },
-        {
-          label: 'Sep',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[8],
-          borderColor: colorList[8]
-        },
-        {
-          label: 'Oct',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[9],
-          borderColor: colorList[9]
-        },
-        {
-          label: 'Nov',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[10],
-          borderColor: colorList[10]
-        },
-        {
-          label: 'Dec',
-          data: [0, 0],
-          barThickness: 100,
-          backgroundColor: colorList[11],
-          borderColor: colorList[11]
-        }
-      ]
+      datasets: lx
     }
 
     this.refreshChart();
