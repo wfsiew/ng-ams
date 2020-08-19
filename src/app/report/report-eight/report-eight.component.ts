@@ -16,6 +16,7 @@ export class ReportEightComponent implements OnInit {
   data: any;
   plugin = ChartDataLabels;
   mth = 0;
+  n = 0;
   @ViewChild('chart', { static: false }) chart: UIChart;
 
   options = {
@@ -107,9 +108,13 @@ export class ReportEightComponent implements OnInit {
     //   x.data[0] = x.data[0] + this.getRandom();
     //   x.data[1] = x.data[1] + this.getRandom();
     // });
-    this.mth += 1;
-    if (this.mth === 12) {
-      this.mth = 0;
+    ++this.n;
+    if (this.n === 5) {
+      this.n = 0;
+      this.mth += 1;
+      if (this.mth === 12) {
+        this.mth = 0;
+      }
     }
 
     this.chart.refresh();
