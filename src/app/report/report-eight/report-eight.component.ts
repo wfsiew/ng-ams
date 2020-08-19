@@ -15,8 +15,6 @@ export class ReportEightComponent implements OnInit {
 
   data: any;
   plugin = ChartDataLabels;
-  mth = 0;
-  n = 0;
   @ViewChild('chart', { static: false }) chart: UIChart;
 
   options = {
@@ -26,15 +24,15 @@ export class ReportEightComponent implements OnInit {
       fontSize: 16
     },
     legend: {
+      display: false,
       position: 'bottom'
     },
     plugins: {
       datalabels: {
         display: true,
-        color: '#ffffff',
         textAlign: 'center',
-        anchor: 'center',
-        align: 'center',
+        anchor: 'end',
+        align: 'end',
         formatter: (x, context) => {
           if (x === 0) {
             return '';
@@ -47,7 +45,7 @@ export class ReportEightComponent implements OnInit {
     scales: {
       yAxes: [
         {
-          stacked: true,
+          stacked: false,
           scaleLabel: {
             display: true,
             labelString: 'Load'
@@ -56,10 +54,10 @@ export class ReportEightComponent implements OnInit {
       ],
       xAxes: [
         {
-          stacked: true,
+          stacked: false,
           scaleLabel: {
             display: true,
-            labelString: 'Mineral'
+            labelString: 'IRON ORE - FINE'
           }
         }
       ]
@@ -73,21 +71,19 @@ export class ReportEightComponent implements OnInit {
   }
 
   load() {
-    const colorList = Helper.getColorList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-    const mths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUNE', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-
-    const lx = _.map(mths, (x, i) => {
-      return {
-        label: x,
-        data: [0, 0],
-        backgroundColor: colorList[i],
-        borderColor: colorList[i]
-      }
-    });
+    const colorList = Helper.getColorList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+    const labels = ['Johor', 'Kedah', 'Kelantan', 'W.P.', 'Melaka', 'Negeri Sembilan', 'Pahang', 'Perak', 'Perlis', 'Pulau Pinang', 'Putrajaya', 'Sabah', 'Sarawak', 'Selangor', 'Terengganu'];
 
     this.data = {
-      labels: ['Besi', 'Timah'],
-      datasets: lx
+      labels: labels,
+      datasets: [
+        {
+          label: 'IRON ORE - FINE',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          backgroundColor: colorList,
+          borderColor: colorList
+        }
+      ]
     }
 
     this.refreshChart();
@@ -100,22 +96,22 @@ export class ReportEightComponent implements OnInit {
   }
 
   loadAuto() {
-    let i = this.mth;
-    let o = this.chart.data.datasets[i];
-    o.data[0] = o.data[0] + this.getRandom();
-    o.data[1] = o.data[1] + this.getRandom();
+    let i = this.getRandomLabel();
+    let o = this.chart.data.datasets[0];
+    o.data[i] = o.data[i] + this.getRandom();
     // this.chart.data.datasets.forEach((x) => {
     //   x.data[0] = x.data[0] + this.getRandom();
     //   x.data[1] = x.data[1] + this.getRandom();
     // });
-    ++this.n;
-    if (this.n === 5) {
-      this.n = 0;
-      this.mth += 1;
-      if (this.mth === 12) {
-        this.mth = 0;
-      }
-    }
+
+    // ++this.n;
+    // if (this.n === 2) {
+    //   this.n = 0;
+    //   this.mth += 1;
+    //   if (this.mth === 12) {
+    //     this.mth = 0;
+    //   }
+    // }
 
     this.chart.refresh();
     this.refreshChart();
@@ -123,6 +119,11 @@ export class ReportEightComponent implements OnInit {
 
   private getRandom() {
     let x = Math.floor(Math.random() * 6) + 5;
+    return x;
+  }
+
+  private getRandomLabel() {
+    let x = Math.floor(Math.random() * 15);
     return x;
   }
 }
