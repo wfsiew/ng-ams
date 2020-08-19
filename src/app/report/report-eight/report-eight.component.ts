@@ -48,7 +48,7 @@ export class ReportEightComponent implements OnInit {
           stacked: false,
           scaleLabel: {
             display: true,
-            labelString: 'Load'
+            labelString: 'Value (RM) (1000)'
           }
         }
       ],
