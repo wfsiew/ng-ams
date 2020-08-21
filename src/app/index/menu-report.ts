@@ -58,7 +58,7 @@ export const SubmenuReport = [
     icon: 'far fa-circle'
   },
   {
-    title: 'Testing Report',
+    title: 'Monthly',
     path: 'eight',
     icon: 'far fa-circle'
   }
