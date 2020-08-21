@@ -132,7 +132,7 @@ export class ReportEightComponent implements OnInit, AfterViewInit {
 
   startProc2() {
     ++this.n;
-    if (this.n === 3) {
+    if (this.n === 1) {
       this.n = 0;
       ++this.mth;
       if (this.mth === 12) {
