@@ -59,7 +59,7 @@ export class ReportEightComponent implements OnInit, AfterViewInit {
           stacked: false,
           scaleLabel: {
             display: true,
-            labelString: 'Value (RM) (1000)'
+            labelString: 'Value (RM) (Million)'
           }
         }
       ],
@@ -138,7 +138,7 @@ export class ReportEightComponent implements OnInit, AfterViewInit {
       if (this.mth === 12) {
         this.mth = 0;
       }
-      
+
       setTimeout(() => {
         this.initChart();
         this.lx = this.getRandomIndexList();
