@@ -127,7 +127,7 @@ export class ReportEightComponent implements OnInit, AfterViewInit {
         this.j = 0;
         this.startProc2();
       }
-    }, 2000);
+    }, 1000);
   }
 
   startProc2() {
