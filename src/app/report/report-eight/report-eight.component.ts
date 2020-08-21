@@ -135,6 +135,10 @@ export class ReportEightComponent implements OnInit, AfterViewInit {
     if (this.n === 3) {
       this.n = 0;
       ++this.mth;
+      if (this.mth === 12) {
+        this.mth = 0;
+      }
+      
       setTimeout(() => {
         this.initChart();
         this.lx = this.getRandomIndexList();
