@@ -59,13 +59,27 @@ export class ReportService {
     return this.http.get(`${this.baseUrl}/api/report/3`, { params: prm });
   }
 
-  list4(mining_company_id, material_id, opt, page, limit, sort, dir) {
+  list4(mining_company_id, material_id, opt, dateFrom, dateTo, page, limit, sort, dir) {
     let prm: HttpParams = new HttpParams()
-      .set('mining_company_id', mining_company_id)
-      .set('material_id', material_id)
       .set('opt', opt)
       .set('_page', page)
       .set('_limit', limit);
+    if (mining_company_id) {
+      prm = prm.append('mining_company_id', mining_company_id);
+    }
+
+    if (material_id) {
+      prm = prm.append('material_id', material_id);
+    }
+
+    if (!Helper.isEmpty(dateFrom)) {
+      prm = prm.append('datefrom', dateFrom);
+    }
+
+    if (!Helper.isEmpty(dateTo)) {
+      prm = prm.append('dateto', dateTo);
+    }
+
     if (sort !== '') {
       if (dir === '') {
         dir = 'asc';

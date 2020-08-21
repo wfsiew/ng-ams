@@ -17,6 +17,7 @@ export class ReportSevenComponent implements OnInit {
 
   isLoading = false;
   list = [];
+  total = 0;
   miningCompanyList = [];
   materialList = [];
   mining_company_id = null;
@@ -27,7 +28,7 @@ export class ReportSevenComponent implements OnInit {
   totalCount = 0;
   pageSize = AppConstant.PAGE_SIZE;
   page = 1;
-  sort = 'created_date';
+  sort = 'checkout_date';
   sortDir = 'desc';
 
   readonly isEmpty = Helper.isEmpty;
@@ -56,8 +57,17 @@ export class ReportSevenComponent implements OnInit {
 
   loadReport() {
     this.isLoading = true;
-    this.reportService.list4(this.mining_company_id, this.material_id, this.opt, this.page, AppConstant.PAGE_SIZE, this.sort, this.sortDir).subscribe((res: any) => {
-      this.list = res.body;
+    this.reportService.list4(
+      this.mining_company_id,
+      this.material_id,
+      this.opt,
+      Helper.getDateStr(this.dateFrom), 
+      Helper.getDateStr(this.dateTo),
+      this.page,
+      AppConstant.PAGE_SIZE,
+      this.sort, this.sortDir).subscribe((res: any) => {
+      this.list = res.body.data;
+      this.total = res.body.total;
       const headers = res.headers;
       this.totalCount = Number(headers.get(AppConstant.HTTP_HEADER.X_TOTAL_COUNT));
     }, (error) => {
@@ -74,7 +84,7 @@ export class ReportSevenComponent implements OnInit {
 
   onSortBy(e) {
     if (e.sort === '' && e.dir === 'asc') {
-      this.sort = 'created_date';
+      this.sort = 'checkout_date';
       this.sortDir = 'desc';
     }
 

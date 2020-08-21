@@ -72,7 +72,7 @@
           </div>
 
           <div class="col-sm-6 col-12 p-1 text-right">
-            <button type="button" class="btn btn-primary" (click)="onApplyFilter()" [disabled]="!mining_company_id || !material_id">Apply</button>
+            <button type="button" class="btn btn-primary" (click)="onApplyFilter()">Apply</button>
             <span class="mr-2"></span>
             <button type="button" class="btn btn-default" (click)="onClearFilter()">Clear</button>
           </div>
@@ -81,6 +81,10 @@
     </div>
 
     <div class="card">
+      <div class="card-header" *ngIf="!isEmpty(list) && !isLoading">
+        <h3 class="card-title"><b>Total Weight: {{ total | number }} (kg)</b></h3>
+      </div>
+
       <div class="card-body">
         <div class="text-center" *ngIf="isEmpty(list) && !isLoading">
           <h4>No records found</h4>
@@ -107,7 +111,7 @@
                   <app-sort-column [name]="'Material'" [sort]="'material__name'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
                 </th>
-                <th>
+                <th class="text-right">
                   <app-sort-column [name]="'Weight (kg)'" [sort]="'actual_weight'" [dir]="sortDir" [current]="sort"
                     (onSortBy)="onSortBy($event)" class="text-nowrap"></app-sort-column>
                 </th>
@@ -124,7 +128,7 @@
                 <td>{{ o.pickup_state.name | uppercase }}</td>
                 <td>{{ o.issue_from.name | uppercase }}</td>
                 <td>{{ o.material.name | uppercase }}</td>
-                <td>{{ o.actual_weight }}</td>
+                <td class="text-right"><div class="mr-4">{{ o.actual_weight | number }}</div></td>
                 <td>{{ o.buyer.name | uppercase }}</td>
               </tr>
             </tbody>
