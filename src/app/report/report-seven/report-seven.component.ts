@@ -79,7 +79,7 @@ export class ReportSevenComponent implements OnInit {
 
   pageChanged(event: any) {
     this.page = event.page;
-    this.load();
+    this.loadReport();
   }
 
   onSortBy(e) {
