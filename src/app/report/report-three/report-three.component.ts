@@ -24,14 +24,14 @@ export class ReportThreeComponent implements OnInit {
   @ViewChild('chart', { static: false }) chart: UIChart;
 
   mineList = [
-    { id: '0', name: 'Besi' },
-    { id: '1', name: 'Timah' }
+    { id: '0', name: 'Iron' },
+    { id: '1', name: 'Tin' }
   ];
 
   options = {
     title: {
       display: true,
-      text: ['Besi', 'Total Tonnes (State) from 2016 - 2018'],
+      text: ['Iron', 'Total Tonnes (State) from 2016 - 2018'],
       fontSize: 16
     },
     legend: {
@@ -146,41 +146,41 @@ export class ReportThreeComponent implements OnInit {
     if (this.mine === '0') {
       if (this.tab === 0) {
         if (this.opt === '0') {
-          s = ['Besi', 'Total Tonnes (State) from 2016 - 2018'];
+          s = ['Iron', 'Total Tonnes (State) from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Total Tonnes (State) from 2014 - 2018'];
+          s = ['Iron', 'Total Tonnes (State) from 2014 - 2018'];
         }
       }
       
       else if (this.tab === 1) {
         if (this.opt === '0') {
-          s = ['Besi', 'Total Mines (State) from 2016 - 2018'];
+          s = ['Iron', 'Total Mines (State) from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Total Mines (State) from 2014 - 2018'];
+          s = ['Iron', 'Total Mines (State) from 2014 - 2018'];
         }
       }
 
       else if (this.tab === 2) {
         if (this.opt === '0') {
-          s = ['Besi', 'Total Tonnes from 2016 - 2018'];
+          s = ['Iron', 'Total Tonnes from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Total Tonnes from 2014 - 2018'];
+          s = ['Iron', 'Total Tonnes from 2014 - 2018'];
         }
       }
 
       else if (this.tab === 3) {
         if (this.opt === '0') {
-          s = ['Besi', 'Total Mines from 2016 - 2018'];
+          s = ['Iron', 'Total Mines from 2016 - 2018'];
         }
         
         else {
-          s = ['Besi', 'Total Mines from 2014 - 2018'];
+          s = ['Iron', 'Total Mines from 2014 - 2018'];
         }
       }
     }
@@ -188,41 +188,41 @@ export class ReportThreeComponent implements OnInit {
     else if (this.mine === '1') {
       if (this.tab === 0) {
         if (this.opt === '0') {
-          s = ['Timah',  'Total Tonnes (State) from 2017 - 2019'];
+          s = ['Tin',  'Total Tonnes (State) from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah', 'Total Tonnes (State) from 2015 - 2019'];
+          s = ['Tin', 'Total Tonnes (State) from 2015 - 2019'];
         }
       }
 
       else if (this.tab === 1) {
         if (this.opt === '0') {
-          s = ['Timah - Total Mines (State) from 2017 - 2019'];
+          s = ['Tin - Total Mines (State) from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah',  'Total Mines (State) from 2015 - 2019'];
+          s = ['Tin',  'Total Mines (State) from 2015 - 2019'];
         }
       }
 
       else if (this.tab === 2) {
         if (this.opt === '0') {
-          s = ['Timah', 'Total Tonnes from 2017 - 2019'];
+          s = ['Tin', 'Total Tonnes from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah', 'Total Tonnes from 2015 - 2019'];
+          s = ['Tin', 'Total Tonnes from 2015 - 2019'];
         }
       }
 
       else if (this.tab === 3) {
         if (this.opt === '0') {
-          s = ['Timah', 'Total Mines from 2017 - 2019'];
+          s = ['Tin', 'Total Mines from 2017 - 2019'];
         }
         
         else {
-          s = ['Timah', 'Total Mines from 2015 - 2019'];
+          s = ['Tin', 'Total Mines from 2015 - 2019'];
         }
       }
     }
